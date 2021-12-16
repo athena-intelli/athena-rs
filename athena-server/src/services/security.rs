@@ -2,7 +2,8 @@ use tonic::{Request, Response, Status};
 use athena_api::pb::security_service::security_service_server::SecurityService;
 use athena_api::pb::security_service::{ChangePasswordRequest, LoginResponse, UsernameAndPasswordToken};
 
-struct SecurityServiceImpl;
+#[derive(Default)]
+pub struct SecurityServiceImpl;
 
 #[tonic::async_trait]
 impl SecurityService for SecurityServiceImpl {

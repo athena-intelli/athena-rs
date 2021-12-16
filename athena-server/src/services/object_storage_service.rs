@@ -3,7 +3,8 @@ use athena_api::pb::structures::*;
 use athena_api::pb::object_storage_service::object_storage_service_server::ObjectStorageService;
 use athena_api::pb::object_storage_service::RemoveObjectRequest;
 
-struct ObjectStorageServiceImpl;
+#[derive(Default)]
+pub struct ObjectStorageServiceImpl;
 
 #[tonic::async_trait]
 impl ObjectStorageService for ObjectStorageServiceImpl {

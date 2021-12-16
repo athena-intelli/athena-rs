@@ -3,7 +3,8 @@ use tonic::{Request, Response, Status};
 use athena_api::pb::structures::*;
 use athena_api::pb::object_retrieval_service::object_retrieval_service_server::ObjectRetrievalService;
 
-struct ObjectRetrievalServiceImpl;
+#[derive(Default)]
+pub struct ObjectRetrievalServiceImpl;
 
 #[tonic::async_trait]
 impl ObjectRetrievalService for ObjectRetrievalServiceImpl {

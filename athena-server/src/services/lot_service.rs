@@ -4,7 +4,8 @@ use athena_api::pb::structures::{ChangePriorityRequest, DLot, DLotReturnData};
 use athena_api::pb::lot_service::lot_service_server::LotService;
 use athena_api::pb::lot_service::*;
 
-struct LotSerivceImpl;
+#[derive(Default)]
+pub struct LotSerivceImpl;
 
 #[tonic::async_trait]
 impl LotService for LotSerivceImpl {

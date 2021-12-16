@@ -3,7 +3,8 @@ use athena_api::pb::structures::{ChangePriorityRequest, DWorkStation};
 use athena_api::pb::work_station_service::{AddToolRequest, RemoveToolRequest};
 use athena_api::pb::work_station_service::work_station_service_server::WorkStationService;
 
-struct WorkStationServiceImpl;
+#[derive(Default)]
+pub struct WorkStationServiceImpl;
 
 #[tonic::async_trait]
 impl WorkStationService for WorkStationServiceImpl {

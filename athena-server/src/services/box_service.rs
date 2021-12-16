@@ -3,7 +3,8 @@ use athena_api::pb::box_service::box_service_server::BoxService;
 use athena_api::pb::box_service::*;
 use athena_api::pb::structures::DBox;
 
-struct BoxServiceImpl;
+#[derive(Default)]
+pub(crate) struct BoxServiceImpl;
 
 #[tonic::async_trait]
 impl BoxService for BoxServiceImpl {

@@ -4,7 +4,8 @@ use athena_api::pb::structures::{ChangePriorityRequest, DUnit};
 use athena_api::pb::unit_service::*;
 use athena_api::pb::unit_service::unit_service_server::UnitService;
 
-struct UnitServiceImpl;
+#[derive(Default)]
+pub struct UnitServiceImpl;
 
 #[tonic::async_trait]
 impl UnitService for UnitServiceImpl {

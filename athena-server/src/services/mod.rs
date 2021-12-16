@@ -1,8 +1,8 @@
-mod box_service;
-mod lot_service;
-mod security;
-mod work_order_service;
-mod work_station_service;
-mod unit_service;
-mod object_storage_service;
-mod object_retrieval_service;
+pub(crate) mod box_service;
+pub(crate) mod lot_service;
+pub(crate) mod security;
+pub(crate) mod work_order_service;
+pub(crate) mod work_station_service;
+pub(crate) mod unit_service;
+pub(crate) mod object_storage_service;
+pub(crate) mod object_retrieval_service;

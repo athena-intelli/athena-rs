@@ -3,7 +3,8 @@ use athena_api::pb::structures::{ChangePriorityRequest, DWorkOrder};
 use athena_api::pb::work_order_service::{CompleteOrderRequest, DeleteOrderRequest, StartOrderRequest, TransitionOrderRequest};
 use athena_api::pb::work_order_service::work_order_service_server::WorkOrderService;
 
-struct WorkOrderServiceImpl;
+#[derive(Default)]
+pub struct WorkOrderServiceImpl;
 
 #[tonic::async_trait]
 impl WorkOrderService for WorkOrderServiceImpl{
