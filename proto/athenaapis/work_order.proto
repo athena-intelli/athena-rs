@@ -1,0 +1,77 @@
+syntax = "proto3";
+import "athenaapis/dto.proto";
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/athena-intelli/athena/api/pb/workOrderService;workOrderService";
+option java_multiple_files = true;
+option java_package = "com.athena.api.service";
+
+package WorkOrderService;
+
+service WorkOrderService{
+  rpc ChangeOrderPriority(dto.ChangePriorityRequest)returns(dto.DWorkOrder){}
+  rpc Close(TransitionOrderRequest)returns(dto.DWorkOrder){}
+  rpc Finish(TransitionOrderRequest)returns(dto.DWorkOrder){}
+  rpc Hold(TransitionOrderRequest)returns(dto.DWorkOrder){}
+  rpc Open(TransitionOrderRequest)returns(dto.DWorkOrder){}
+  rpc Quarantine(TransitionOrderRequest)returns(dto.DWorkOrder){}
+  rpc Release(TransitionOrderRequest)returns(dto.DWorkOrder){}
+  rpc DeleteOrder(DeleteOrderRequest)returns(google.protobuf.Empty){}
+  rpc SaveWorkOrder(dto.DWorkOrder)returns(dto.DWorkOrder){}
+  rpc Ship(TransitionOrderRequest)returns(dto.DWorkOrder){}
+  rpc UndoClose(TransitionOrderRequest)returns(dto.DWorkOrder){}
+
+  // This method is used to record a transaction indicating that this
+  // WorkOrder and all of its children (any Lots, Units) have
+  // started at the route step specified.
+  rpc StartAtRouteStep(StartOrderRequest)returns(dto.DWorkOrder){}
+
+  //  This method is used to record a transaction indicating that this
+  //  WorkOrder and all of its children (any  Lots, Units) have
+  //  completed the route step specified.
+  rpc CompleteAtRouteStep(CompleteOrderRequest)returns(dto.DWorkOrder){}
+}
+
+enum TransitionOrderState{
+  OrderClose = 0;
+  OrderFinish = 1;
+  OrderHold = 2;
+  OrderOpen = 3;
+  OrderQuarantine = 4;
+  OrderRelease = 5;
+  OrderShip = 6;
+  OrderUndoClose = 7;
+}
+
+message StartOrderRequest{
+  uint64 order_id = 1;
+  string route_step_number = 2;
+  string comment = 3;
+  google.protobuf.Timestamp transaction_time = 4;
+  bool override_route_enforcement = 5;
+}
+
+message CompleteOrderRequest{
+  uint64 order_id = 1;
+  string route_step_number = 2;
+  string comment = 3;
+  google.protobuf.Timestamp transaction_time = 4;
+  bool override_route_enforcement = 5;
+  string complete_reason = 6;
+}
+
+message TransitionOrderRequest{
+  uint64 order_id = 1;
+  string reason = 2;
+  string comment = 3;
+  google.protobuf.Timestamp transaction_time = 4;
+  TransitionOrderState transitionState = 5;
+  bool override_route_enforcement = 6;
+}
+
+message DeleteOrderRequest{
+  uint64 order_id = 1;
+  string delete_reason = 2;
+  string comment = 3;
+  google.protobuf.Timestamp transaction_time = 4;
+}

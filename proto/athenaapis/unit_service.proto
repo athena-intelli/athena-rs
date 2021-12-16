@@ -1,0 +1,164 @@
+syntax = "proto3";
+import "athenaapis/dto.proto";
+
+option go_package = "github.com/athena-intelli/athena/api/pb/unitService;unitService";
+option java_multiple_files = true;
+option java_package = "com.athena.api.service";
+
+package UnitService;
+
+service UnitService{
+
+  rpc AddToQueue(AddUnitToQueueRequest) returns(dto.DUnit){}
+  rpc SaveUnit(dto.DUnit) returns(dto.DUnit){}
+  rpc Cancel(TransitionUnitRequest)returns(dto.DUnit){}
+  rpc Close(TransitionUnitRequest)returns(dto.DUnit){}
+  rpc Finish(TransitionUnitRequest)returns(dto.DUnit){}
+  rpc Hold(TransitionUnitRequest)returns(dto.DUnit){}
+  rpc Pause(TransitionUnitRequest)returns(dto.DUnit){}
+  rpc Quarantine(TransitionUnitRequest)returns(dto.DUnit){}
+  rpc Release(TransitionUnitRequest)returns(dto.DUnit){}
+  rpc Ship(TransitionUnitRequest)returns(dto.DUnit){}
+  rpc Scrap(TransitionUnitRequest)returns(dto.DUnit){}
+  rpc UndoClose(TransitionUnitRequest)returns(dto.DUnit){}
+  rpc UndoFinish(TransitionUnitRequest)returns(dto.DUnit){}
+  rpc UndoScrap(TransitionUnitRequest)returns(dto.DUnit){}
+  rpc UndoShip(TransitionUnitRequest)returns(dto.DUnit){}
+  rpc ChangeBom(UnitChangeBomRequest)returns(dto.DUnit){}
+  rpc ChangeBomFromPart(UnitChangeBomFromPartRequest)returns(dto.DUnit){}
+  rpc ChangeLot(ChangeLotRequest)returns(dto.DUnit){}
+  rpc ChangePart(UnitChangePartRequest)returns(dto.DUnit){}
+  rpc ChangePartOnly(UnitChangePartRequest)returns(dto.DUnit){}
+  rpc ChangePriority(dto.ChangePriorityRequest)returns(dto.DUnit){}
+  rpc ChangeProductionLine(ChangeProductionLineRequest)returns(dto.DUnit){}
+  rpc ChangeRoute(UnitChangeRouteRequest)returns(dto.DUnit){}
+  rpc ChangeSerialNumber(ChangeSerialNumberRequest)returns(dto.DUnit){}
+  rpc CompleteAtRouteStep(UnitCompleteAtRouteStepRequest)returns(dto.DUnit){}
+  rpc StartAtRouteStep(UnitStartAtRouteStepRequest)returns(dto.DUnit){}
+  rpc Restart(RestartUnitRequest)returns(dto.DUnit){}
+  rpc CreateStandAloneUnit(CreateStandAloneUnitRequest)returns(dto.DUnit){}
+  rpc CreateStandAloneUnits(CreateStandAloneUnitRequest)returns(stream dto.DUnit){}
+
+}
+
+message CreateStandAloneUnitRequest{
+  string serial_number = 1;
+  string part_number = 2;
+  string part_revision = 3;
+  string bom_name = 4;
+  string bom_revision = 5;
+  uint64 route_id = 6;
+  int32 priority = 7;
+  string comment = 8;
+  google.protobuf.Timestamp transaction_time = 9;
+  uint32 Quantity = 10;
+}
+
+message RestartUnitRequest{
+  uint64 unit_id = 1;
+  string comment = 2;
+  google.protobuf.Timestamp transaction_time = 3;
+}
+
+message UnitStartAtRouteStepRequest{
+  uint64 unit_id = 1;
+  string route_step_number = 2;
+  string comment = 3;
+  google.protobuf.Timestamp transaction_time = 4;
+  bool override_route_enforcement = 5;
+}
+message UnitCompleteAtRouteStepRequest{
+  uint64 unit_id = 1;
+  string route_step_number = 2;
+  string comment = 3;
+  google.protobuf.Timestamp transaction_time = 4;
+  bool override_route_enforcement = 5;
+  string complete_reason = 6;
+}
+
+message ChangeSerialNumberRequest{
+  uint64 unit_id = 1;
+  string new_serial_number = 2;
+  string comment = 3;
+  google.protobuf.Timestamp transaction_time = 4;
+}
+
+message UnitChangeRouteRequest{
+  uint64 unit_id = 1;
+  uint64 new_route_id = 2;
+  bool force_change_route = 3;
+  string comment = 4;
+  google.protobuf.Timestamp transaction_time = 5;
+}
+
+message ChangeProductionLineRequest{
+  uint64 unit_id = 1;
+  uint64 new_production_line_id = 2;
+  string comment = 3;
+  google.protobuf.Timestamp transaction_time = 4;
+}
+
+
+message UnitChangePartRequest{
+  uint64 unit_id = 1;
+  string part_number = 2;
+  string part_revision = 3;
+  string comment = 4;
+  google.protobuf.Timestamp transaction_time = 5;
+}
+
+message ChangeLotRequest{
+  uint64 unit_id = 1;
+  uint64 new_lot_id = 2;
+  string comment = 3;
+  google.protobuf.Timestamp transaction_time = 4;
+}
+
+message UnitChangeBomRequest{
+  uint64 unit_id = 1;
+  string bom_name = 2;
+  string bom_revision = 3;
+  string comment = 4;
+  google.protobuf.Timestamp transaction_time = 5;
+}
+
+message UnitChangeBomFromPartRequest{
+  uint64 unit_id = 1;
+  string part_number = 2;
+  string part_revision = 3;
+  dto.DBom bom = 4;
+  string comment = 5;
+  google.protobuf.Timestamp transaction_time = 6;
+}
+
+enum TransitionUnitState{
+  UnitClose = 0;
+  UnitFinish = 1;
+  UnitHold = 2;
+  UnitOpen = 3;
+  UnitQuarantine = 4;
+  UnitRelease = 5;
+  UnitShip = 6;
+  UnitUndoClose = 7;
+  UnitUndoShip = 8;
+  UnitUndoFinish = 9;
+  UnitScrap = 10;
+  UnitUndoScrap = 11;
+  UnitCancle = 12;
+}
+
+message TransitionUnitRequest{
+  uint64 unit_id = 1;
+  string reason = 2;
+  string comment = 3;
+  google.protobuf.Timestamp transaction_time = 4;
+  TransitionUnitState transitionState = 5;
+  bool override_route_enforcement = 6;
+}
+
+message AddUnitToQueueRequest{
+  uint64 unit_id = 1;
+  string route_queue_name = 2;
+  string comment = 3;
+  google.protobuf.Timestamp transaction_time = 4;
+}

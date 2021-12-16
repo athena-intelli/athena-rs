@@ -1,0 +1,173 @@
+syntax = "proto3";
+import "athenaapis/dto.proto";
+
+option go_package = "github.com/athena-intelli/athena/api/pb/lotService;lotService";
+option java_multiple_files = true;
+option java_package = "com.athena.api.service";
+
+package LotService;
+
+service LotService{
+  rpc Cancel(TransitionLotRequest)returns(dto.DLot){}
+  rpc Close(TransitionLotRequest)returns(dto.DLot){}
+  rpc Finish(TransitionLotRequest)returns(dto.DLot){}
+  rpc Hold(TransitionLotRequest)returns(dto.DLot){}
+  rpc Pause(TransitionLotRequest)returns(dto.DLot){}
+  rpc Quarantine(TransitionLotRequest)returns(dto.DLot){}
+  rpc Release(TransitionLotRequest)returns(dto.DLot){}
+  rpc Ship(TransitionLotRequest)returns(dto.DLot){}
+  rpc Scrap(TransitionLotRequest)returns(dto.DLot){}
+  rpc UndoClose(TransitionLotRequest)returns(dto.DLot){}
+  rpc UndoFinish(TransitionLotRequest)returns(dto.DLot){}
+  rpc UndoScrap(TransitionLotRequest)returns(dto.DLot){}
+  rpc UndoShip(TransitionLotRequest)returns(dto.DLot){}
+  rpc Serialize(TransitionLotRequest)returns(dto.DLot){}
+  rpc UndoSerialize(TransitionLotRequest)returns(dto.DLot){}
+  rpc AddOneUnit(AddOneUnitRequest)returns(dto.DLotReturnData){}
+  rpc AddToQueue(AddLotToQueueRequest) returns(dto.DLot){}
+  rpc ChangeBom(LotChangeBomRequest)returns(dto.DLot){}
+  rpc ChangeBomFromPart(LotChangeBomFromPartRequest)returns(dto.DLot){}
+  rpc ChangePart(LotChangePartRequest)returns(dto.DLot){}
+  rpc ChangePartOnly(LotChangePartRequest)returns(dto.DLot){}
+  rpc ChangePriority(dto.ChangePriorityRequest)returns(dto.DLot){}
+  rpc ChangeProductionLine(LotChangeProductionLineRequest)returns(dto.DLot){}
+  rpc ChangeRoute(LotChangeRouteRequest)returns(dto.DLot){}
+  rpc ChangeQuantity(LotChangeQuantityRequest)returns(dto.DLot){}
+  rpc SplitLot(SplitLotRequest)returns(SplitLotResponse){}
+  rpc CompleteAtRouteStep(LotCompleteAtRouteStepRequest)returns(dto.DLot){}
+  rpc StartAtRouteStep(LotStartAtRouteStepRequest)returns(dto.DLot){}
+  rpc MergeUnit(MergeUnitRequest)returns(dto.DLot){}
+  rpc MergeLot(MergeLotRequest)returns(stream dto.DLot){}
+}
+
+message MergeLotRequest{
+  uint64 parent_lot_id = 1;
+  uint64 child_lot_id = 2;
+  string comment = 3;
+  google.protobuf.Timestamp transaction_time = 4;
+}
+
+message MergeUnitRequest{
+  uint64 lot_id = 1;
+  uint64 unit_id = 2;
+  string comment = 3;
+  google.protobuf.Timestamp transaction_time = 4;
+}
+
+message LotStartAtRouteStepRequest{
+  uint64 lot_id = 1;
+  string route_step_number = 2;
+  string comment = 3;
+  google.protobuf.Timestamp transaction_time = 4;
+  bool override_route_enforcement = 5;
+}
+message LotCompleteAtRouteStepRequest{
+  uint64 lot_id = 1;
+  string route_step_number = 2;
+  string comment = 3;
+  google.protobuf.Timestamp transaction_time = 4;
+  bool override_route_enforcement = 5;
+  string complete_reason = 6;
+}
+
+message SplitLotRequest{
+  uint64 parent_lot_id = 1;
+  string child_lot_serial_number = 2;
+  double child_lot_quantity = 3;
+  string comment = 4;
+  google.protobuf.Timestamp transaction_time = 5;
+}
+
+message SplitLotResponse{
+  repeated dto.DLot lots = 1;
+}
+
+enum TransitionLotState{
+  LotClose = 0;
+  LotFinish = 1;
+  LotHold = 2;
+  LotOpen = 3;
+  LotQuarantine = 4;
+  LotRelease = 5;
+  LotShip = 6;
+  LotUndoClose = 7;
+  LotUndoShip = 8;
+  LotUndoFinish = 9;
+  LotScrap = 10;
+  LotUndoScrap = 11;
+  LotCancle = 12;
+  LotSerialize = 13;
+  LotUndoSerialize = 14;
+}
+
+message TransitionLotRequest{
+  uint64 lot_id = 1;
+  string reason = 2;
+  string comment = 3;
+  google.protobuf.Timestamp timestamp = 4;
+  TransitionLotState transitionState = 5;
+  bool override_route_enforcement = 6;
+}
+
+message LotChangeQuantityRequest{
+  uint64 lot_id = 1;
+  double quantity = 2;
+  string comment = 3;
+  google.protobuf.Timestamp transaction_time = 4;
+}
+
+message LotChangeRouteRequest{
+  uint64 lot_id = 1;
+  uint64 new_route_id = 2;
+  bool force_change_route = 3;
+  string comment = 4;
+  google.protobuf.Timestamp transaction_time = 5;
+}
+
+message LotChangeProductionLineRequest{
+  uint64 lot_id = 1;
+  uint64 new_production_line_id = 2;
+  string comment = 3;
+  google.protobuf.Timestamp transaction_time = 4;
+}
+
+
+message LotChangePartRequest{
+  uint64 lot_id = 1;
+  string part_number = 2;
+  string part_revision = 3;
+  string comment = 4;
+  google.protobuf.Timestamp transaction_time = 5;
+}
+
+
+message LotChangeBomRequest{
+  uint64 lot_id = 1;
+  string bom_name = 2;
+  string bom_revision = 3;
+  string comment = 4;
+  google.protobuf.Timestamp transaction_time = 5;
+}
+
+message LotChangeBomFromPartRequest{
+  uint64 lot_id = 1;
+  string part_number = 2;
+  string part_revision = 3;
+  dto.DBom bom = 4;
+  string comment = 5;
+  google.protobuf.Timestamp transaction_time = 6;
+}
+
+message AddOneUnitRequest{
+  uint64 lot_id = 1;
+  string unit_serial_number = 2;
+  string comment = 3;
+  google.protobuf.Timestamp transaction_time = 4;
+}
+
+message AddLotToQueueRequest{
+  uint64 lot_id = 1;
+  string route_queue_name = 2;
+  string comment = 3;
+  google.protobuf.Timestamp transaction_time = 4;
+}

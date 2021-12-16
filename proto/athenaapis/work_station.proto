@@ -1,0 +1,30 @@
+syntax = "proto3";
+import "athenaapis/dto.proto";
+
+option go_package = "github.com/athena-intelli/athena/api/pb/workStationService;workStationService";
+option java_multiple_files = true;
+option java_package = "com.athena.api.service";
+
+package WorkStationService;
+
+service WorkStationService{
+  rpc AddTools(AddToolRequest)returns(dto.DWorkStation){}
+  rpc ChangePriority(dto.ChangePriorityRequest)returns(dto.DWorkStation){}
+  rpc RemoveTools(RemoveToolRequest)returns(dto.DWorkStation){}
+
+}
+
+message AddToolRequest{
+  uint64 work_station_id = 1;
+  repeated uint64 equipment_ids = 2;
+  bool remove_from_present_work_station = 3;
+  string comment = 4;
+  google.protobuf.Timestamp transaction_time = 5;
+}
+
+message RemoveToolRequest{
+  uint64 work_station_id = 1;
+  repeated uint64 equipment_ids = 2;
+  string comment = 3;
+  google.protobuf.Timestamp transaction_time = 4;
+}

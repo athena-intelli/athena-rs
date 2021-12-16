@@ -1,0 +1,17 @@
+HELP.md
+target/
+Cargo.lock
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+*.log
+
+### VS Code ###
+.vscode/
+
+.flattened-pom.xml
+
+.DS_Store

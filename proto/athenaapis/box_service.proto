@@ -1,0 +1,201 @@
+syntax = "proto3";
+import "athenaapis/dto.proto";
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/athena-intelli/athena/api/pb/boxService;boxService";
+option java_multiple_files = true;
+option java_package = "com.service";
+
+package BoxService;
+
+service BoxService{
+  //This method is used to add a box to a box
+  rpc AddBoxToBox(HandleBoxRequest) returns (dto.DBox){}
+  //This method is used to add a lot to a box
+  rpc AddLotToBox(HandleLotRequest) returns (dto.DBox){}
+  // This method is used to record a transaction indicating that a box and all
+  //  of its contents (any contained boxes, lots and units) has been moved to
+  //  the queue specified.
+  rpc AddBoxToQueue(AddBoxToQueueRequest) returns (dto.DBox){}
+  //This method is used to add a unit to a box
+  rpc AddUnitToBox(HandleUnitRequest) returns (dto.DBox){}
+
+  //This method is used to change the production line of a box and all of its
+  //  contents (any contained boxes, lots and units).
+  rpc ChangeProductionLine(ChangePLineRequest) returns (dto.DBox){}
+
+  //This method is used to change the route of a box and all of its contents
+  // (any contained boxes, lots and units).
+  rpc ChangeRoute(BoxChangeRouteRequest) returns (dto.DBox){}
+
+  //This method is used to record a transaction indicating that a box and all
+  // of its contents (any contained boxes, lots and units) have closed.
+  rpc Close(BoxTransactionRequest) returns (dto.DBox){}
+
+  /**
+     * This method is used to record a transaction indicating that a box and all
+     * of its contents (any contained boxes, lots and units) have completed the
+     * route step specified.
+   */
+  rpc CompleteAtRouteStep(BoxCompleteRequest) returns (dto.DBox){}
+
+  /**
+     * This method is used to record a transaction indicating that a box and all
+     * of its contents (any contained boxes, lots and units) have started the
+     * route step specified.
+   */
+  rpc StartAtRouteStep(BoxStartRequest) returns (dto.DBox){}
+
+  // This method is used to record a transaction indicating that a box and all
+  //   of its contents (any contained boxes, lots and units) have finished.
+  rpc Finish(BoxTransactionRequest) returns (dto.DBox){}
+
+  // This method is used to record a transaction indicating that a box and all
+  //     of its contents (any contained boxes, lots and units) have been placed on
+  //     hold. When an object is on hold no other transactions may be performed on
+  //     it, until it is released
+  rpc Hold(BoxTransactionRequest) returns (dto.DBox){}
+
+  //This method is used to record a transaction indicating that a box and its
+  //     * containers (any container boxes and carriers) have opened. The open
+  //     * method is equivalent to the undoClose method, except that it propagates
+  //     * upward to the Box's containers instead of downward to the Box's contents.
+  rpc Open(BoxTransactionRequest) returns (dto.DBox){}
+
+  /**
+     * This method is used to record a transaction indicating that a box and all
+     * of its contents (any contained boxes, lots and units) have stopped
+     * processing. When an object is paused no other transactions may be
+     * performed on it, until it is restarted.
+   */
+  rpc Pause(BoxTransactionRequest) returns (dto.DBox){}
+
+  /**
+     * This method is used to record a transaction indicating that a box and all
+     * of its contents (any contained boxes, lots and units) have been released
+     * from hold or quarantine.
+   */
+  rpc Release(BoxTransactionRequest) returns (dto.DBox){}
+
+  /**
+   * This method is used to record a transaction indicating that a box and all
+   * of its contents (any contained boxes, lots and units) has been scrapped.
+   */
+  rpc Scrap(BoxTransactionRequest) returns (dto.DBox){}
+
+  //This method removes everything from a box.
+  rpc RemoveAll(ClearBoxRequest) returns (dto.DBox){}
+
+  //This method is used to remove a box from a box.
+  rpc RemoveBox(HandleBoxRequest) returns (google.protobuf.Empty){}
+
+  //This method is used to remove a lot from a box.
+  rpc RemoveLot(HandleLotRequest) returns (google.protobuf.Empty){}
+
+  //This method is used to remove a unit from a box.
+  rpc RemoveUnit(HandleUnitRequest) returns (google.protobuf.Empty){}
+
+  /**
+     * This method is used to save or update a box.
+   */
+  rpc SaveBox(dto.DBox) returns (dto.DBox){}
+
+}
+
+
+message ClearBoxRequest{
+  uint64 box_id = 1;
+  google.protobuf.Timestamp transaction_time = 2;
+  string comment = 3;
+}
+
+message HandleUnitRequest{
+  uint64 box_id = 1;
+  uint64 unit_id = 2;
+  google.protobuf.Timestamp transaction_time = 3;
+  string comment = 4;
+}
+
+message BoxTransactionRequest{
+  uint64 box_id = 1;
+  string reason = 2;
+  google.protobuf.Timestamp transaction_time = 3;
+  string comment = 4;
+  bool override_route_enforcement = 5;
+  enum BoxTransaction{
+    close = 0;
+    finish = 1;
+    pause = 2;
+    release = 3;
+    restart = 4;
+    open = 5;
+    hold = 6;
+    ship = 7;
+    undoClose = 8;
+    undoFinish = 9;
+    undoScrap = 10;
+    undoShip = 11;
+  }
+  BoxTransaction transaction = 6;
+}
+
+
+message HandleBoxRequest{
+  uint64 container_id = 1;
+  uint64 box_id = 2;
+  google.protobuf.Timestamp transaction_time = 3;
+  string comment = 4;
+}
+
+message HandleLotRequest{
+  uint64 box_id = 1;
+  uint64 lot_id = 2;
+  google.protobuf.Timestamp transaction_time = 3;
+  string comment = 4;
+}
+
+message AddBoxToQueueRequest{
+  uint64 box_id = 1;
+  string route_queue_name = 2;
+  google.protobuf.Timestamp transaction_time = 3;
+  string comment = 4;
+}
+
+message ChangePLineRequest{
+  uint64 box_id = 1;
+  string production_line_code = 2;
+  google.protobuf.Timestamp transaction_time = 3;
+  string comment = 4;
+  uint64 production_line_id = 5;
+}
+
+message BoxChangeRouteRequest{
+  uint64 box_id = 1;
+  string route_code = 2;
+  google.protobuf.Timestamp transaction_time = 3;
+  string comment = 4;
+  bool force_change_route = 5;
+  uint64 route_id = 6;
+}
+
+message BoxCompleteRequest{
+  uint64 box_id = 1;
+  string reason = 2;
+  google.protobuf.Timestamp transaction_time = 3;
+  string comment = 4;
+  bool override_route_enforcement = 5;
+  uint64 route_step_id = 6;
+  string route_step_number = 7;
+  uint64 route_id = 8;
+}
+
+message BoxStartRequest{
+  uint64 box_id = 1;
+  string reason = 2;
+  google.protobuf.Timestamp transaction_time = 3;
+  string comment = 4;
+  bool override_route_enforcement = 5;
+  uint64 route_step_id = 6;
+  string route_step_number = 7;
+  uint64 route_id = 8;
+}
