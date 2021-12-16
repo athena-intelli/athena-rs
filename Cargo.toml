@@ -1,32 +1,6 @@
-[package]
-name = "athena-rs"
-version = "0.1.0"
-edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-build = "build.rs"
-
-[dependencies]
-async-stream = "0.3"
-futures = { version = "0.3", default-features = false, features = ["alloc"] }
-tonic = { vesion = "0.6.2", features = ["tls", "compression"] }
-
-# tokio
-tokio = { version = "1.0", features = ["rt-multi-thread", "time", "fs", "macros", "net"] }
-tokio-stream = { version = "0.1", features = ["net"] }
-
-rand = "0.8"
-serde = { version = "1.0", features = ["derive"] }
-serde_json = "1.0"
-
-prost-types = "0.9"
-prost = "0.9"
-
-# Tracing
-tracing = "0.1.16"
-tracing-attributes = "0.1"
-tracing-futures = "0.2"
-tracing-subscriber = { version = "0.2", features = ["tracing-log"] }
-
-[build-dependencies]
-tonic-build = { version = "0.6.2", features = ["prost", "compression"] }
+[workspace]
+members = [
+    "athena-api",
+    "athena-server",
+    "athena-client",
+]

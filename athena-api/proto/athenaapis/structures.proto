@@ -1,0 +1,978 @@
+syntax = "proto3";
+
+package structures;
+
+import public "google/protobuf/timestamp.proto";
+import public "athenaapis/enums.proto";
+
+option go_package = "github.com/athena-intelli/athena/api/pb/dto;dto";
+option java_multiple_files = true;
+option java_package = "com.common.dto";
+
+message DMeasuredValue{
+  string uom = 1;
+  double value = 2;
+  int32 scale = 3;
+}
+
+message DObjectId{
+  uint64 id = 1;
+}
+
+message DObjectCode{
+  string code = 1;
+  string version = 2;
+}
+
+message DObjectName{
+  string name = 1;
+}
+
+message DPartNumberAndRevision{
+  string part_number = 1;
+  string part_Revision = 2;
+}
+
+message DObjectSerialNumber{
+  string serial_number = 1;
+}
+
+message DEAInstance{
+  repeated DEAInstanceItem items = 1;
+}
+
+message DEAInstanceItem{
+  string type = 1;
+  string obj_type = 2;
+  string item_name = 3;
+  string item_value = 4;
+  bool list_supported = 5;
+  uint64 list_id = 6;
+  repeated string list_value = 7;
+}
+
+/**
+ * User Data Transfer Object
+ */
+message DUser{
+  Base base = 1;
+  string user_name = 10;
+  string password = 11;
+  string email = 12;
+  string full_name = 13;
+  enums.UserStatus status = 14;
+  uint32 failed_login_attempt_count = 15;
+  uint32 login_count = 16;
+  bool password_changed = 17;
+  google.protobuf.Timestamp password_expiration = 18;
+  bool password_modifiable = 19;
+  DShift shift = 22;
+  google.protobuf.Timestamp user_expiration = 23;
+  DEAInstance extended_attributes = 24;
+  repeated DUserGroupUser user_group_users = 25;
+  repeated DUserRole user_roles = 26;
+}
+
+message DUserGroup{
+  Base base = 1;
+  DEAInstance extended_attributes = 10;
+  string group_name = 11;
+  string email = 12;
+  uint64 shift_id = 13;
+  repeated DUserGroupUser user_group_users = 14;
+}
+
+message DUserGroupUser{
+  Base base = 1;
+  uint64 group_id = 10;
+  uint64 user_id = 11;
+}
+
+message DRole{
+  Base base = 1;
+  DEAInstance extended_attributes = 10;
+  string role_name = 11;
+  repeated DUserRole user_roles = 12;
+}
+
+message DUserRole{
+  Base base = 1;
+  uint64 role_id = 10;
+  uint64 user_id = 11;
+  google.protobuf.Timestamp effective_start_time = 12;
+  google.protobuf.Timestamp effective_end_time = 13;
+}
+
+message DShift{
+  Base base = 1;
+  string shift_code = 10;
+  string start_time = 11;
+  string end_time = 12;
+  string name = 13;
+  DEAInstance extended_attributes = 14;
+  bool over_day = 15;
+  repeated DShiftDuration shift_durations = 16;
+}
+
+message DShiftDuration{
+  Base base = 1;
+  uint64 shift_id = 10;
+  string start_time = 11;
+  string end_time = 12;
+  bool over_day = 13;
+  string type = 14;
+}
+
+message Base{
+  uint64 id = 1;
+  string factory_code = 2;
+  string category = 3;
+  string description = 4;
+  uint64 creator_id = 5;
+  google.protobuf.Timestamp creation_time = 6;
+  uint64 last_modifier_id = 7;
+  google.protobuf.Timestamp last_modified_time = 8;
+  enums.ModificationFlag modification_flag = 9;
+  string workshop_code = 10;
+}
+
+/**
+ * Factory Data Transfer Object
+ */
+message DFactory{
+  Base base = 1;
+  repeated DWorkshop workshops = 10;
+  string time_zone = 11;
+  uint64 location_id = 12;
+  uint64 work_schedule_id = 13;
+  string name = 14;
+  DEAInstance extended_attributes = 15;
+}
+
+/**
+ * Workshop Data Transfer Object
+ */
+message DWorkshop{
+  Base base = 1;
+  repeated DWorkshop workshops = 10;
+  uint64 location_id = 11;
+  string time_zone = 12;
+  uint64 work_schedule_id = 13;
+  string workshop_code = 14;
+  string name = 15;
+  DEAInstance extended_attributes = 16;
+}
+
+
+message DLocation{
+  Base base = 1;
+  string location_code = 10;
+  DEAInstance extended_attributes = 11;
+}
+
+
+message DBom{
+  Base base = 1;
+  string bom_name = 10;
+  string bom_revision = 11;
+  string bom_type = 12;
+  string uom = 13;
+  bool bom_item_changed = 14;
+  DEAInstance extended_attributes = 15;
+
+}
+
+message DBomItem{
+  Base base = 1;
+  uint64 bom_id = 10;
+  string consumption_type = 11;
+  string part_number = 12;
+  string part_revision = 13;
+  double quantity = 14;
+  bool record_consumption = 15;
+  string uom = 16;
+  DEAInstance extended_attributes = 17;
+  repeated DAlternateBomItem alternate_items = 18;
+  string position_number = 19;
+}
+
+message DAlternateBomItem{
+  Base base = 1;
+  DEAInstance extended_attributes = 10;
+  uint64 bom_id = 11;
+  uint64 bom_item_id = 12;
+  double max_replacement_percent = 13;
+  string part_number = 14;
+  string part_revision = 15;
+
+}
+
+message DRuntimeBom{
+  Base base = 1;
+  DEAInstance extended_attributes = 10;
+  repeated DRuntimeBomItem bom_items = 11;
+  bool bom_items_changed = 12;
+  uint64 tracked_object_id = 13;
+  string tracked_object_type = 14;
+  string bom_name = 15;
+  string bom_revision = 16;
+  string uom = 17;
+}
+
+message DRuntimeBomItem{
+  Base base = 1;
+  uint64 bom_id = 10;
+  string consumption_type = 11;
+  string part_number = 12;
+  string part_revision = 13;
+  double quantity = 14;
+  bool record_consumption = 15;
+  string uom = 16;
+  DEAInstance extended_attributes = 17;
+  uint64 tracked_object_id = 18;
+  string tracked_object_type = 19;
+}
+
+message DDoc{
+  Base base = 1;
+  string doc_code = 9;
+  string doc_version = 10;
+  DEAInstance extended_attributes = 11;
+  string status = 12;
+  string name = 13;
+  string file_path = 14;
+  string doc_type = 15;
+  string class_code = 16;
+}
+
+message DEquipment{
+  Base base = 1;
+  string capacity = 10;
+  string identity = 11;
+  repeated uint64 child_equipment_ids = 12;
+  uint64 location_id = 13;
+  string location_code = 14;
+  bool tool = 15;
+  uint64 work_station_id = 16;
+  string work_station_code = 17;
+  uint64 work_schedule_id = 18;
+  repeated uint64 doc_ids = 19;
+  string name = 20;
+  DEAInstance extended_attributes = 21;
+  DEquipmentClass equipment_class = 22;
+
+}
+
+message DEquipmentClass{
+  Base base = 1;
+  string class_code = 10;
+  string name = 11;
+  DEAInstance extended_attributes = 12;
+}
+
+message DWorkStation{
+  Base base = 1;
+  string station_code = 10;
+  string name = 11;
+  uint64 production_line_id = 12;
+  DLocation location = 13;
+  DEAInstance extended_attributes = 14;
+}
+
+message DTrackable{
+  Base base = 1;
+  uint64 tracked_object_status_id = 10;
+  string operation_code = 11;
+  string production_line_code = 12;
+  string route_queue_name = 13;
+  string production_queue_name = 14;
+  string reason = 15;
+  string route_code = 16;
+  string route_revision = 17;
+  uint64 route_id = 18;
+  string route_step_number = 19;
+  string route_step_name = 20;
+  uint64 route_step_id = 21;
+  enum TrackedObjectTransactionStatus{
+    STATUS_CREATED = 0;
+    STATUS_STARTED = 1;
+    STATUS_COMPLETED = 2;
+    STATUS_FINISHED = 3;
+    STATUS_RECEIVED = 4;
+    STATUS_SHIPPED = 5;
+    STATUS_CLOSED = 6;
+  }
+  TrackedObjectTransactionStatus transaction_status = 22;
+  enum TrackedObjectTransactionState{
+    STATE_NORMAL = 0;
+    STATE_CONSUME = 1;
+    STATE_DESTRUCTIVESAMPLE = 2;
+    STATE_HOLD = 3;
+    STATE_QUARANTINE = 4;
+    STATE_PAUSE = 5;
+    STATE_REVIVE = 6;
+    STATE_SCRAP = 7;
+  }
+  TrackedObjectTransactionState transaction_state = 23;
+  string work_station_code = 24;
+  string equipment_identity = 25;
+  string location_code = 26;
+  string location_name = 27;
+}
+
+message DBox{
+  Base base = 1;
+  // the actual number of boxes in a Box
+  uint32 box_count = 10;
+  // the number of allowed items in this box
+  uint32 capacity = 11;
+  string serial_number = 13;
+  uint32 lot_count = 14;
+  uint32 current_quantity = 15;
+  enums.BoxType type = 16;
+  uint32 unit_count = 17;
+  google.protobuf.Timestamp finished_time = 18;
+  uint32 priority = 19;
+  google.protobuf.Timestamp shipped_time = 20;
+  string previous_node_name = 21;
+  string previous_node_type = 22;
+  DEAInstance extended_attributes = 23;
+  DTrackable tracked_data = 24;
+}
+
+message DLot{
+  Base base = 1;
+  DEAInstance extended_attributes = 10;
+  DTrackable trackable = 11;
+  string serial_number = 12;
+  string order_number = 13;
+  string part_number = 14;
+  string part_revision = 15;
+  string part_id = 16;
+  uint64 runtime_bom_id = 17;
+  string container_serial_number = 18;
+  string container_type = 19;
+  bool good = 20;
+  uint32 priority = 21;
+  uint32 rework_count = 22;
+  DTrackable tracked_data = 23;
+  google.protobuf.Timestamp finished_time = 24;
+  google.protobuf.Timestamp closed_time = 25;
+  google.protobuf.Timestamp promised_time = 26;
+  google.protobuf.Timestamp shipped_time = 27;
+  google.protobuf.Timestamp expiration_time = 28;
+  bool scrapped = 29;
+  bool consumed = 30;
+}
+
+message DUnit{
+  Base base = 1;
+  string serial_number = 10;
+  string order_number = 11;
+  DEAInstance extended_attributes = 12;
+  string container_serial_number = 13;
+  string container_type = 14;
+  string lot_number = 15;
+  uint64 parent_lot_id = 16;
+  uint64 parent_unit_id = 18;
+  string part_number = 19;
+  string part_revision = 20;
+  uint64 runtime_bom_id = 21;
+  google.protobuf.Timestamp finished_time = 22;
+  bool good = 23;
+  uint64 order_id = 24;
+  string previous_node_name = 25;
+  string previous_node_type = 26;
+  uint32 priority = 27;
+  google.protobuf.Timestamp promised_time = 28;
+  uint32 rework_count = 29;
+  google.protobuf.Timestamp shipped_time = 30;
+  google.protobuf.Timestamp expiration_time = 31;
+  DTrackable tracked_data = 32;
+  bool scrapped = 33;
+  bool consumed = 34;
+}
+
+message DRoute{
+  Base base = 1;
+  string route_code = 10;
+  string route_version = 11;
+  string name = 12;
+  google.protobuf.Timestamp effective_start_time = 13;
+  google.protobuf.Timestamp effective_end_time = 14;
+  DEAInstance extended_attributes = 15;
+  repeated uint64 production_line_ids = 16;
+  uint64 default_production_line_id = 17;
+  repeated DRouteArc route_arcs = 18;
+  repeated DRouteStep route_steps = 19;
+  repeated DRouteQueue route_queues = 20;
+}
+
+message DRouteStep{
+  Base base = 1;
+  DEAInstance extended_attributes = 10;
+  string step_number = 11;
+  string step_name = 12;
+  uint32 cycle_duration = 13;
+  enums.CycleDurationType type = 14;
+  uint32 enforcement = 15;
+  // true: Means this Route Step must be included.
+  // false: Means this Route Step need not be included.
+  bool failure = 16;
+  uint64 operation_id = 17;
+  string operation_code = 18;
+  uint32 pixel_x = 19;
+  uint32 pixel_y = 20;
+  enums.RouteStepType step_type = 21;
+  //Primary keys of Equipments assigned to the Route Step.
+  repeated uint64 equipment_ids = 23;
+  //Primary keys of Work stations assigned to the Route Step.
+  repeated uint64 work_station_ids = 24;
+  //Primary keys of Production Lines associated with this Route Step.
+  repeated uint64 production_line_ids = 25;
+  repeated uint64 embedded_route_ids = 26;
+
+}
+
+message DRouteQueue{
+  Base base = 1;
+  DEAInstance extended_attributes = 10;
+  bool auto_start = 11;
+  uint32 queue_duration = 12;
+  uint32 est_duration_to_completion = 13;
+  bool production_queue_assigned = 14;
+  double queue_capacity = 15;
+  enums.RouteQueueType type = 16;
+  uint32 pixel_x = 17;
+  uint32 pixel_y = 18;
+  repeated uint64 production_queue_ids = 19;
+  repeated uint64 production_line_ids = 20;
+  uint64 route_id = 21;
+  string route_queue_name = 23;
+}
+
+message DRouteArc{
+  Base base = 1;
+  enums.RouteArcNodeType to_node_type = 10;
+  string to_node_name = 11;
+  enums.RouteArcNodeType from_node_type = 12;
+  string from_node_name = 13;
+  bool main_path = 14;
+  DEAInstance extended_attributes = 15;
+}
+
+
+message DRouteOperation{
+  Base base = 1;
+  DEAInstance extended_attributes = 10;
+  string code = 11;
+  string name = 12;
+  bool failure = 13;
+  //The time (in minutes) it takes to complete the Operation.
+  uint32 cycle_duration = 14;
+}
+
+message DPart{
+  Base base = 1;
+  string part_number = 10;
+  string part_revision = 11;
+  uint64 bom_id = 12;
+  string bom_name = 13;
+  string bom_revision = 14;
+  string consumption_type = 15;
+  uint32 shelf_life = 16;
+  string uom = 17;
+  DEAInstance extended_attributes = 18;
+  repeated DPartClass part_classes = 19;
+}
+
+message DAlternatePart{
+  Base base = 1;
+  uint64 parent_id = 10;
+  string parent_type = 11;
+  string part_number = 12;
+  string part_revision = 13;
+  DEAInstance extended_attributes = 14;
+  double max_replacement_percent = 15;
+}
+
+message DAlternatePartGroup{
+  Base base = 1;
+  uint64 parent_id = 10;
+  string parent_type = 11;
+  repeated DAlternatePart alternate_parts = 12;
+  DEAInstance extended_attributes = 13;
+  double max_replacement_percent = 14;
+}
+
+message DPartClass{
+  Base base = 1;
+  string class_name = 10;
+  DEAInstance extended_attributes = 11;
+}
+
+message DCustomer{
+  Base base = 1;
+  string code = 10;
+  string name = 11;
+  string contact = 12;
+  string address = 13;
+  string email = 14;
+  DEAInstance extended_attributes = 15;
+  string status = 16;
+}
+
+message DSupplier{
+  Base base = 1;
+  string code = 10;
+  string name = 11;
+  string contact = 12;
+  string address = 13;
+  string email = 14;
+  DEAInstance extended_attributes = 15;
+}
+
+message DWorkOrder{
+  Base base = 1;
+  string order_number = 10;
+  google.protobuf.Timestamp closed_time = 11;
+  string comment = 12;
+  google.protobuf.Timestamp finished_time = 13;
+  google.protobuf.Timestamp promised_time = 14;
+  google.protobuf.Timestamp shipped_time = 15;
+  google.protobuf.Timestamp start_time = 16;
+  DEAInstance extended_attributes = 17;
+  string bom_name = 18;
+  string bom_revision = 19;
+  string part_number = 20;
+  string part_revision = 21;
+  uint64 part_id = 22;
+  uint64 bom_id = 23;
+  double quatity = 24;
+  string planned_production_line_code = 26;
+  uint64 planned_route_id = 27;
+  double precise_quantity_closed = 28;
+  double precise_quantity_finished = 29;
+  double precise_quantity_in_progress = 30;
+  double precise_quantity_shipped = 31;
+  string order_type = 32;
+}
+
+
+message DEADefinition{
+  Base base = 1;
+  repeated DEADefinitionItem items = 10;
+}
+
+message DEADefinitionItem{
+  string attribute_name = 1;
+  string data_type = 2;
+  string object_type = 3;
+  string default_value = 4;
+  //The maximum text length if the data type is TYPE_STRING
+  uint32 text_length = 5;
+  string description = 6;
+  bool list_supported = 7;
+  uint64 list_id = 8;
+  repeated string default_list_value = 9;
+}
+
+message DTestDefinition{
+  Base base = 1;
+  DEAInstance extended_attributes = 10;
+  string name = 11;
+}
+
+message DTestInstance{
+  Base base = 1;
+  DEAInstance extended_attributes = 10;
+  string location_code = 11;
+  uint64 object_id = 12;
+  string object_type = 13;
+  string operation_code = 14;
+  uint32 pass_count = 15;
+  uint32 complete_count = 16;
+  string production_line_code = 17;
+  string route_code = 18;
+  string route_step_number = 19;
+  google.protobuf.Timestamp test_start_time = 20;
+  google.protobuf.Timestamp test_end_time = 21;
+  bool test_passed = 22;
+  bool test_valid = 23;
+  uint64 test_definition_id = 24;
+  string test_equipment_identity = 25;
+  repeated DDefectRepairEntry defect_repair_entries = 26;
+  string test_user = 27;
+  string work_station_code = 28;
+}
+
+message DDefectRepairEntry{
+  Base base = 1;
+  DEAInstance extended_attributes = 10;
+  uint64 test_instance_id = 11;
+  string defect_operation_name = 12;
+  string defect_operation_code = 13;
+  string defect_route_name = 14;
+  string defect_route_code = 15;
+  uint64 defect_route_id = 16;
+  string defect_route_step_number = 17;
+  string defect_route_step_id = 18;
+  string defect_user_name = 19;
+  string defect_code = 20;
+  string defect_comment = 21;
+  string repair_operation_name = 22;
+  string repair_operation_code = 23;
+  string repair_route_name = 24;
+  string repair_route_code = 25;
+  uint64 repair_route_id = 26;
+  string repair_route_step_number = 27;
+  uint64 repair_route_step_id = 28;
+  string repair_user_name = 29;
+  string repair_code = 30;
+  string repair_comment = 31;
+  bool repaired = 32;
+  uint64 object_id = 33;
+  string object_type = 34;
+}
+
+message DProductionLine{
+  Base base = 1;
+  DEAInstance extended_attributes = 10;
+  string code = 11;
+  string name = 12;
+  string capacity = 13;
+  DLocation location = 14;
+  repeated uint64 production_queue_ids = 15;
+  repeated uint64 storage_unit_ids = 16;
+  repeated uint64 work_station_ids = 17;
+}
+
+message DStorageUnit{
+  Base base = 1;
+  DEAInstance extended_attributes = 9;
+  DLocation location = 10;
+  int32 maximum_storage_duration = 11;
+  int32 minimum_storage_duration = 12;
+  DPartClass part_class = 13;
+}
+
+message DChecklistDefinition{
+  Base base = 1;
+  DEAInstance extended_attributes = 10;
+  repeated DChecklistDefinitionItem items = 11;
+  bool checklist_items_changed = 12;
+  string name = 13;
+}
+
+message DChecklistDefinitionItem{
+  string item_name = 1;
+  int32 item_order = 2;
+  string description = 3;
+  double max_value = 4;
+  double min_value = 5;
+  double standard_value = 6;
+  string text_value = 7;
+}
+
+message DChecklistInstance{
+  Base base = 1;
+  DEAInstance extended_attributes = 10;
+  repeated DChecklistInstanceItem items = 11;
+  bool checklist_items_changed = 12;
+  uint64 checklist_define_id = 13;
+  uint64 obj_id = 14;
+  string obj_type = 15;
+
+}
+
+message DChecklistInstanceItem{
+  string item_name = 1;
+  int32 item_order = 2;
+  string description = 3;
+  double max_value = 4;
+  double min_value = 5;
+  double standard_value = 6;
+  string text_value = 7;
+  uint64 instance_id = 8;
+  uint64 obj_id = 9;
+  string obj_type = 10;
+  bool checked = 11;
+  string comment = 12;
+  double actual_value = 13;
+}
+
+
+message DATDefinition{
+  Base base = 1;
+  repeated DATColumnDefinition column_definitions = 10;
+  repeated DATIndexDefinition index_definitions = 11;
+  bool static_data = 12;
+  bool column_definitions_changed = 13;
+  bool index_definitions_changed = 14;
+  string at_name = 15;
+  uint32 at_version = 16;
+  uint64 parent_id = 17;
+  enums.ATDefinitionType type = 18;
+  string column_prefix = 19;
+}
+
+message DATColumnDefinition{
+  Base base = 1;
+  uint64 at_definition_id = 10;
+  enums.ColumnDataType data_type = 11;
+  int32 text_length = 12;
+  string column_name = 13;
+  string default_value = 14;
+  bool nullable = 15;
+
+}
+
+message DATIndexDefinition{
+  Base base = 1;
+  uint64 at_definition_id = 10;
+  repeated DATColumnDefinition columns = 11;
+  string sort_direction = 12;
+  string index_name = 13;
+  bool unique = 14;
+}
+
+message DATData{
+  Base base = 1;
+  uint64 at_definition_id = 10;
+  repeated DATData dependent_atdatas = 11;
+  enums.ATDefinitionType type = 12;
+  uint64 parent_id = 13;
+  repeated DATDataCell data_cells = 14;
+}
+
+message DATDataCell{
+  enums.ColumnDataType data_type = 1;
+  string name = 2;
+  string value = 3;
+  bytes blob_data = 4;
+}
+
+message DFilter{
+  int32 object_type = 1;
+  int32 paging_filter_row_count = 2;
+  int32 paging_filter_start_row = 3;
+  repeated DFilterSearchConstraint search_constraints = 4;
+  repeated DFilterSortConstraint sort_constraints = 5;
+  repeated DFilter or_filters = 6;
+  int32 max_result_count = 7;
+  bool distinct_only = 8;
+  repeated DFilterParameter parameters = 9;
+}
+
+message DFilterSearchConstraint{
+  int32 attribute = 1;
+  string attribute_identifier = 2;
+  int32 comparison_operator = 3;
+  repeated string values = 4;
+  int32 other_attribute = 5;
+  repeated DFilterSearchConstraint or_search_constraints = 6;
+}
+
+message DFilterSortConstraint{
+  int32 attribute = 1;
+  string attribute_identifier = 2;
+  int32 sort_order = 3;
+}
+
+message DFilterParameter{
+  string name = 1;
+  string value = 2;
+  string default_value = 3;
+}
+
+message ChangePriorityRequest{
+  uint64 object_id = 1;
+  uint32 new_priority = 2;
+  string comment = 3;
+  google.protobuf.Timestamp transaction_time = 4;
+}
+
+message DLotReturnData{
+  DLot lot = 1;
+  repeated DUnit units = 2;
+  DWorkOrder order = 3;
+}
+
+message DConsumedPart{
+  Base base = 1;
+  DEAInstance extended_attributes = 10;
+  uint64 alternate_bom_item_id = 11;
+  string consumption_status = 12;
+  string consumption_type = 13;
+  google.protobuf.Timestamp expiration_time = 14;
+  string consumption_op_code = 15;
+  string part_batch = 16;
+  string part_invoice = 17;
+  uint64 part_id = 18;
+  string part_number = 19;
+  string part_revision = 20;
+  double quantity = 21;
+  string part_serial = 22;
+  uint64 consumed_part_runtime_bom_id = 23;
+  uint64 consumed_part_tracked_obj_id = 24;
+  string consumed_part_tracked_obj_type = 25;
+  uint64 consumed_part_tracked_obj_status_id = 26;
+  string placement = 27;
+  string production_line_code = 28;
+  uint64 production_line_id = 29;
+  string route_code = 30;
+  uint64 route_id = 31;
+  string route_step_number = 32;
+  uint64 route_step_id = 33;
+  uint64 work_station_id = 34;
+  string work_station_code = 35;
+  uint64 tracked_obj_id = 36;
+  string tracked_obj_type = 37;
+}
+
+message DProductConfiguration{
+  Base base = 1;
+  DEAInstance extended_attributes = 10;
+  string name = 11;
+  string version = 12;
+  enums.ProductConfigurationType type = 13;
+  google.protobuf.Timestamp effective_start_time = 14;
+  google.protobuf.Timestamp effective_end_time = 15;
+  string status = 16;
+  uint64 part_id = 17;
+  string part_number = 18;
+  string part_revision = 19;
+  uint64 order_id = 20;
+  string order_number = 21;
+}
+
+message DProductConfigurationRoute{
+  Base base = 1;
+  DEAInstance extended_attributes = 10;
+  uint64 production_config_id = 12;
+  uint64 route_id = 13;
+  string route_code = 14;
+  string route_version = 15;
+  google.protobuf.Timestamp effective_start_time = 16;
+  google.protobuf.Timestamp effective_end_time = 17;
+  bool default = 18;
+  bool valid = 19;
+}
+
+message DProductConfigurationRouteStep{
+  Base base = 1;
+  DEAInstance extended_attributes = 10;
+  uint64 production_config_id = 11;
+  uint64 production_config_route_id = 12;
+  uint64 route_step_id = 13;
+  bool enforcement = 14;
+}
+
+message DProductConfigurationRouteStepBom{
+  Base base = 1;
+  DEAInstance extended_attributes = 10;
+  uint64 production_config_id = 11;
+  uint64 production_config_route_id = 12;
+  uint64 route_step_id = 13;
+  string bom_name = 14;
+  string bom_revision = 15;
+  uint64 bom_item_id = 16;
+  string part_number = 17;
+  string part_revision = 18;
+  double quatity = 19;
+  string uom = 20;
+  string consumption_type = 21;
+  bool record_consumption = 22;
+  bool enabled = 23;
+  double upper_quatity = 24;
+  double lower_quatity = 25;
+}
+
+message DProductConfigurationRouteStepDoc{
+  Base base = 1;
+  DEAInstance extended_attributes = 10;
+  uint64 production_config_id = 11;
+  uint64 production_config_route_id = 12;
+  uint64 route_step_id = 13;
+  string doc_code = 14;
+  string doc_version = 15;
+  string doc_type = 16;
+  bool enforcement = 17;
+  bool enabled = 18;
+  uint64 doc_id = 19;
+}
+
+message DProductConfigurationRouteStepEquipmentClass{
+  Base base = 1;
+  DEAInstance extended_attributes = 10;
+  uint64 production_config_id = 11;
+  uint64 production_config_route_id = 12;
+  uint64 route_step_id = 13;
+  uint64 equipment_class_id = 14;
+  int32 quatity = 15;
+  string uom = 16;
+  bool enforcement = 17;
+  bool enabled = 18;
+}
+
+message DProductConfigurationRouteStepCheckList{
+  Base base = 1;
+  DEAInstance extended_attributes = 10;
+  uint64 production_config_id = 11;
+  uint64 production_config_route_id = 12;
+  uint64 route_step_id = 13;
+  uint64 check_list_id = 14;
+  string item_name = 15;
+  double max_value = 16;
+  double min_value = 17;
+  double standard_value = 18;
+  string text_value = 19;
+  bool enforcement = 20;
+  bool enabled = 21;
+  string datasource = 22;
+}
+
+message DECODelta{
+  string eco_type = 1;
+  DRuntimeBomItem original_bom_item = 2;
+  repeated DConsumedPart removed_consumed_parts = 3;
+  DRuntimeBomItem revised_bom_item = 4;
+  string revised_bom_name = 5;
+  string revised_bom_revision = 6;
+}
+
+message DList{
+  Base base = 1;
+  string list_name = 2;
+  repeated DListItem list_items = 10;
+  bool list_items_changed = 11;
+  bool allow_duplicates = 12;
+
+}
+message DListItem{
+  int32 item_order = 1;
+  string item_value = 2;
+}
+
+message DPallet{
+  Base base = 1;
+  DEAInstance extended_attributes = 10;
+  string serial_number = 11;
+  uint64 container_id = 12;
+  string container_type = 13;
+  DPallet parent = 14;
+  uint64 location_id = 15;
+  string location_code = 16;
+
+}
+
+message DESignatureDefinition{
+  Base base = 1;
+  string name = 10;
+  bool comment_required = 11;
+  bool send_email = 12;
+  string reason = 13;
+  bool performer_two_token = 14;
+  int32 verifier_time_interval = 15;
+  int32 type = 16;// 0 = performer, 1 = verifier
+}
