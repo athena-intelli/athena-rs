@@ -1,7 +1,7 @@
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LoginResponse {
     #[prost(message, optional, tag = "1")]
-    pub user: ::core::option::Option<super::structures::DUser>,
+    pub user: ::core::option::Option<super::structures::User>,
     #[prost(string, tag = "2")]
     pub access_token: ::prost::alloc::string::String,
 }

@@ -14,7 +14,7 @@ pub enum UserStatus {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
-pub enum BoxType {
+pub enum ContainerType {
     Normal = 0,
     Group = 1,
     Reusable = 2,
@@ -48,24 +48,10 @@ pub enum RouteArcNodeType {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
-pub enum AtDefinitionType {
-    AtTypeStandalone = 0,
-    AtTypeDependent = 1,
-    AtTypeParent = 2,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ColumnDataType {
-    TypeInteger = 0,
-    TypeLong = 1,
-    TypeFloat = 2,
-    TypeString = 3,
-    TypeDecimal = 4,
-    TypeDatetime = 5,
-    TypeBinary = 6,
-    TypeBoolean = 7,
-    TypeDouble = 8,
-    TypeObject = 9,
+pub enum BomItemTrackType {
+    Lot = 0,
+    Single = 1,
+    None = 2,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]

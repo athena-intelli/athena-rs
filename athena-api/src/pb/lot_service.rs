@@ -1,4 +1,13 @@
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AddUnitResponse {
+    #[prost(message, optional, tag = "1")]
+    pub lot: ::core::option::Option<super::structures::Lot>,
+    #[prost(message, repeated, tag = "2")]
+    pub units: ::prost::alloc::vec::Vec<super::structures::Unit>,
+    #[prost(message, optional, tag = "3")]
+    pub order: ::core::option::Option<super::structures::WorkOrder>,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MergeLotRequest {
     #[prost(uint64, tag = "1")]
     pub parent_lot_id: u64,
@@ -64,7 +73,7 @@ pub struct SplitLotRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SplitLotResponse {
     #[prost(message, repeated, tag = "1")]
-    pub lots: ::prost::alloc::vec::Vec<super::structures::DLot>,
+    pub lots: ::prost::alloc::vec::Vec<super::structures::Lot>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransitionLotRequest {
@@ -151,7 +160,7 @@ pub struct LotChangeBomFromPartRequest {
     #[prost(string, tag = "3")]
     pub part_revision: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "4")]
-    pub bom: ::core::option::Option<super::structures::DBom>,
+    pub bom: ::core::option::Option<super::structures::Bom>,
     #[prost(string, tag = "5")]
     pub comment: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "6")]
@@ -261,7 +270,7 @@ pub mod lot_service_client {
         pub async fn cancel(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -275,7 +284,7 @@ pub mod lot_service_client {
         pub async fn close(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -289,7 +298,7 @@ pub mod lot_service_client {
         pub async fn finish(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -303,7 +312,7 @@ pub mod lot_service_client {
         pub async fn hold(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -317,7 +326,7 @@ pub mod lot_service_client {
         pub async fn pause(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -331,7 +340,7 @@ pub mod lot_service_client {
         pub async fn quarantine(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -345,7 +354,7 @@ pub mod lot_service_client {
         pub async fn release(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -359,7 +368,7 @@ pub mod lot_service_client {
         pub async fn ship(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -373,7 +382,7 @@ pub mod lot_service_client {
         pub async fn scrap(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -387,7 +396,7 @@ pub mod lot_service_client {
         pub async fn undo_close(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -401,7 +410,7 @@ pub mod lot_service_client {
         pub async fn undo_finish(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -415,7 +424,7 @@ pub mod lot_service_client {
         pub async fn undo_scrap(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -429,7 +438,7 @@ pub mod lot_service_client {
         pub async fn undo_ship(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -443,7 +452,7 @@ pub mod lot_service_client {
         pub async fn serialize(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -457,7 +466,7 @@ pub mod lot_service_client {
         pub async fn undo_serialize(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -471,8 +480,7 @@ pub mod lot_service_client {
         pub async fn add_one_unit(
             &mut self,
             request: impl tonic::IntoRequest<super::AddOneUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLotReturnData>, tonic::Status>
-        {
+        ) -> Result<tonic::Response<super::AddUnitResponse>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -486,7 +494,7 @@ pub mod lot_service_client {
         pub async fn add_to_queue(
             &mut self,
             request: impl tonic::IntoRequest<super::AddLotToQueueRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -500,7 +508,7 @@ pub mod lot_service_client {
         pub async fn change_bom(
             &mut self,
             request: impl tonic::IntoRequest<super::LotChangeBomRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -514,7 +522,7 @@ pub mod lot_service_client {
         pub async fn change_bom_from_part(
             &mut self,
             request: impl tonic::IntoRequest<super::LotChangeBomFromPartRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -529,7 +537,7 @@ pub mod lot_service_client {
         pub async fn change_part(
             &mut self,
             request: impl tonic::IntoRequest<super::LotChangePartRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -543,7 +551,7 @@ pub mod lot_service_client {
         pub async fn change_part_only(
             &mut self,
             request: impl tonic::IntoRequest<super::LotChangePartRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -558,7 +566,7 @@ pub mod lot_service_client {
         pub async fn change_priority(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ChangePriorityRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -573,7 +581,7 @@ pub mod lot_service_client {
         pub async fn change_production_line(
             &mut self,
             request: impl tonic::IntoRequest<super::LotChangeProductionLineRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -588,7 +596,7 @@ pub mod lot_service_client {
         pub async fn change_route(
             &mut self,
             request: impl tonic::IntoRequest<super::LotChangeRouteRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -602,7 +610,7 @@ pub mod lot_service_client {
         pub async fn change_quantity(
             &mut self,
             request: impl tonic::IntoRequest<super::LotChangeQuantityRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -631,7 +639,7 @@ pub mod lot_service_client {
         pub async fn complete_at_route_step(
             &mut self,
             request: impl tonic::IntoRequest<super::LotCompleteAtRouteStepRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -646,7 +654,7 @@ pub mod lot_service_client {
         pub async fn start_at_route_step(
             &mut self,
             request: impl tonic::IntoRequest<super::LotStartAtRouteStepRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -661,7 +669,7 @@ pub mod lot_service_client {
         pub async fn merge_unit(
             &mut self,
             request: impl tonic::IntoRequest<super::MergeUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -676,7 +684,7 @@ pub mod lot_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MergeLotRequest>,
         ) -> Result<
-            tonic::Response<tonic::codec::Streaming<super::super::structures::DLot>>,
+            tonic::Response<tonic::codec::Streaming<super::super::structures::Lot>>,
             tonic::Status,
         > {
             self.inner.ready().await.map_err(|e| {
@@ -703,103 +711,103 @@ pub mod lot_service_server {
         async fn cancel(
             &self,
             request: tonic::Request<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn close(
             &self,
             request: tonic::Request<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn finish(
             &self,
             request: tonic::Request<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn hold(
             &self,
             request: tonic::Request<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn pause(
             &self,
             request: tonic::Request<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn quarantine(
             &self,
             request: tonic::Request<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn release(
             &self,
             request: tonic::Request<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn ship(
             &self,
             request: tonic::Request<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn scrap(
             &self,
             request: tonic::Request<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn undo_close(
             &self,
             request: tonic::Request<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn undo_finish(
             &self,
             request: tonic::Request<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn undo_scrap(
             &self,
             request: tonic::Request<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn undo_ship(
             &self,
             request: tonic::Request<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn serialize(
             &self,
             request: tonic::Request<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn undo_serialize(
             &self,
             request: tonic::Request<super::TransitionLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn add_one_unit(
             &self,
             request: tonic::Request<super::AddOneUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLotReturnData>, tonic::Status>;
+        ) -> Result<tonic::Response<super::AddUnitResponse>, tonic::Status>;
         async fn add_to_queue(
             &self,
             request: tonic::Request<super::AddLotToQueueRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn change_bom(
             &self,
             request: tonic::Request<super::LotChangeBomRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn change_bom_from_part(
             &self,
             request: tonic::Request<super::LotChangeBomFromPartRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn change_part(
             &self,
             request: tonic::Request<super::LotChangePartRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn change_part_only(
             &self,
             request: tonic::Request<super::LotChangePartRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn change_priority(
             &self,
             request: tonic::Request<super::super::structures::ChangePriorityRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn change_production_line(
             &self,
             request: tonic::Request<super::LotChangeProductionLineRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn change_route(
             &self,
             request: tonic::Request<super::LotChangeRouteRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn change_quantity(
             &self,
             request: tonic::Request<super::LotChangeQuantityRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn split_lot(
             &self,
             request: tonic::Request<super::SplitLotRequest>,
@@ -807,17 +815,17 @@ pub mod lot_service_server {
         async fn complete_at_route_step(
             &self,
             request: tonic::Request<super::LotCompleteAtRouteStepRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn start_at_route_step(
             &self,
             request: tonic::Request<super::LotStartAtRouteStepRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         async fn merge_unit(
             &self,
             request: tonic::Request<super::MergeUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
         #[doc = "Server streaming response type for the MergeLot method."]
-        type MergeLotStream: futures_core::Stream<Item = Result<super::super::structures::DLot, tonic::Status>>
+        type MergeLotStream: futures_core::Stream<Item = Result<super::super::structures::Lot, tonic::Status>>
             + Send
             + 'static;
         async fn merge_lot(
@@ -878,7 +886,7 @@ pub mod lot_service_server {
                     #[allow(non_camel_case_types)]
                     struct CancelSvc<T: LotService>(pub Arc<T>);
                     impl<T: LotService> tonic::server::UnaryService<super::TransitionLotRequest> for CancelSvc<T> {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -909,7 +917,7 @@ pub mod lot_service_server {
                     #[allow(non_camel_case_types)]
                     struct CloseSvc<T: LotService>(pub Arc<T>);
                     impl<T: LotService> tonic::server::UnaryService<super::TransitionLotRequest> for CloseSvc<T> {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -940,7 +948,7 @@ pub mod lot_service_server {
                     #[allow(non_camel_case_types)]
                     struct FinishSvc<T: LotService>(pub Arc<T>);
                     impl<T: LotService> tonic::server::UnaryService<super::TransitionLotRequest> for FinishSvc<T> {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -971,7 +979,7 @@ pub mod lot_service_server {
                     #[allow(non_camel_case_types)]
                     struct HoldSvc<T: LotService>(pub Arc<T>);
                     impl<T: LotService> tonic::server::UnaryService<super::TransitionLotRequest> for HoldSvc<T> {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1002,7 +1010,7 @@ pub mod lot_service_server {
                     #[allow(non_camel_case_types)]
                     struct PauseSvc<T: LotService>(pub Arc<T>);
                     impl<T: LotService> tonic::server::UnaryService<super::TransitionLotRequest> for PauseSvc<T> {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1033,7 +1041,7 @@ pub mod lot_service_server {
                     #[allow(non_camel_case_types)]
                     struct QuarantineSvc<T: LotService>(pub Arc<T>);
                     impl<T: LotService> tonic::server::UnaryService<super::TransitionLotRequest> for QuarantineSvc<T> {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1064,7 +1072,7 @@ pub mod lot_service_server {
                     #[allow(non_camel_case_types)]
                     struct ReleaseSvc<T: LotService>(pub Arc<T>);
                     impl<T: LotService> tonic::server::UnaryService<super::TransitionLotRequest> for ReleaseSvc<T> {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1095,7 +1103,7 @@ pub mod lot_service_server {
                     #[allow(non_camel_case_types)]
                     struct ShipSvc<T: LotService>(pub Arc<T>);
                     impl<T: LotService> tonic::server::UnaryService<super::TransitionLotRequest> for ShipSvc<T> {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1126,7 +1134,7 @@ pub mod lot_service_server {
                     #[allow(non_camel_case_types)]
                     struct ScrapSvc<T: LotService>(pub Arc<T>);
                     impl<T: LotService> tonic::server::UnaryService<super::TransitionLotRequest> for ScrapSvc<T> {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1157,7 +1165,7 @@ pub mod lot_service_server {
                     #[allow(non_camel_case_types)]
                     struct UndoCloseSvc<T: LotService>(pub Arc<T>);
                     impl<T: LotService> tonic::server::UnaryService<super::TransitionLotRequest> for UndoCloseSvc<T> {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1188,7 +1196,7 @@ pub mod lot_service_server {
                     #[allow(non_camel_case_types)]
                     struct UndoFinishSvc<T: LotService>(pub Arc<T>);
                     impl<T: LotService> tonic::server::UnaryService<super::TransitionLotRequest> for UndoFinishSvc<T> {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1219,7 +1227,7 @@ pub mod lot_service_server {
                     #[allow(non_camel_case_types)]
                     struct UndoScrapSvc<T: LotService>(pub Arc<T>);
                     impl<T: LotService> tonic::server::UnaryService<super::TransitionLotRequest> for UndoScrapSvc<T> {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1250,7 +1258,7 @@ pub mod lot_service_server {
                     #[allow(non_camel_case_types)]
                     struct UndoShipSvc<T: LotService>(pub Arc<T>);
                     impl<T: LotService> tonic::server::UnaryService<super::TransitionLotRequest> for UndoShipSvc<T> {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1281,7 +1289,7 @@ pub mod lot_service_server {
                     #[allow(non_camel_case_types)]
                     struct SerializeSvc<T: LotService>(pub Arc<T>);
                     impl<T: LotService> tonic::server::UnaryService<super::TransitionLotRequest> for SerializeSvc<T> {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1314,7 +1322,7 @@ pub mod lot_service_server {
                     impl<T: LotService> tonic::server::UnaryService<super::TransitionLotRequest>
                         for UndoSerializeSvc<T>
                     {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1345,7 +1353,7 @@ pub mod lot_service_server {
                     #[allow(non_camel_case_types)]
                     struct AddOneUnitSvc<T: LotService>(pub Arc<T>);
                     impl<T: LotService> tonic::server::UnaryService<super::AddOneUnitRequest> for AddOneUnitSvc<T> {
-                        type Response = super::super::structures::DLotReturnData;
+                        type Response = super::AddUnitResponse;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1376,7 +1384,7 @@ pub mod lot_service_server {
                     #[allow(non_camel_case_types)]
                     struct AddToQueueSvc<T: LotService>(pub Arc<T>);
                     impl<T: LotService> tonic::server::UnaryService<super::AddLotToQueueRequest> for AddToQueueSvc<T> {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1407,7 +1415,7 @@ pub mod lot_service_server {
                     #[allow(non_camel_case_types)]
                     struct ChangeBomSvc<T: LotService>(pub Arc<T>);
                     impl<T: LotService> tonic::server::UnaryService<super::LotChangeBomRequest> for ChangeBomSvc<T> {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1441,7 +1449,7 @@ pub mod lot_service_server {
                         tonic::server::UnaryService<super::LotChangeBomFromPartRequest>
                         for ChangeBomFromPartSvc<T>
                     {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1472,7 +1480,7 @@ pub mod lot_service_server {
                     #[allow(non_camel_case_types)]
                     struct ChangePartSvc<T: LotService>(pub Arc<T>);
                     impl<T: LotService> tonic::server::UnaryService<super::LotChangePartRequest> for ChangePartSvc<T> {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1505,7 +1513,7 @@ pub mod lot_service_server {
                     impl<T: LotService> tonic::server::UnaryService<super::LotChangePartRequest>
                         for ChangePartOnlySvc<T>
                     {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1539,7 +1547,7 @@ pub mod lot_service_server {
                         tonic::server::UnaryService<super::super::structures::ChangePriorityRequest>
                         for ChangePrioritySvc<T>
                     {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1575,7 +1583,7 @@ pub mod lot_service_server {
                         tonic::server::UnaryService<super::LotChangeProductionLineRequest>
                         for ChangeProductionLineSvc<T>
                     {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1608,7 +1616,7 @@ pub mod lot_service_server {
                     impl<T: LotService> tonic::server::UnaryService<super::LotChangeRouteRequest>
                         for ChangeRouteSvc<T>
                     {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1641,7 +1649,7 @@ pub mod lot_service_server {
                     impl<T: LotService> tonic::server::UnaryService<super::LotChangeQuantityRequest>
                         for ChangeQuantitySvc<T>
                     {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1706,7 +1714,7 @@ pub mod lot_service_server {
                         tonic::server::UnaryService<super::LotCompleteAtRouteStepRequest>
                         for CompleteAtRouteStepSvc<T>
                     {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1740,7 +1748,7 @@ pub mod lot_service_server {
                         tonic::server::UnaryService<super::LotStartAtRouteStepRequest>
                         for StartAtRouteStepSvc<T>
                     {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1771,7 +1779,7 @@ pub mod lot_service_server {
                     #[allow(non_camel_case_types)]
                     struct MergeUnitSvc<T: LotService>(pub Arc<T>);
                     impl<T: LotService> tonic::server::UnaryService<super::MergeUnitRequest> for MergeUnitSvc<T> {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1805,7 +1813,7 @@ pub mod lot_service_server {
                         tonic::server::ServerStreamingService<super::MergeLotRequest>
                         for MergeLotSvc<T>
                     {
-                        type Response = super::super::structures::DLot;
+                        type Response = super::super::structures::Lot;
                         type ResponseStream = T::MergeLotStream;
                         type Future =
                             BoxFuture<tonic::Response<Self::ResponseStream>, tonic::Status>;

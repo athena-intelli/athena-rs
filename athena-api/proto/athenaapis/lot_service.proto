@@ -1,43 +1,49 @@
 syntax = "proto3";
 import "athenaapis/structures.proto";
 
-option go_package = "github.com/athena-intelli/athena/api/pb/lotService;lotService";
 option java_multiple_files = true;
 option java_package = "com.athena.api.service";
 
 package LotService;
 
 service LotService{
-  rpc Cancel(TransitionLotRequest)returns(structures.DLot){}
-  rpc Close(TransitionLotRequest)returns(structures.DLot){}
-  rpc Finish(TransitionLotRequest)returns(structures.DLot){}
-  rpc Hold(TransitionLotRequest)returns(structures.DLot){}
-  rpc Pause(TransitionLotRequest)returns(structures.DLot){}
-  rpc Quarantine(TransitionLotRequest)returns(structures.DLot){}
-  rpc Release(TransitionLotRequest)returns(structures.DLot){}
-  rpc Ship(TransitionLotRequest)returns(structures.DLot){}
-  rpc Scrap(TransitionLotRequest)returns(structures.DLot){}
-  rpc UndoClose(TransitionLotRequest)returns(structures.DLot){}
-  rpc UndoFinish(TransitionLotRequest)returns(structures.DLot){}
-  rpc UndoScrap(TransitionLotRequest)returns(structures.DLot){}
-  rpc UndoShip(TransitionLotRequest)returns(structures.DLot){}
-  rpc Serialize(TransitionLotRequest)returns(structures.DLot){}
-  rpc UndoSerialize(TransitionLotRequest)returns(structures.DLot){}
-  rpc AddOneUnit(AddOneUnitRequest)returns(structures.DLotReturnData){}
-  rpc AddToQueue(AddLotToQueueRequest) returns(structures.DLot){}
-  rpc ChangeBom(LotChangeBomRequest)returns(structures.DLot){}
-  rpc ChangeBomFromPart(LotChangeBomFromPartRequest)returns(structures.DLot){}
-  rpc ChangePart(LotChangePartRequest)returns(structures.DLot){}
-  rpc ChangePartOnly(LotChangePartRequest)returns(structures.DLot){}
-  rpc ChangePriority(structures.ChangePriorityRequest)returns(structures.DLot){}
-  rpc ChangeProductionLine(LotChangeProductionLineRequest)returns(structures.DLot){}
-  rpc ChangeRoute(LotChangeRouteRequest)returns(structures.DLot){}
-  rpc ChangeQuantity(LotChangeQuantityRequest)returns(structures.DLot){}
+  rpc Cancel(TransitionLotRequest)returns(structures.Lot){}
+  rpc Close(TransitionLotRequest)returns(structures.Lot){}
+  rpc Finish(TransitionLotRequest)returns(structures.Lot){}
+  rpc Hold(TransitionLotRequest)returns(structures.Lot){}
+  rpc Pause(TransitionLotRequest)returns(structures.Lot){}
+  rpc Quarantine(TransitionLotRequest)returns(structures.Lot){}
+  rpc Release(TransitionLotRequest)returns(structures.Lot){}
+  rpc Ship(TransitionLotRequest)returns(structures.Lot){}
+  rpc Scrap(TransitionLotRequest)returns(structures.Lot){}
+  rpc UndoClose(TransitionLotRequest)returns(structures.Lot){}
+  rpc UndoFinish(TransitionLotRequest)returns(structures.Lot){}
+  rpc UndoScrap(TransitionLotRequest)returns(structures.Lot){}
+  rpc UndoShip(TransitionLotRequest)returns(structures.Lot){}
+  rpc Serialize(TransitionLotRequest)returns(structures.Lot){}
+  rpc UndoSerialize(TransitionLotRequest)returns(structures.Lot){}
+  rpc AddOneUnit(AddOneUnitRequest)returns(AddUnitResponse){}
+  rpc AddToQueue(AddLotToQueueRequest) returns(structures.Lot){}
+  rpc ChangeBom(LotChangeBomRequest)returns(structures.Lot){}
+  rpc ChangeBomFromPart(LotChangeBomFromPartRequest)returns(structures.Lot){}
+  rpc ChangePart(LotChangePartRequest)returns(structures.Lot){}
+  rpc ChangePartOnly(LotChangePartRequest)returns(structures.Lot){}
+  rpc ChangePriority(structures.ChangePriorityRequest)returns(structures.Lot){}
+  rpc ChangeProductionLine(LotChangeProductionLineRequest)returns(structures.Lot){}
+  rpc ChangeRoute(LotChangeRouteRequest)returns(structures.Lot){}
+  rpc ChangeQuantity(LotChangeQuantityRequest)returns(structures.Lot){}
   rpc SplitLot(SplitLotRequest)returns(SplitLotResponse){}
-  rpc CompleteAtRouteStep(LotCompleteAtRouteStepRequest)returns(structures.DLot){}
-  rpc StartAtRouteStep(LotStartAtRouteStepRequest)returns(structures.DLot){}
-  rpc MergeUnit(MergeUnitRequest)returns(structures.DLot){}
-  rpc MergeLot(MergeLotRequest)returns(stream structures.DLot){}
+  rpc CompleteAtRouteStep(LotCompleteAtRouteStepRequest)returns(structures.Lot){}
+  rpc StartAtRouteStep(LotStartAtRouteStepRequest)returns(structures.Lot){}
+  rpc MergeUnit(MergeUnitRequest)returns(structures.Lot){}
+  rpc MergeLot(MergeLotRequest)returns(stream structures.Lot){}
+}
+
+
+message AddUnitResponse{
+  structures.Lot lot = 1;
+  repeated structures.Unit units = 2;
+  structures.WorkOrder order = 3;
 }
 
 message MergeLotRequest{
@@ -79,7 +85,7 @@ message SplitLotRequest{
 }
 
 message SplitLotResponse{
-  repeated structures.DLot lots = 1;
+  repeated structures.Lot lots = 1;
 }
 
 enum TransitionLotState{
@@ -153,7 +159,7 @@ message LotChangeBomFromPartRequest{
   uint64 lot_id = 1;
   string part_number = 2;
   string part_revision = 3;
-  structures.DBom bom = 4;
+  structures.Bom bom = 4;
   string comment = 5;
   google.protobuf.Timestamp transaction_time = 6;
 }

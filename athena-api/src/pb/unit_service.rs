@@ -139,7 +139,7 @@ pub struct UnitChangeBomFromPartRequest {
     #[prost(string, tag = "3")]
     pub part_revision: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "4")]
-    pub bom: ::core::option::Option<super::structures::DBom>,
+    pub bom: ::core::option::Option<super::structures::Bom>,
     #[prost(string, tag = "5")]
     pub comment: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "6")]
@@ -251,7 +251,7 @@ pub mod unit_service_client {
         pub async fn add_to_queue(
             &mut self,
             request: impl tonic::IntoRequest<super::AddUnitToQueueRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -264,8 +264,8 @@ pub mod unit_service_client {
         }
         pub async fn save_unit(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::structures::DUnit>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::super::structures::Unit>,
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -279,7 +279,7 @@ pub mod unit_service_client {
         pub async fn cancel(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -293,7 +293,7 @@ pub mod unit_service_client {
         pub async fn close(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -307,7 +307,7 @@ pub mod unit_service_client {
         pub async fn finish(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -321,7 +321,7 @@ pub mod unit_service_client {
         pub async fn hold(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -335,7 +335,7 @@ pub mod unit_service_client {
         pub async fn pause(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -349,7 +349,7 @@ pub mod unit_service_client {
         pub async fn quarantine(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -363,7 +363,7 @@ pub mod unit_service_client {
         pub async fn release(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -377,7 +377,7 @@ pub mod unit_service_client {
         pub async fn ship(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -391,7 +391,7 @@ pub mod unit_service_client {
         pub async fn scrap(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -405,7 +405,7 @@ pub mod unit_service_client {
         pub async fn undo_close(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -419,7 +419,7 @@ pub mod unit_service_client {
         pub async fn undo_finish(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -433,7 +433,7 @@ pub mod unit_service_client {
         pub async fn undo_scrap(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -447,7 +447,7 @@ pub mod unit_service_client {
         pub async fn undo_ship(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -461,7 +461,7 @@ pub mod unit_service_client {
         pub async fn change_bom(
             &mut self,
             request: impl tonic::IntoRequest<super::UnitChangeBomRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -475,7 +475,7 @@ pub mod unit_service_client {
         pub async fn change_bom_from_part(
             &mut self,
             request: impl tonic::IntoRequest<super::UnitChangeBomFromPartRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -490,7 +490,7 @@ pub mod unit_service_client {
         pub async fn change_lot(
             &mut self,
             request: impl tonic::IntoRequest<super::ChangeLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -504,7 +504,7 @@ pub mod unit_service_client {
         pub async fn change_part(
             &mut self,
             request: impl tonic::IntoRequest<super::UnitChangePartRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -518,7 +518,7 @@ pub mod unit_service_client {
         pub async fn change_part_only(
             &mut self,
             request: impl tonic::IntoRequest<super::UnitChangePartRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -533,7 +533,7 @@ pub mod unit_service_client {
         pub async fn change_priority(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ChangePriorityRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -548,7 +548,7 @@ pub mod unit_service_client {
         pub async fn change_production_line(
             &mut self,
             request: impl tonic::IntoRequest<super::ChangeProductionLineRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -564,7 +564,7 @@ pub mod unit_service_client {
         pub async fn change_route(
             &mut self,
             request: impl tonic::IntoRequest<super::UnitChangeRouteRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -578,7 +578,7 @@ pub mod unit_service_client {
         pub async fn change_serial_number(
             &mut self,
             request: impl tonic::IntoRequest<super::ChangeSerialNumberRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -593,7 +593,7 @@ pub mod unit_service_client {
         pub async fn complete_at_route_step(
             &mut self,
             request: impl tonic::IntoRequest<super::UnitCompleteAtRouteStepRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -609,7 +609,7 @@ pub mod unit_service_client {
         pub async fn start_at_route_step(
             &mut self,
             request: impl tonic::IntoRequest<super::UnitStartAtRouteStepRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -624,7 +624,7 @@ pub mod unit_service_client {
         pub async fn restart(
             &mut self,
             request: impl tonic::IntoRequest<super::RestartUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -638,7 +638,7 @@ pub mod unit_service_client {
         pub async fn create_stand_alone_unit(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateStandAloneUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -655,7 +655,7 @@ pub mod unit_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::CreateStandAloneUnitRequest>,
         ) -> Result<
-            tonic::Response<tonic::codec::Streaming<super::super::structures::DUnit>>,
+            tonic::Response<tonic::codec::Streaming<super::super::structures::Unit>>,
             tonic::Status,
         > {
             self.inner.ready().await.map_err(|e| {
@@ -684,117 +684,117 @@ pub mod unit_service_server {
         async fn add_to_queue(
             &self,
             request: tonic::Request<super::AddUnitToQueueRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn save_unit(
             &self,
-            request: tonic::Request<super::super::structures::DUnit>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+            request: tonic::Request<super::super::structures::Unit>,
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn cancel(
             &self,
             request: tonic::Request<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn close(
             &self,
             request: tonic::Request<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn finish(
             &self,
             request: tonic::Request<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn hold(
             &self,
             request: tonic::Request<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn pause(
             &self,
             request: tonic::Request<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn quarantine(
             &self,
             request: tonic::Request<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn release(
             &self,
             request: tonic::Request<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn ship(
             &self,
             request: tonic::Request<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn scrap(
             &self,
             request: tonic::Request<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn undo_close(
             &self,
             request: tonic::Request<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn undo_finish(
             &self,
             request: tonic::Request<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn undo_scrap(
             &self,
             request: tonic::Request<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn undo_ship(
             &self,
             request: tonic::Request<super::TransitionUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn change_bom(
             &self,
             request: tonic::Request<super::UnitChangeBomRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn change_bom_from_part(
             &self,
             request: tonic::Request<super::UnitChangeBomFromPartRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn change_lot(
             &self,
             request: tonic::Request<super::ChangeLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn change_part(
             &self,
             request: tonic::Request<super::UnitChangePartRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn change_part_only(
             &self,
             request: tonic::Request<super::UnitChangePartRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn change_priority(
             &self,
             request: tonic::Request<super::super::structures::ChangePriorityRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn change_production_line(
             &self,
             request: tonic::Request<super::ChangeProductionLineRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn change_route(
             &self,
             request: tonic::Request<super::UnitChangeRouteRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn change_serial_number(
             &self,
             request: tonic::Request<super::ChangeSerialNumberRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn complete_at_route_step(
             &self,
             request: tonic::Request<super::UnitCompleteAtRouteStepRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn start_at_route_step(
             &self,
             request: tonic::Request<super::UnitStartAtRouteStepRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn restart(
             &self,
             request: tonic::Request<super::RestartUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         async fn create_stand_alone_unit(
             &self,
             request: tonic::Request<super::CreateStandAloneUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
         #[doc = "Server streaming response type for the CreateStandAloneUnits method."]
-        type CreateStandAloneUnitsStream: futures_core::Stream<Item = Result<super::super::structures::DUnit, tonic::Status>>
+        type CreateStandAloneUnitsStream: futures_core::Stream<Item = Result<super::super::structures::Unit, tonic::Status>>
             + Send
             + 'static;
         async fn create_stand_alone_units(
@@ -857,7 +857,7 @@ pub mod unit_service_server {
                     impl<T: UnitService> tonic::server::UnaryService<super::AddUnitToQueueRequest>
                         for AddToQueueSvc<T>
                     {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -887,15 +887,14 @@ pub mod unit_service_server {
                 "/UnitService.UnitService/SaveUnit" => {
                     #[allow(non_camel_case_types)]
                     struct SaveUnitSvc<T: UnitService>(pub Arc<T>);
-                    impl<T: UnitService>
-                        tonic::server::UnaryService<super::super::structures::DUnit>
+                    impl<T: UnitService> tonic::server::UnaryService<super::super::structures::Unit>
                         for SaveUnitSvc<T>
                     {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::super::structures::DUnit>,
+                            request: tonic::Request<super::super::structures::Unit>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).save_unit(request).await };
@@ -922,7 +921,7 @@ pub mod unit_service_server {
                     #[allow(non_camel_case_types)]
                     struct CancelSvc<T: UnitService>(pub Arc<T>);
                     impl<T: UnitService> tonic::server::UnaryService<super::TransitionUnitRequest> for CancelSvc<T> {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -953,7 +952,7 @@ pub mod unit_service_server {
                     #[allow(non_camel_case_types)]
                     struct CloseSvc<T: UnitService>(pub Arc<T>);
                     impl<T: UnitService> tonic::server::UnaryService<super::TransitionUnitRequest> for CloseSvc<T> {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -984,7 +983,7 @@ pub mod unit_service_server {
                     #[allow(non_camel_case_types)]
                     struct FinishSvc<T: UnitService>(pub Arc<T>);
                     impl<T: UnitService> tonic::server::UnaryService<super::TransitionUnitRequest> for FinishSvc<T> {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1015,7 +1014,7 @@ pub mod unit_service_server {
                     #[allow(non_camel_case_types)]
                     struct HoldSvc<T: UnitService>(pub Arc<T>);
                     impl<T: UnitService> tonic::server::UnaryService<super::TransitionUnitRequest> for HoldSvc<T> {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1046,7 +1045,7 @@ pub mod unit_service_server {
                     #[allow(non_camel_case_types)]
                     struct PauseSvc<T: UnitService>(pub Arc<T>);
                     impl<T: UnitService> tonic::server::UnaryService<super::TransitionUnitRequest> for PauseSvc<T> {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1079,7 +1078,7 @@ pub mod unit_service_server {
                     impl<T: UnitService> tonic::server::UnaryService<super::TransitionUnitRequest>
                         for QuarantineSvc<T>
                     {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1110,7 +1109,7 @@ pub mod unit_service_server {
                     #[allow(non_camel_case_types)]
                     struct ReleaseSvc<T: UnitService>(pub Arc<T>);
                     impl<T: UnitService> tonic::server::UnaryService<super::TransitionUnitRequest> for ReleaseSvc<T> {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1141,7 +1140,7 @@ pub mod unit_service_server {
                     #[allow(non_camel_case_types)]
                     struct ShipSvc<T: UnitService>(pub Arc<T>);
                     impl<T: UnitService> tonic::server::UnaryService<super::TransitionUnitRequest> for ShipSvc<T> {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1172,7 +1171,7 @@ pub mod unit_service_server {
                     #[allow(non_camel_case_types)]
                     struct ScrapSvc<T: UnitService>(pub Arc<T>);
                     impl<T: UnitService> tonic::server::UnaryService<super::TransitionUnitRequest> for ScrapSvc<T> {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1203,7 +1202,7 @@ pub mod unit_service_server {
                     #[allow(non_camel_case_types)]
                     struct UndoCloseSvc<T: UnitService>(pub Arc<T>);
                     impl<T: UnitService> tonic::server::UnaryService<super::TransitionUnitRequest> for UndoCloseSvc<T> {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1236,7 +1235,7 @@ pub mod unit_service_server {
                     impl<T: UnitService> tonic::server::UnaryService<super::TransitionUnitRequest>
                         for UndoFinishSvc<T>
                     {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1267,7 +1266,7 @@ pub mod unit_service_server {
                     #[allow(non_camel_case_types)]
                     struct UndoScrapSvc<T: UnitService>(pub Arc<T>);
                     impl<T: UnitService> tonic::server::UnaryService<super::TransitionUnitRequest> for UndoScrapSvc<T> {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1298,7 +1297,7 @@ pub mod unit_service_server {
                     #[allow(non_camel_case_types)]
                     struct UndoShipSvc<T: UnitService>(pub Arc<T>);
                     impl<T: UnitService> tonic::server::UnaryService<super::TransitionUnitRequest> for UndoShipSvc<T> {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1329,7 +1328,7 @@ pub mod unit_service_server {
                     #[allow(non_camel_case_types)]
                     struct ChangeBomSvc<T: UnitService>(pub Arc<T>);
                     impl<T: UnitService> tonic::server::UnaryService<super::UnitChangeBomRequest> for ChangeBomSvc<T> {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1363,7 +1362,7 @@ pub mod unit_service_server {
                         tonic::server::UnaryService<super::UnitChangeBomFromPartRequest>
                         for ChangeBomFromPartSvc<T>
                     {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1394,7 +1393,7 @@ pub mod unit_service_server {
                     #[allow(non_camel_case_types)]
                     struct ChangeLotSvc<T: UnitService>(pub Arc<T>);
                     impl<T: UnitService> tonic::server::UnaryService<super::ChangeLotRequest> for ChangeLotSvc<T> {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1427,7 +1426,7 @@ pub mod unit_service_server {
                     impl<T: UnitService> tonic::server::UnaryService<super::UnitChangePartRequest>
                         for ChangePartSvc<T>
                     {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1460,7 +1459,7 @@ pub mod unit_service_server {
                     impl<T: UnitService> tonic::server::UnaryService<super::UnitChangePartRequest>
                         for ChangePartOnlySvc<T>
                     {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1494,7 +1493,7 @@ pub mod unit_service_server {
                         tonic::server::UnaryService<super::super::structures::ChangePriorityRequest>
                         for ChangePrioritySvc<T>
                     {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1530,7 +1529,7 @@ pub mod unit_service_server {
                         tonic::server::UnaryService<super::ChangeProductionLineRequest>
                         for ChangeProductionLineSvc<T>
                     {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1563,7 +1562,7 @@ pub mod unit_service_server {
                     impl<T: UnitService> tonic::server::UnaryService<super::UnitChangeRouteRequest>
                         for ChangeRouteSvc<T>
                     {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1597,7 +1596,7 @@ pub mod unit_service_server {
                         tonic::server::UnaryService<super::ChangeSerialNumberRequest>
                         for ChangeSerialNumberSvc<T>
                     {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1631,7 +1630,7 @@ pub mod unit_service_server {
                         tonic::server::UnaryService<super::UnitCompleteAtRouteStepRequest>
                         for CompleteAtRouteStepSvc<T>
                     {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1665,7 +1664,7 @@ pub mod unit_service_server {
                         tonic::server::UnaryService<super::UnitStartAtRouteStepRequest>
                         for StartAtRouteStepSvc<T>
                     {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1696,7 +1695,7 @@ pub mod unit_service_server {
                     #[allow(non_camel_case_types)]
                     struct RestartSvc<T: UnitService>(pub Arc<T>);
                     impl<T: UnitService> tonic::server::UnaryService<super::RestartUnitRequest> for RestartSvc<T> {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1730,7 +1729,7 @@ pub mod unit_service_server {
                         tonic::server::UnaryService<super::CreateStandAloneUnitRequest>
                         for CreateStandAloneUnitSvc<T>
                     {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1765,7 +1764,7 @@ pub mod unit_service_server {
                         tonic::server::ServerStreamingService<super::CreateStandAloneUnitRequest>
                         for CreateStandAloneUnitsSvc<T>
                     {
-                        type Response = super::super::structures::DUnit;
+                        type Response = super::super::structures::Unit;
                         type ResponseStream = T::CreateStandAloneUnitsStream;
                         type Future =
                             BoxFuture<tonic::Response<Self::ResponseStream>, tonic::Status>;

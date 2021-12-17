@@ -2,7 +2,6 @@ syntax = "proto3";
 import "athenaapis/structures.proto";
 import "google/protobuf/empty.proto";
 
-option go_package = "github.com/athena-intelli/athena/api/pb/securityService;securityService";
 option java_multiple_files = true;
 option java_package = "com.athena.api.service";
 
@@ -22,7 +21,7 @@ service SecurityService{
 }
 
 message LoginResponse{
-  structures.DUser user = 1;
+  structures.User user = 1;
   string access_token = 2;
 }
 

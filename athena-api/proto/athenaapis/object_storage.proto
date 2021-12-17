@@ -16,7 +16,6 @@ syntax = "proto3";
 import "athenaapis/structures.proto";
 import "google/protobuf/empty.proto";
 
-option go_package = "github.com/athena-intelli/athena/api/pb/objectStorage;objectStorage";
 option java_multiple_files = true;
 option java_package = "com.athena.api.service";
 
@@ -35,27 +34,26 @@ service ObjectStorageService {
   rpc RemoveStation (RemoveObjectRequest) returns (google.protobuf.Empty) {}
   rpc RemoveWorkshop (RemoveObjectRequest) returns (google.protobuf.Empty) {}
 
-  rpc ChangeProductionLinePriority(structures.ChangePriorityRequest)returns(structures.DProductionLine){}
-  rpc ChangeEquipmentPriority(structures.ChangePriorityRequest)returns(structures.DEquipment){}
+  rpc ChangeProductionLinePriority(structures.ChangePriorityRequest)returns(structures.ProductionLine){}
+  rpc ChangeEquipmentPriority(structures.ChangePriorityRequest)returns(structures.Equipment){}
 
-  rpc SaveUser (structures.DUser) returns (structures.DUser) {}
-  rpc SaveBom (structures.DBom) returns (structures.DBom) {}
-  rpc SaveRuntimeBom (structures.DRuntimeBom) returns (structures.DRuntimeBom) {}
-  rpc SaveEquipment (structures.DEquipment) returns (structures.DEquipment) {}
-  rpc SaveWorkshop (structures.DWorkshop) returns (structures.DWorkshop) {}
-  rpc SaveFactory (structures.DFactory) returns (structures.DFactory) {}
-  rpc SaveShift (structures.DShift) returns (structures.DShift) {}
-  rpc SaveWorkStation (structures.DWorkStation) returns (structures.DWorkStation) {}
-  rpc SaveEquipmentClass (structures.DEquipmentClass) returns (structures.DEquipmentClass) {}
-  rpc SavePartClass (structures.DPartClass) returns (structures.DPartClass) {}
-  rpc SavePart (structures.DPart) returns (structures.DPart) {}
-  rpc SaveLocation (structures.DLocation) returns (structures.DLocation) {}
-  rpc SaveRoute (structures.DRoute) returns (structures.DRoute) {}
-  rpc SaveRouteOperation (structures.DRouteOperation) returns (structures.DRouteOperation) {}
-  rpc SaveEADefinition(structures.DEADefinition)returns(structures.DEADefinition){}
-  rpc SaveDoc(structures.DDoc)returns(structures.DDoc){}
-  rpc SaveCustomer(structures.DCustomer)returns(structures.DCustomer){}
-  rpc SaveSupplier(structures.DSupplier)returns(structures.DSupplier){}
+  rpc SaveUser (structures.User) returns (structures.User) {}
+  rpc SaveBom (structures.Bom) returns (structures.Bom) {}
+  rpc SaveRuntimeBom (structures.RuntimeBom) returns (structures.RuntimeBom) {}
+  rpc SaveEquipment (structures.Equipment) returns (structures.Equipment) {}
+  rpc SaveWorkshop (structures.Workshop) returns (structures.Workshop) {}
+  rpc SaveFactory (structures.Factory) returns (structures.Factory) {}
+  rpc SaveShift (structures.Shift) returns (structures.Shift) {}
+  rpc SaveWorkStation (structures.WorkStation) returns (structures.WorkStation) {}
+  rpc SaveEquipmentClass (structures.EquipmentClass) returns (structures.EquipmentClass) {}
+  rpc SavePartClass (structures.PartClass) returns (structures.PartClass) {}
+  rpc SavePart (structures.Part) returns (structures.Part) {}
+  rpc SaveLocation (structures.Location) returns (structures.Location) {}
+  rpc SaveRoute (structures.Route) returns (structures.Route) {}
+  rpc SaveRouteOperation (structures.RouteOperation) returns (structures.RouteOperation) {}
+  rpc SaveDoc(structures.Doc)returns(structures.Doc){}
+  rpc SaveCustomer(structures.Customer)returns(structures.Customer){}
+  rpc SaveSupplier(structures.Supplier)returns(structures.Supplier){}
 }
 
 message RemoveObjectRequest {

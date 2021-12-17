@@ -1,62 +1,66 @@
 syntax = "proto3";
 import "athenaapis/structures.proto";
 
-option go_package = "github.com/athena-intelli/athena/api/pb/objectRetrievalService;objectRetrievalService";
 option java_multiple_files = true;
 option java_package = "com.athena.api.service";
 
 package ObjectRetrievalService;
 
 service ObjectRetrievalService{
-  rpc GetFactoryById(structures.DObjectId) returns(structures.DFactory){}
-  rpc GetFactoryByCode(structures.DObjectCode) returns(structures.DFactory){}
-  rpc GetWorkshopById(structures.DObjectId) returns(structures.DWorkshop){}
-  rpc GetWorkshopByCode(structures.DObjectCode) returns(structures.DWorkshop){}
-  rpc GetProductionLineById(structures.DObjectId) returns(structures.DProductionLine){}
-  rpc GetProductionLineByCode(structures.DObjectCode) returns(structures.DProductionLine){}
-  rpc GetWorkStationById(structures.DObjectId)returns(structures.DWorkStation){}
-  rpc GetWorkStationByCode(structures.DObjectCode)returns(structures.DWorkStation){}
-  rpc GetEquipmentById(structures.DObjectId)returns(structures.DEquipment){}
-  rpc GetEquipmentByCode(structures.DObjectCode)returns(structures.DEquipment){}
-  rpc GetPartByID(structures.DObjectId)returns(structures.DPart){}
-  rpc GetPartByNumberAndRevision(structures.DPartNumberAndRevision)returns(structures.DPart){}
-  rpc GetLocationById(structures.DObjectId) returns(structures.DLocation){}
-  rpc GetLocationByCode(structures.DObjectCode) returns(structures.DLocation){}
-  rpc GetLotById(structures.DObjectId)returns(structures.DLot){}
-  rpc GetLotBySerialNumber(structures.DObjectSerialNumber)returns(structures.DLot){}
-  rpc GetRuntimeBomById(structures.DObjectId)returns(structures.DRuntimeBom){}
-  rpc GetRouteById(structures.DObjectId)returns(structures.DRoute){}
-  rpc GetRouteByCodeAndVersion(structures.DObjectCode)returns(structures.DRoute){}
-  rpc GetOperationById(structures.DObjectId) returns(structures.DRouteOperation){}
-  rpc GetOperationByCode(structures.DObjectCode) returns(structures.DRouteOperation){}
-  rpc GetUnitById(structures.DObjectId)returns(structures.DUnit){}
-  rpc GetUnitBySeriaNumber(structures.DObjectSerialNumber)returns(structures.DUnit){}
-  rpc GetUserById(structures.DObjectId)returns(structures.DUser){}
-  rpc GetUserByName(structures.DObjectName)returns(structures.DUser){}
-  rpc GetWorkOrderById(structures.DObjectId)returns(structures.DWorkOrder){}
-  rpc GetWorkOrderByNumber(structures.DObjectName)returns(structures.DWorkOrder){}
-  rpc GetDocById(structures.DObjectId)returns(structures.DDoc){}
-  rpc GetDocByCode(structures.DObjectCode)returns(structures.DDoc){}
+  rpc GetFactoryById(structures.ObjectId) returns(structures.Factory){}
+  rpc GetFactoryByCode(structures.ObjectCode) returns(structures.Factory){}
+  rpc GetWorkshopById(structures.ObjectId) returns(structures.Workshop){}
+  rpc GetWorkshopByCode(structures.ObjectCode) returns(structures.Workshop){}
+  rpc GetProductionLineById(structures.ObjectId) returns(structures.ProductionLine){}
+  rpc GetProductionLineByCode(structures.ObjectCode) returns(structures.ProductionLine){}
+  rpc GetWorkStationById(structures.ObjectId)returns(structures.WorkStation){}
+  rpc GetWorkStationByCode(structures.ObjectCode)returns(structures.WorkStation){}
+  rpc GetEquipmentById(structures.ObjectId)returns(structures.Equipment){}
+  rpc GetEquipmentByCode(structures.ObjectCode)returns(structures.Equipment){}
+  rpc GetPartByID(structures.ObjectId)returns(structures.Part){}
+  rpc GetPartByNumberAndRevision(PartNumberAndRevisionRequest)returns(structures.Part){}
+  rpc GetLocationById(structures.ObjectId) returns(structures.Location){}
+  rpc GetLocationByCode(structures.ObjectCode) returns(structures.Location){}
+  rpc GetLotById(structures.ObjectId)returns(structures.Lot){}
+  rpc GetLotBySerialNumber(structures.ObjectSerialNumber)returns(structures.Lot){}
+  rpc GetRuntimeBomById(structures.ObjectId)returns(structures.RuntimeBom){}
+  rpc GetRouteById(structures.ObjectId)returns(structures.Route){}
+  rpc GetRouteByCodeAndVersion(structures.ObjectCode)returns(structures.Route){}
+  rpc GetOperationById(structures.ObjectId) returns(structures.RouteOperation){}
+  rpc GetOperationByCode(structures.ObjectCode) returns(structures.RouteOperation){}
+  rpc GetUnitById(structures.ObjectId)returns(structures.Unit){}
+  rpc GetUnitBySeriaNumber(structures.ObjectSerialNumber)returns(structures.Unit){}
+  rpc GetUserById(structures.ObjectId)returns(structures.User){}
+  rpc GetUserByName(structures.ObjectName)returns(structures.User){}
+  rpc GetWorkOrderById(structures.ObjectId)returns(structures.WorkOrder){}
+  rpc GetWorkOrderByNumber(structures.ObjectName)returns(structures.WorkOrder){}
+  rpc GetDocById(structures.ObjectId)returns(structures.Doc){}
+  rpc GetDocByCode(structures.ObjectCode)returns(structures.Doc){}
 
-  rpc GetEquipments(structures.DFilter)returns(stream structures.DEquipment){}
-  rpc GetWorkStations(structures.DFilter)returns(stream structures.DWorkStation){}
-  rpc GetProductionLines(structures.DFilter)returns(stream structures.DProductionLine){}
-  rpc GetWorkshops(structures.DFilter)returns(stream structures.DWorkshop){}
-  rpc GetFactories(structures.DFilter)returns(stream structures.DFactory){}
-  rpc GetConsumeParts(structures.DFilter)returns(stream structures.DConsumedPart){}
-  rpc GetBOMs(structures.DFilter)returns(stream structures.DBom){}
-  rpc GetBOMItems(structures.DFilter)returns(stream structures.DBomItem){}
-  rpc GetBoxes(structures.DFilter)returns(stream structures.DBox){}
-  rpc GetLots(structures.DFilter)returns(stream structures.DLot){}
-  rpc GetUnits(structures.DFilter)returns(stream structures.DUnit){}
-  rpc GetParts(structures.DFilter)returns(stream structures.DPart){}
-  rpc GetRoutes(structures.DFilter)returns(stream structures.DRoute){}
-  rpc GetRouteSteps(structures.DFilter)returns(stream structures.DRouteStep){}
-  rpc GetRouteOperations(structures.DFilter)returns(stream structures.DRouteOperation){}
-  rpc GetRuntimeBomItems(structures.DFilter)returns(stream structures.DRuntimeBomItem){}
-  rpc GetRuntimeBoms(structures.DFilter)returns(stream structures.DRuntimeBom){}
-  rpc GetWorkOrders(structures.DFilter)returns(stream structures.DWorkOrder){}
-  rpc GetUsers(structures.DFilter)returns(stream structures.DUser){}
-  rpc GetDocs(structures.DFilter)returns(stream structures.DDoc){}
+  rpc GetEquipments(structures.Filter)returns(stream structures.Equipment){}
+  rpc GetWorkStations(structures.Filter)returns(stream structures.WorkStation){}
+  rpc GetProductionLines(structures.Filter)returns(stream structures.ProductionLine){}
+  rpc GetWorkshops(structures.Filter)returns(stream structures.Workshop){}
+  rpc GetFactories(structures.Filter)returns(stream structures.Factory){}
+  rpc GetConsumeParts(structures.Filter)returns(stream structures.ConsumedPart){}
+  rpc GetBOMs(structures.Filter)returns(stream structures.Bom){}
+  rpc GetBOMItems(structures.Filter)returns(stream structures.BomItem){}
+  rpc GetContainers(structures.Filter)returns(stream structures.Container){}
+  rpc GetLots(structures.Filter)returns(stream structures.Lot){}
+  rpc GetUnits(structures.Filter)returns(stream structures.Unit){}
+  rpc GetParts(structures.Filter)returns(stream structures.Part){}
+  rpc GetRoutes(structures.Filter)returns(stream structures.Route){}
+  rpc GetRouteSteps(structures.Filter)returns(stream structures.RouteStep){}
+  rpc GetRouteOperations(structures.Filter)returns(stream structures.RouteOperation){}
+  rpc GetRuntimeBomItems(structures.Filter)returns(stream structures.RuntimeBomItem){}
+  rpc GetRuntimeBoms(structures.Filter)returns(stream structures.RuntimeBom){}
+  rpc GetWorkOrders(structures.Filter)returns(stream structures.WorkOrder){}
+  rpc GetUsers(structures.Filter)returns(stream structures.User){}
+  rpc GetDocs(structures.Filter)returns(stream structures.Doc){}
 
+}
+
+message PartNumberAndRevisionRequest{
+  string part_number = 1;
+  string part_Revision = 2;
 }

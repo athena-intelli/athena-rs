@@ -5,43 +5,37 @@ package structures;
 import public "google/protobuf/timestamp.proto";
 import public "athenaapis/enums.proto";
 
-option go_package = "github.com/athena-intelli/athena/api/pb/dto;dto";
 option java_multiple_files = true;
-option java_package = "com.common.dto";
+option java_package = "com.common.structures";
 
-message DMeasuredValue{
+message MeasuredValue{
   string uom = 1;
   double value = 2;
   int32 scale = 3;
 }
 
-message DObjectId{
+message ObjectId{
   uint64 id = 1;
 }
 
-message DObjectCode{
+message ObjectCode{
   string code = 1;
   string version = 2;
 }
 
-message DObjectName{
+message ObjectName{
   string name = 1;
 }
 
-message DPartNumberAndRevision{
-  string part_number = 1;
-  string part_Revision = 2;
-}
-
-message DObjectSerialNumber{
+message ObjectSerialNumber{
   string serial_number = 1;
 }
 
-message DEAInstance{
-  repeated DEAInstanceItem items = 1;
+message EAInstance{
+  repeated EAInstanceItem items = 1;
 }
 
-message DEAInstanceItem{
+message EAInstanceItem{
   string type = 1;
   string obj_type = 2;
   string item_name = 3;
@@ -52,10 +46,10 @@ message DEAInstanceItem{
 }
 
 /**
- * User Data Transfer Object
+ * User ata Transfer Object
  */
-message DUser{
-  Base base = 1;
+message User{
+  BaseAttributes base = 1;
   string user_name = 10;
   string password = 11;
   string email = 12;
@@ -66,56 +60,56 @@ message DUser{
   bool password_changed = 17;
   google.protobuf.Timestamp password_expiration = 18;
   bool password_modifiable = 19;
-  DShift shift = 22;
+  Shift shift = 22;
   google.protobuf.Timestamp user_expiration = 23;
-  DEAInstance extended_attributes = 24;
-  repeated DUserGroupUser user_group_users = 25;
-  repeated DUserRole user_roles = 26;
+  EAInstance extended_attributes = 24;
+  repeated UserGroupUser user_group_users = 25;
+  repeated UserRole user_roles = 26;
 }
 
-message DUserGroup{
-  Base base = 1;
-  DEAInstance extended_attributes = 10;
+message UserGroup{
+  BaseAttributes base = 1;
+  EAInstance extended_attributes = 10;
   string group_name = 11;
   string email = 12;
   uint64 shift_id = 13;
-  repeated DUserGroupUser user_group_users = 14;
+  repeated UserGroupUser user_group_users = 14;
 }
 
-message DUserGroupUser{
-  Base base = 1;
+message UserGroupUser{
+  BaseAttributes base = 1;
   uint64 group_id = 10;
   uint64 user_id = 11;
 }
 
-message DRole{
-  Base base = 1;
-  DEAInstance extended_attributes = 10;
+message Role{
+  BaseAttributes base = 1;
+  EAInstance extended_attributes = 10;
   string role_name = 11;
-  repeated DUserRole user_roles = 12;
+  repeated UserRole user_roles = 12;
 }
 
-message DUserRole{
-  Base base = 1;
+message UserRole{
+  BaseAttributes base = 1;
   uint64 role_id = 10;
   uint64 user_id = 11;
   google.protobuf.Timestamp effective_start_time = 12;
   google.protobuf.Timestamp effective_end_time = 13;
 }
 
-message DShift{
-  Base base = 1;
+message Shift{
+  BaseAttributes base = 1;
   string shift_code = 10;
   string start_time = 11;
   string end_time = 12;
   string name = 13;
-  DEAInstance extended_attributes = 14;
+  EAInstance extended_attributes = 14;
   bool over_day = 15;
-  repeated DShiftDuration shift_durations = 16;
+  repeated Shifturation shift_durations = 16;
 }
 
-message DShiftDuration{
-  Base base = 1;
+message Shifturation{
+  BaseAttributes base = 1;
   uint64 shift_id = 10;
   string start_time = 11;
   string end_time = 12;
@@ -123,7 +117,7 @@ message DShiftDuration{
   string type = 14;
 }
 
-message Base{
+message BaseAttributes{
   uint64 id = 1;
   string factory_code = 2;
   string category = 3;
@@ -134,56 +128,57 @@ message Base{
   google.protobuf.Timestamp last_modified_time = 8;
   enums.ModificationFlag modification_flag = 9;
   string workshop_code = 10;
+  string comments = 11;
 }
 
 /**
- * Factory Data Transfer Object
+ * Factory ata Transfer Object
  */
-message DFactory{
-  Base base = 1;
-  repeated DWorkshop workshops = 10;
+message Factory{
+  BaseAttributes base = 1;
+  repeated Workshop workshops = 10;
   string time_zone = 11;
   uint64 location_id = 12;
   uint64 work_schedule_id = 13;
   string name = 14;
-  DEAInstance extended_attributes = 15;
+  EAInstance extended_attributes = 15;
 }
 
 /**
- * Workshop Data Transfer Object
+ * Workshop ata Transfer Object
  */
-message DWorkshop{
-  Base base = 1;
-  repeated DWorkshop workshops = 10;
+message Workshop{
+  BaseAttributes base = 1;
+  repeated Workshop workshops = 10;
   uint64 location_id = 11;
   string time_zone = 12;
   uint64 work_schedule_id = 13;
   string workshop_code = 14;
   string name = 15;
-  DEAInstance extended_attributes = 16;
+  EAInstance extended_attributes = 16;
 }
 
 
-message DLocation{
-  Base base = 1;
+message Location{
+  BaseAttributes base = 1;
   string location_code = 10;
-  DEAInstance extended_attributes = 11;
+  EAInstance extended_attributes = 11;
 }
 
 
-message DBom{
-  Base base = 1;
+message Bom{
+  BaseAttributes base = 1;
   string bom_name = 10;
   string bom_revision = 11;
   string bom_type = 12;
   string uom = 13;
   bool bom_item_changed = 14;
-  DEAInstance extended_attributes = 15;
+  EAInstance extended_attributes = 15;
 
 }
 
-message DBomItem{
-  Base base = 1;
+message BomItem{
+  BaseAttributes base = 1;
   uint64 bom_id = 10;
   string consumption_type = 11;
   string part_number = 12;
@@ -191,14 +186,15 @@ message DBomItem{
   double quantity = 14;
   bool record_consumption = 15;
   string uom = 16;
-  DEAInstance extended_attributes = 17;
-  repeated DAlternateBomItem alternate_items = 18;
+  EAInstance extended_attributes = 17;
+  repeated AlternateBomItem alternate_items = 18;
   string position_number = 19;
+  string component_location = 20;
 }
 
-message DAlternateBomItem{
-  Base base = 1;
-  DEAInstance extended_attributes = 10;
+message AlternateBomItem{
+  BaseAttributes base = 1;
+  EAInstance extended_attributes = 10;
   uint64 bom_id = 11;
   uint64 bom_item_id = 12;
   double max_replacement_percent = 13;
@@ -207,10 +203,10 @@ message DAlternateBomItem{
 
 }
 
-message DRuntimeBom{
-  Base base = 1;
-  DEAInstance extended_attributes = 10;
-  repeated DRuntimeBomItem bom_items = 11;
+message RuntimeBom{
+  BaseAttributes base = 1;
+  EAInstance extended_attributes = 10;
+  repeated RuntimeBomItem bom_items = 11;
   bool bom_items_changed = 12;
   uint64 tracked_object_id = 13;
   string tracked_object_type = 14;
@@ -219,8 +215,8 @@ message DRuntimeBom{
   string uom = 17;
 }
 
-message DRuntimeBomItem{
-  Base base = 1;
+message RuntimeBomItem{
+  BaseAttributes base = 1;
   uint64 bom_id = 10;
   string consumption_type = 11;
   string part_number = 12;
@@ -228,16 +224,16 @@ message DRuntimeBomItem{
   double quantity = 14;
   bool record_consumption = 15;
   string uom = 16;
-  DEAInstance extended_attributes = 17;
+  EAInstance extended_attributes = 17;
   uint64 tracked_object_id = 18;
   string tracked_object_type = 19;
 }
 
-message DDoc{
-  Base base = 1;
+message Doc{
+  BaseAttributes base = 1;
   string doc_code = 9;
   string doc_version = 10;
-  DEAInstance extended_attributes = 11;
+  EAInstance extended_attributes = 11;
   string status = 12;
   string name = 13;
   string file_path = 14;
@@ -245,8 +241,8 @@ message DDoc{
   string class_code = 16;
 }
 
-message DEquipment{
-  Base base = 1;
+message Equipment{
+  BaseAttributes base = 1;
   string capacity = 10;
   string identity = 11;
   repeated uint64 child_equipment_ids = 12;
@@ -258,29 +254,29 @@ message DEquipment{
   uint64 work_schedule_id = 18;
   repeated uint64 doc_ids = 19;
   string name = 20;
-  DEAInstance extended_attributes = 21;
-  DEquipmentClass equipment_class = 22;
+  EAInstance extended_attributes = 21;
+  EquipmentClass equipment_class = 22;
 
 }
 
-message DEquipmentClass{
-  Base base = 1;
+message EquipmentClass{
+  BaseAttributes base = 1;
   string class_code = 10;
   string name = 11;
-  DEAInstance extended_attributes = 12;
+  EAInstance extended_attributes = 12;
 }
 
-message DWorkStation{
-  Base base = 1;
+message WorkStation{
+  BaseAttributes base = 1;
   string station_code = 10;
   string name = 11;
   uint64 production_line_id = 12;
-  DLocation location = 13;
-  DEAInstance extended_attributes = 14;
+  Location location = 13;
+  EAInstance extended_attributes = 14;
 }
 
-message DTrackable{
-  Base base = 1;
+message Trackable{
+  BaseAttributes base = 1;
   uint64 tracked_object_status_id = 10;
   string operation_code = 11;
   string production_line_code = 12;
@@ -294,20 +290,20 @@ message DTrackable{
   string route_step_name = 20;
   uint64 route_step_id = 21;
   enum TrackedObjectTransactionStatus{
-    STATUS_CREATED = 0;
-    STATUS_STARTED = 1;
-    STATUS_COMPLETED = 2;
-    STATUS_FINISHED = 3;
-    STATUS_RECEIVED = 4;
-    STATUS_SHIPPED = 5;
-    STATUS_CLOSED = 6;
+    STATUS_CREATE = 0;
+    STATUS_STARTE = 1;
+    STATUS_COMPLETE = 2;
+    STATUS_FINISHE = 3;
+    STATUS_RECEIVE = 4;
+    STATUS_SHIPPE = 5;
+    STATUS_CLOSE = 6;
   }
   TrackedObjectTransactionStatus transaction_status = 22;
   enum TrackedObjectTransactionState{
     STATE_NORMAL = 0;
     STATE_CONSUME = 1;
-    STATE_DESTRUCTIVESAMPLE = 2;
-    STATE_HOLD = 3;
+    STATE_ESTRUCTIVESAMPLE = 2;
+    STATE_HOL = 3;
     STATE_QUARANTINE = 4;
     STATE_PAUSE = 5;
     STATE_REVIVE = 6;
@@ -320,30 +316,30 @@ message DTrackable{
   string location_name = 27;
 }
 
-message DBox{
-  Base base = 1;
-  // the actual number of boxes in a Box
-  uint32 box_count = 10;
-  // the number of allowed items in this box
+message Container{
+  BaseAttributes base = 1;
+  // the actual number of containers in a Container
+  uint32 container_count = 10;
+  // the number of allowed items in this Container
   uint32 capacity = 11;
   string serial_number = 13;
   uint32 lot_count = 14;
   uint32 current_quantity = 15;
-  enums.BoxType type = 16;
+  enums.ContainerType type = 16;
   uint32 unit_count = 17;
   google.protobuf.Timestamp finished_time = 18;
   uint32 priority = 19;
   google.protobuf.Timestamp shipped_time = 20;
   string previous_node_name = 21;
   string previous_node_type = 22;
-  DEAInstance extended_attributes = 23;
-  DTrackable tracked_data = 24;
+  EAInstance extended_attributes = 23;
+  Trackable tracked_data = 24;
 }
 
-message DLot{
-  Base base = 1;
-  DEAInstance extended_attributes = 10;
-  DTrackable trackable = 11;
+message Lot{
+  BaseAttributes base = 1;
+  EAInstance extended_attributes = 10;
+  Trackable trackable = 11;
   string serial_number = 12;
   string order_number = 13;
   string part_number = 14;
@@ -355,7 +351,7 @@ message DLot{
   bool good = 20;
   uint32 priority = 21;
   uint32 rework_count = 22;
-  DTrackable tracked_data = 23;
+  Trackable tracked_data = 23;
   google.protobuf.Timestamp finished_time = 24;
   google.protobuf.Timestamp closed_time = 25;
   google.protobuf.Timestamp promised_time = 26;
@@ -365,11 +361,11 @@ message DLot{
   bool consumed = 30;
 }
 
-message DUnit{
-  Base base = 1;
+message Unit{
+  BaseAttributes base = 1;
   string serial_number = 10;
   string order_number = 11;
-  DEAInstance extended_attributes = 12;
+  EAInstance extended_attributes = 12;
   string container_serial_number = 13;
   string container_type = 14;
   string lot_number = 15;
@@ -388,29 +384,31 @@ message DUnit{
   uint32 rework_count = 29;
   google.protobuf.Timestamp shipped_time = 30;
   google.protobuf.Timestamp expiration_time = 31;
-  DTrackable tracked_data = 32;
+  Trackable tracked_data = 32;
   bool scrapped = 33;
   bool consumed = 34;
+  string current_status = 35;
+  string previous_status = 36;
 }
 
-message DRoute{
-  Base base = 1;
+message Route{
+  BaseAttributes base = 1;
   string route_code = 10;
   string route_version = 11;
   string name = 12;
   google.protobuf.Timestamp effective_start_time = 13;
   google.protobuf.Timestamp effective_end_time = 14;
-  DEAInstance extended_attributes = 15;
+  EAInstance extended_attributes = 15;
   repeated uint64 production_line_ids = 16;
   uint64 default_production_line_id = 17;
-  repeated DRouteArc route_arcs = 18;
-  repeated DRouteStep route_steps = 19;
-  repeated DRouteQueue route_queues = 20;
+  repeated RouteArc route_arcs = 18;
+  repeated RouteStep route_steps = 19;
+  repeated RouteQueue route_queues = 20;
 }
 
-message DRouteStep{
-  Base base = 1;
-  DEAInstance extended_attributes = 10;
+message RouteStep{
+  BaseAttributes base = 1;
+  EAInstance extended_attributes = 10;
   string step_number = 11;
   string step_name = 12;
   uint32 cycle_duration = 13;
@@ -434,9 +432,9 @@ message DRouteStep{
 
 }
 
-message DRouteQueue{
-  Base base = 1;
-  DEAInstance extended_attributes = 10;
+message RouteQueue{
+  BaseAttributes base = 1;
+  EAInstance extended_attributes = 10;
   bool auto_start = 11;
   uint32 queue_duration = 12;
   uint32 est_duration_to_completion = 13;
@@ -451,20 +449,20 @@ message DRouteQueue{
   string route_queue_name = 23;
 }
 
-message DRouteArc{
-  Base base = 1;
+message RouteArc{
+  BaseAttributes base = 1;
   enums.RouteArcNodeType to_node_type = 10;
   string to_node_name = 11;
   enums.RouteArcNodeType from_node_type = 12;
   string from_node_name = 13;
   bool main_path = 14;
-  DEAInstance extended_attributes = 15;
+  EAInstance extended_attributes = 15;
 }
 
 
-message DRouteOperation{
-  Base base = 1;
-  DEAInstance extended_attributes = 10;
+message RouteOperation{
+  BaseAttributes base = 1;
+  EAInstance extended_attributes = 10;
   string code = 11;
   string name = 12;
   bool failure = 13;
@@ -472,8 +470,8 @@ message DRouteOperation{
   uint32 cycle_duration = 14;
 }
 
-message DPart{
-  Base base = 1;
+message Part{
+  BaseAttributes base = 1;
   string part_number = 10;
   string part_revision = 11;
   uint64 bom_id = 12;
@@ -482,58 +480,61 @@ message DPart{
   string consumption_type = 15;
   uint32 shelf_life = 16;
   string uom = 17;
-  DEAInstance extended_attributes = 18;
-  repeated DPartClass part_classes = 19;
+  EAInstance extended_attributes = 18;
+  repeated PartClass part_classes = 19;
+  string bu = 20;
+  string prod_spec = 21;
+  string status = 22;
 }
 
-message DAlternatePart{
-  Base base = 1;
+message AlternatePart{
+  BaseAttributes base = 1;
   uint64 parent_id = 10;
   string parent_type = 11;
   string part_number = 12;
   string part_revision = 13;
-  DEAInstance extended_attributes = 14;
+  EAInstance extended_attributes = 14;
   double max_replacement_percent = 15;
 }
 
-message DAlternatePartGroup{
-  Base base = 1;
+message AlternatePartGroup{
+  BaseAttributes base = 1;
   uint64 parent_id = 10;
   string parent_type = 11;
-  repeated DAlternatePart alternate_parts = 12;
-  DEAInstance extended_attributes = 13;
+  repeated AlternatePart alternate_parts = 12;
+  EAInstance extended_attributes = 13;
   double max_replacement_percent = 14;
 }
 
-message DPartClass{
-  Base base = 1;
+message PartClass{
+  BaseAttributes base = 1;
   string class_name = 10;
-  DEAInstance extended_attributes = 11;
+  EAInstance extended_attributes = 11;
 }
 
-message DCustomer{
-  Base base = 1;
+message Customer{
+  BaseAttributes base = 1;
   string code = 10;
   string name = 11;
   string contact = 12;
   string address = 13;
   string email = 14;
-  DEAInstance extended_attributes = 15;
+  EAInstance extended_attributes = 15;
   string status = 16;
 }
 
-message DSupplier{
-  Base base = 1;
+message Supplier{
+  BaseAttributes base = 1;
   string code = 10;
   string name = 11;
   string contact = 12;
   string address = 13;
   string email = 14;
-  DEAInstance extended_attributes = 15;
+  EAInstance extended_attributes = 15;
 }
 
-message DWorkOrder{
-  Base base = 1;
+message WorkOrder{
+  BaseAttributes base = 1;
   string order_number = 10;
   google.protobuf.Timestamp closed_time = 11;
   string comment = 12;
@@ -541,7 +542,7 @@ message DWorkOrder{
   google.protobuf.Timestamp promised_time = 14;
   google.protobuf.Timestamp shipped_time = 15;
   google.protobuf.Timestamp start_time = 16;
-  DEAInstance extended_attributes = 17;
+  EAInstance extended_attributes = 17;
   string bom_name = 18;
   string bom_revision = 19;
   string part_number = 20;
@@ -556,36 +557,19 @@ message DWorkOrder{
   double precise_quantity_in_progress = 30;
   double precise_quantity_shipped = 31;
   string order_type = 32;
+  string data_from = 33;
+  string origin_number = 34;
 }
 
-
-message DEADefinition{
-  Base base = 1;
-  repeated DEADefinitionItem items = 10;
-}
-
-message DEADefinitionItem{
-  string attribute_name = 1;
-  string data_type = 2;
-  string object_type = 3;
-  string default_value = 4;
-  //The maximum text length if the data type is TYPE_STRING
-  uint32 text_length = 5;
-  string description = 6;
-  bool list_supported = 7;
-  uint64 list_id = 8;
-  repeated string default_list_value = 9;
-}
-
-message DTestDefinition{
-  Base base = 1;
-  DEAInstance extended_attributes = 10;
+message TestDefinition{
+  BaseAttributes base = 1;
+  EAInstance extended_attributes = 10;
   string name = 11;
 }
 
-message DTestInstance{
-  Base base = 1;
-  DEAInstance extended_attributes = 10;
+message TestInstance{
+  BaseAttributes base = 1;
+  EAInstance extended_attributes = 10;
   string location_code = 11;
   uint64 object_id = 12;
   string object_type = 13;
@@ -601,14 +585,17 @@ message DTestInstance{
   bool test_valid = 23;
   uint64 test_definition_id = 24;
   string test_equipment_identity = 25;
-  repeated DDefectRepairEntry defect_repair_entries = 26;
+  repeated DefectRepairEntry defect_repair_entries = 26;
   string test_user = 27;
   string work_station_code = 28;
+  string work_station_name = 29;
+  string operation_name = 30;
+  string production_line_name = 31;
 }
 
-message DDefectRepairEntry{
-  Base base = 1;
-  DEAInstance extended_attributes = 10;
+message DefectRepairEntry{
+  BaseAttributes base = 1;
+  EAInstance extended_attributes = 10;
   uint64 test_instance_id = 11;
   string defect_operation_name = 12;
   string defect_operation_code = 13;
@@ -635,36 +622,70 @@ message DDefectRepairEntry{
   string object_type = 34;
 }
 
-message DProductionLine{
-  Base base = 1;
-  DEAInstance extended_attributes = 10;
+message ProductionLine{
+  BaseAttributes base = 1;
+  EAInstance extended_attributes = 10;
   string code = 11;
   string name = 12;
   string capacity = 13;
-  DLocation location = 14;
+  Location location = 14;
   repeated uint64 production_queue_ids = 15;
   repeated uint64 storage_unit_ids = 16;
   repeated uint64 work_station_ids = 17;
 }
 
-message DStorageUnit{
-  Base base = 1;
-  DEAInstance extended_attributes = 9;
-  DLocation location = 10;
+message StorageUnit{
+  BaseAttributes base = 1;
+  EAInstance extended_attributes = 9;
+  Location location = 10;
   int32 maximum_storage_duration = 11;
   int32 minimum_storage_duration = 12;
-  DPartClass part_class = 13;
+  PartClass part_class = 13;
 }
 
-message DChecklistDefinition{
-  Base base = 1;
-  DEAInstance extended_attributes = 10;
-  repeated DChecklistDefinitionItem items = 11;
+message Filter{
+  int32 object_type = 1;
+  int32 paging_filter_row_count = 2;
+  int32 paging_filter_start_row = 3;
+  repeated FilterSearchConstraint search_constraints = 4;
+  repeated FilterSortConstraint sort_constraints = 5;
+  repeated Filter or_filters = 6;
+  int32 max_result_count = 7;
+  bool distinct_only = 8;
+  repeated FilterParameter parameters = 9;
+}
+
+message FilterSearchConstraint{
+  int32 attribute = 1;
+  string attribute_identifier = 2;
+  int32 comparison_operator = 3;
+  repeated string values = 4;
+  int32 other_attribute = 5;
+  repeated FilterSearchConstraint or_search_constraints = 6;
+}
+
+message FilterSortConstraint{
+  int32 attribute = 1;
+  string attribute_identifier = 2;
+  int32 sort_order = 3;
+}
+
+message FilterParameter{
+  string name = 1;
+  string value = 2;
+  string default_value = 3;
+}
+
+
+message ChecklistDefinition{
+  BaseAttributes base = 1;
+  EAInstance extended_attributes = 10;
+  repeated ChecklistDefinitionItem items = 11;
   bool checklist_items_changed = 12;
   string name = 13;
 }
 
-message DChecklistDefinitionItem{
+message ChecklistDefinitionItem{
   string item_name = 1;
   int32 item_order = 2;
   string description = 3;
@@ -674,10 +695,10 @@ message DChecklistDefinitionItem{
   string text_value = 7;
 }
 
-message DChecklistInstance{
-  Base base = 1;
-  DEAInstance extended_attributes = 10;
-  repeated DChecklistInstanceItem items = 11;
+message ChecklistInstance{
+  BaseAttributes base = 1;
+  EAInstance extended_attributes = 10;
+  repeated ChecklistInstanceItem items = 11;
   bool checklist_items_changed = 12;
   uint64 checklist_define_id = 13;
   uint64 obj_id = 14;
@@ -685,7 +706,7 @@ message DChecklistInstance{
 
 }
 
-message DChecklistInstanceItem{
+message ChecklistInstanceItem{
   string item_name = 1;
   int32 item_order = 2;
   string description = 3;
@@ -701,90 +722,6 @@ message DChecklistInstanceItem{
   double actual_value = 13;
 }
 
-
-message DATDefinition{
-  Base base = 1;
-  repeated DATColumnDefinition column_definitions = 10;
-  repeated DATIndexDefinition index_definitions = 11;
-  bool static_data = 12;
-  bool column_definitions_changed = 13;
-  bool index_definitions_changed = 14;
-  string at_name = 15;
-  uint32 at_version = 16;
-  uint64 parent_id = 17;
-  enums.ATDefinitionType type = 18;
-  string column_prefix = 19;
-}
-
-message DATColumnDefinition{
-  Base base = 1;
-  uint64 at_definition_id = 10;
-  enums.ColumnDataType data_type = 11;
-  int32 text_length = 12;
-  string column_name = 13;
-  string default_value = 14;
-  bool nullable = 15;
-
-}
-
-message DATIndexDefinition{
-  Base base = 1;
-  uint64 at_definition_id = 10;
-  repeated DATColumnDefinition columns = 11;
-  string sort_direction = 12;
-  string index_name = 13;
-  bool unique = 14;
-}
-
-message DATData{
-  Base base = 1;
-  uint64 at_definition_id = 10;
-  repeated DATData dependent_atdatas = 11;
-  enums.ATDefinitionType type = 12;
-  uint64 parent_id = 13;
-  repeated DATDataCell data_cells = 14;
-}
-
-message DATDataCell{
-  enums.ColumnDataType data_type = 1;
-  string name = 2;
-  string value = 3;
-  bytes blob_data = 4;
-}
-
-message DFilter{
-  int32 object_type = 1;
-  int32 paging_filter_row_count = 2;
-  int32 paging_filter_start_row = 3;
-  repeated DFilterSearchConstraint search_constraints = 4;
-  repeated DFilterSortConstraint sort_constraints = 5;
-  repeated DFilter or_filters = 6;
-  int32 max_result_count = 7;
-  bool distinct_only = 8;
-  repeated DFilterParameter parameters = 9;
-}
-
-message DFilterSearchConstraint{
-  int32 attribute = 1;
-  string attribute_identifier = 2;
-  int32 comparison_operator = 3;
-  repeated string values = 4;
-  int32 other_attribute = 5;
-  repeated DFilterSearchConstraint or_search_constraints = 6;
-}
-
-message DFilterSortConstraint{
-  int32 attribute = 1;
-  string attribute_identifier = 2;
-  int32 sort_order = 3;
-}
-
-message DFilterParameter{
-  string name = 1;
-  string value = 2;
-  string default_value = 3;
-}
-
 message ChangePriorityRequest{
   uint64 object_id = 1;
   uint32 new_priority = 2;
@@ -792,15 +729,9 @@ message ChangePriorityRequest{
   google.protobuf.Timestamp transaction_time = 4;
 }
 
-message DLotReturnData{
-  DLot lot = 1;
-  repeated DUnit units = 2;
-  DWorkOrder order = 3;
-}
-
-message DConsumedPart{
-  Base base = 1;
-  DEAInstance extended_attributes = 10;
+message ConsumedPart{
+  BaseAttributes base = 1;
+  EAInstance extended_attributes = 10;
   uint64 alternate_bom_item_id = 11;
   string consumption_status = 12;
   string consumption_type = 13;
@@ -830,9 +761,9 @@ message DConsumedPart{
   string tracked_obj_type = 37;
 }
 
-message DProductConfiguration{
-  Base base = 1;
-  DEAInstance extended_attributes = 10;
+message ProductConfiguration{
+  BaseAttributes base = 1;
+  EAInstance extended_attributes = 10;
   string name = 11;
   string version = 12;
   enums.ProductConfigurationType type = 13;
@@ -846,9 +777,9 @@ message DProductConfiguration{
   string order_number = 21;
 }
 
-message DProductConfigurationRoute{
-  Base base = 1;
-  DEAInstance extended_attributes = 10;
+message ProductConfigurationRoute{
+  BaseAttributes base = 1;
+  EAInstance extended_attributes = 10;
   uint64 production_config_id = 12;
   uint64 route_id = 13;
   string route_code = 14;
@@ -859,18 +790,18 @@ message DProductConfigurationRoute{
   bool valid = 19;
 }
 
-message DProductConfigurationRouteStep{
-  Base base = 1;
-  DEAInstance extended_attributes = 10;
+message ProductConfigurationRouteStep{
+  BaseAttributes base = 1;
+  EAInstance extended_attributes = 10;
   uint64 production_config_id = 11;
   uint64 production_config_route_id = 12;
   uint64 route_step_id = 13;
   bool enforcement = 14;
 }
 
-message DProductConfigurationRouteStepBom{
-  Base base = 1;
-  DEAInstance extended_attributes = 10;
+message ProductConfigurationRouteStepBom{
+  BaseAttributes base = 1;
+  EAInstance extended_attributes = 10;
   uint64 production_config_id = 11;
   uint64 production_config_route_id = 12;
   uint64 route_step_id = 13;
@@ -888,9 +819,9 @@ message DProductConfigurationRouteStepBom{
   double lower_quatity = 25;
 }
 
-message DProductConfigurationRouteStepDoc{
-  Base base = 1;
-  DEAInstance extended_attributes = 10;
+message ProductConfigurationRouteStepDoc{
+  BaseAttributes base = 1;
+  EAInstance extended_attributes = 10;
   uint64 production_config_id = 11;
   uint64 production_config_route_id = 12;
   uint64 route_step_id = 13;
@@ -902,9 +833,9 @@ message DProductConfigurationRouteStepDoc{
   uint64 doc_id = 19;
 }
 
-message DProductConfigurationRouteStepEquipmentClass{
-  Base base = 1;
-  DEAInstance extended_attributes = 10;
+message ProductConfigurationRouteStepEquipmentClass{
+  BaseAttributes base = 1;
+  EAInstance extended_attributes = 10;
   uint64 production_config_id = 11;
   uint64 production_config_route_id = 12;
   uint64 route_step_id = 13;
@@ -915,13 +846,13 @@ message DProductConfigurationRouteStepEquipmentClass{
   bool enabled = 18;
 }
 
-message DProductConfigurationRouteStepCheckList{
-  Base base = 1;
-  DEAInstance extended_attributes = 10;
+message ProductConfigurationRouteStepCheckList{
+  BaseAttributes base = 1;
+  EAInstance extended_attributes = 10;
   uint64 production_config_id = 11;
   uint64 production_config_route_id = 12;
   uint64 route_step_id = 13;
-  uint64 check_list_id = 14;
+  uint64 check_list_define_id = 14;
   string item_name = 15;
   double max_value = 16;
   double min_value = 17;
@@ -932,42 +863,21 @@ message DProductConfigurationRouteStepCheckList{
   string datasource = 22;
 }
 
-message DECODelta{
-  string eco_type = 1;
-  DRuntimeBomItem original_bom_item = 2;
-  repeated DConsumedPart removed_consumed_parts = 3;
-  DRuntimeBomItem revised_bom_item = 4;
-  string revised_bom_name = 5;
-  string revised_bom_revision = 6;
-}
 
-message DList{
-  Base base = 1;
-  string list_name = 2;
-  repeated DListItem list_items = 10;
-  bool list_items_changed = 11;
-  bool allow_duplicates = 12;
-
-}
-message DListItem{
-  int32 item_order = 1;
-  string item_value = 2;
-}
-
-message DPallet{
-  Base base = 1;
-  DEAInstance extended_attributes = 10;
+message Pallet{
+  BaseAttributes base = 1;
+  EAInstance extended_attributes = 10;
   string serial_number = 11;
   uint64 container_id = 12;
   string container_type = 13;
-  DPallet parent = 14;
+  Pallet parent = 14;
   uint64 location_id = 15;
   string location_code = 16;
 
 }
 
-message DESignatureDefinition{
-  Base base = 1;
+message ESignatureefinition{
+  BaseAttributes base = 1;
   string name = 10;
   bool comment_required = 11;
   bool send_email = 12;

@@ -5,7 +5,7 @@ fn main() {
     tonic_build::configure()
         .out_dir(out_dir)
         .compile(&[
-            "proto/athenaapis/box_service.proto",
+            "proto/athenaapis/package_service.proto",
             "proto/athenaapis/lot_service.proto",
             "proto/athenaapis/unit_service.proto",
             "proto/athenaapis/work_order.proto",
@@ -15,15 +15,6 @@ fn main() {
             "proto/athenaapis/object_storage.proto",
         ], &["proto"])
         .unwrap();
-
-
-    // tonic_build::configure()
-    //     .server_mod_attribute("attrs", "#[cfg(feature = \"server\")]")
-    //     .server_attribute("Echo", "#[derive(PartialEq)]")
-    //     .client_mod_attribute("attrs", "#[cfg(feature = \"client\")]")
-    //     .client_attribute("Echo", "#[derive(PartialEq)]")
-    //     .compile(&["proto/attrs/attrs.proto"], &["proto"])
-    //     .unwrap();
 
     tonic_build::configure()
         .build_server(false)

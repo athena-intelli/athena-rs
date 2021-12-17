@@ -1,6 +1,8 @@
 [workspace]
 members = [
     "athena-api",
-    "athena-server",
-    "athena-client",
+    "athena-coreserver",
+    "athena-clientsdk",
+    "athena-minserver",
+    "athena-web"
 ]

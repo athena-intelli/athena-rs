@@ -1,8 +1,8 @@
-pub mod box_service;
 pub mod enums;
 pub mod lot_service;
 pub mod object_retrieval_service;
 pub mod object_storage_service;
+pub mod package_service;
 pub mod security_service;
 pub mod structures;
 pub mod unit_service;

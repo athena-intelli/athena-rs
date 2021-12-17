@@ -1,0 +1,200 @@
+syntax = "proto3";
+import "athenaapis/structures.proto";
+import "google/protobuf/empty.proto";
+
+option java_multiple_files = true;
+option java_package = "com.service";
+
+package PackageService;
+
+service PackageService{
+  //This method is used to add a container to a container
+  rpc AddContainerToContainer(HandleContainerRequest) returns (structures.Container){}
+  //This method is used to add a lot to a container
+  rpc AddLotToContainer(HandleLotRequest) returns (structures.Container){}
+  // This method is used to record a transaction indicating that a container and all
+  //  of its contents (any contained containers, lots and units) has been moved to
+  //  the queue specified.
+  rpc AddContainerToQueue(AddContainerToQueueRequest) returns (structures.Container){}
+  //This method is used to add a unit to a container
+  rpc AddUnitToContainer(HandleUnitRequest) returns (structures.Container){}
+
+  //This method is used to change the production line of a container and all of its
+  //  contents (any contained containers, lots and units).
+  rpc ChangeProductionLine(ChangePLineRequest) returns (structures.Container){}
+
+  //This method is used to change the route of a container and all of its contents
+  // (any contained containers, lots and units).
+  rpc ChangeRoute(ContainerChangeRouteRequest) returns (structures.Container){}
+
+  //This method is used to record a transaction indicating that a container and all
+  // of its contents (any contained containers, lots and units) have closed.
+  rpc Close(ContainerTransactionRequest) returns (structures.Container){}
+
+  /**
+     * This method is used to record a transaction indicating that a container and all
+     * of its contents (any contained containers, lots and units) have completed the
+     * route step specified.
+   */
+  rpc CompleteAtRouteStep(ContainerCompleteRequest) returns (structures.Container){}
+
+  /**
+     * This method is used to record a transaction indicating that a container and all
+     * of its contents (any contained containers, lots and units) have started the
+     * route step specified.
+   */
+  rpc StartAtRouteStep(ContainerStartRequest) returns (structures.Container){}
+
+  // This method is used to record a transaction indicating that a container and all
+  //   of its contents (any contained containers, lots and units) have finished.
+  rpc Finish(ContainerTransactionRequest) returns (structures.Container){}
+
+  // This method is used to record a transaction indicating that a container and all
+  //     of its contents (any contained containers, lots and units) have been placed on
+  //     hold. When an object is on hold no other transactions may be performed on
+  //     it, until it is released
+  rpc Hold(ContainerTransactionRequest) returns (structures.Container){}
+
+  //This method is used to record a transaction indicating that a container and its
+  //     * containers (any container containers) have opened. The open
+  //     * method is equivalent to the undoClose method, except that it propagates
+  //     * upward to the Container's containers instead of downward to the Container's contents.
+  rpc Open(ContainerTransactionRequest) returns (structures.Container){}
+
+  /**
+     * This method is used to record a transaction indicating that a container and all
+     * of its contents (any contained containers, lots and units) have stopped
+     * processing. When an object is paused no other transactions may be
+     * performed on it, until it is restarted.
+   */
+  rpc Pause(ContainerTransactionRequest) returns (structures.Container){}
+
+  /**
+     * This method is used to record a transaction indicating that a container and all
+     * of its contents (any contained containers, lots and units) have been released
+     * from hold or quarantine.
+   */
+  rpc Release(ContainerTransactionRequest) returns (structures.Container){}
+
+  /**
+   * This method is used to record a transaction indicating that a container and all
+   * of its contents (any contained containers, lots and units) has been scrapped.
+   */
+  rpc Scrap(ContainerTransactionRequest) returns (structures.Container){}
+
+  //This method removes everything from a container.
+  rpc RemoveAll(ClearContainerRequest) returns (structures.Container){}
+
+  //This method is used to remove a container from a container.
+  rpc RemoveContainer(HandleContainerRequest) returns (google.protobuf.Empty){}
+
+  //This method is used to remove a lot from a container.
+  rpc RemoveLot(HandleLotRequest) returns (google.protobuf.Empty){}
+
+  //This method is used to remove a unit from a container.
+  rpc RemoveUnit(HandleUnitRequest) returns (google.protobuf.Empty){}
+
+  /**
+     * This method is used to save or update a container.
+   */
+  rpc SaveContainer(structures.Container) returns (structures.Container){}
+
+}
+
+
+message ClearContainerRequest{
+  uint64 container_id = 1;
+  google.protobuf.Timestamp transaction_time = 2;
+  string comment = 3;
+}
+
+message HandleUnitRequest{
+  uint64 container_id = 1;
+  uint64 unit_id = 2;
+  google.protobuf.Timestamp transaction_time = 3;
+  string comment = 4;
+}
+
+message ContainerTransactionRequest{
+  uint64 container_id = 1;
+  string reason = 2;
+  google.protobuf.Timestamp transaction_time = 3;
+  string comment = 4;
+  bool override_route_enforcement = 5;
+  enum ContainerTransaction{
+    close = 0;
+    finish = 1;
+    pause = 2;
+    release = 3;
+    restart = 4;
+    open = 5;
+    hold = 6;
+    ship = 7;
+    undoClose = 8;
+    undoFinish = 9;
+    undoScrap = 10;
+    undoShip = 11;
+  }
+  ContainerTransaction transaction = 6;
+}
+
+
+message HandleContainerRequest{
+  uint64 container_id = 1;
+  uint64 parent_container_id = 2;
+  google.protobuf.Timestamp transaction_time = 3;
+  string comment = 4;
+}
+
+message HandleLotRequest{
+  uint64 container_id = 1;
+  uint64 lot_id = 2;
+  google.protobuf.Timestamp transaction_time = 3;
+  string comment = 4;
+}
+
+message AddContainerToQueueRequest{
+  uint64 container_id = 1;
+  string route_queue_name = 2;
+  google.protobuf.Timestamp transaction_time = 3;
+  string comment = 4;
+}
+
+message ChangePLineRequest{
+  uint64 container_id = 1;
+  string production_line_code = 2;
+  google.protobuf.Timestamp transaction_time = 3;
+  string comment = 4;
+  uint64 production_line_id = 5;
+}
+
+message ContainerChangeRouteRequest{
+  uint64 container_id = 1;
+  string route_code = 2;
+  google.protobuf.Timestamp transaction_time = 3;
+  string comment = 4;
+  bool force_change_route = 5;
+  uint64 route_id = 6;
+}
+
+message ContainerCompleteRequest{
+  uint64 container_id = 1;
+  string reason = 2;
+  google.protobuf.Timestamp transaction_time = 3;
+  string comment = 4;
+  bool override_route_enforcement = 5;
+  uint64 route_step_id = 6;
+  string route_step_number = 7;
+  uint64 route_id = 8;
+}
+
+message ContainerStartRequest{
+  uint64 container_id = 1;
+  string reason = 2;
+  google.protobuf.Timestamp transaction_time = 3;
+  string comment = 4;
+  bool override_route_enforcement = 5;
+  uint64 route_step_id = 6;
+  string route_step_number = 7;
+  uint64 route_id = 8;
+}

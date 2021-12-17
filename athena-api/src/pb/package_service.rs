@@ -1,7 +1,7 @@
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ClearBoxRequest {
+pub struct ClearContainerRequest {
     #[prost(uint64, tag = "1")]
-    pub box_id: u64,
+    pub container_id: u64,
     #[prost(message, optional, tag = "2")]
     pub transaction_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(string, tag = "3")]
@@ -10,7 +10,7 @@ pub struct ClearBoxRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HandleUnitRequest {
     #[prost(uint64, tag = "1")]
-    pub box_id: u64,
+    pub container_id: u64,
     #[prost(uint64, tag = "2")]
     pub unit_id: u64,
     #[prost(message, optional, tag = "3")]
@@ -19,9 +19,9 @@ pub struct HandleUnitRequest {
     pub comment: ::prost::alloc::string::String,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BoxTransactionRequest {
+pub struct ContainerTransactionRequest {
     #[prost(uint64, tag = "1")]
-    pub box_id: u64,
+    pub container_id: u64,
     #[prost(string, tag = "2")]
     pub reason: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "3")]
@@ -30,14 +30,17 @@ pub struct BoxTransactionRequest {
     pub comment: ::prost::alloc::string::String,
     #[prost(bool, tag = "5")]
     pub override_route_enforcement: bool,
-    #[prost(enumeration = "box_transaction_request::BoxTransaction", tag = "6")]
+    #[prost(
+        enumeration = "container_transaction_request::ContainerTransaction",
+        tag = "6"
+    )]
     pub transaction: i32,
 }
-/// Nested message and enum types in `BoxTransactionRequest`.
-pub mod box_transaction_request {
+/// Nested message and enum types in `ContainerTransactionRequest`.
+pub mod container_transaction_request {
     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
     #[repr(i32)]
-    pub enum BoxTransaction {
+    pub enum ContainerTransaction {
         Close = 0,
         Finish = 1,
         Pause = 2,
@@ -53,11 +56,11 @@ pub mod box_transaction_request {
     }
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct HandleBoxRequest {
+pub struct HandleContainerRequest {
     #[prost(uint64, tag = "1")]
     pub container_id: u64,
     #[prost(uint64, tag = "2")]
-    pub box_id: u64,
+    pub parent_container_id: u64,
     #[prost(message, optional, tag = "3")]
     pub transaction_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(string, tag = "4")]
@@ -66,7 +69,7 @@ pub struct HandleBoxRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HandleLotRequest {
     #[prost(uint64, tag = "1")]
-    pub box_id: u64,
+    pub container_id: u64,
     #[prost(uint64, tag = "2")]
     pub lot_id: u64,
     #[prost(message, optional, tag = "3")]
@@ -75,9 +78,9 @@ pub struct HandleLotRequest {
     pub comment: ::prost::alloc::string::String,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AddBoxToQueueRequest {
+pub struct AddContainerToQueueRequest {
     #[prost(uint64, tag = "1")]
-    pub box_id: u64,
+    pub container_id: u64,
     #[prost(string, tag = "2")]
     pub route_queue_name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "3")]
@@ -88,7 +91,7 @@ pub struct AddBoxToQueueRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ChangePLineRequest {
     #[prost(uint64, tag = "1")]
-    pub box_id: u64,
+    pub container_id: u64,
     #[prost(string, tag = "2")]
     pub production_line_code: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "3")]
@@ -99,9 +102,9 @@ pub struct ChangePLineRequest {
     pub production_line_id: u64,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BoxChangeRouteRequest {
+pub struct ContainerChangeRouteRequest {
     #[prost(uint64, tag = "1")]
-    pub box_id: u64,
+    pub container_id: u64,
     #[prost(string, tag = "2")]
     pub route_code: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "3")]
@@ -114,9 +117,9 @@ pub struct BoxChangeRouteRequest {
     pub route_id: u64,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BoxCompleteRequest {
+pub struct ContainerCompleteRequest {
     #[prost(uint64, tag = "1")]
-    pub box_id: u64,
+    pub container_id: u64,
     #[prost(string, tag = "2")]
     pub reason: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "3")]
@@ -133,9 +136,9 @@ pub struct BoxCompleteRequest {
     pub route_id: u64,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BoxStartRequest {
+pub struct ContainerStartRequest {
     #[prost(uint64, tag = "1")]
-    pub box_id: u64,
+    pub container_id: u64,
     #[prost(string, tag = "2")]
     pub reason: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "3")]
@@ -152,14 +155,14 @@ pub struct BoxStartRequest {
     pub route_id: u64,
 }
 #[doc = r" Generated client implementations."]
-pub mod box_service_client {
+pub mod package_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
     #[derive(Debug, Clone)]
-    pub struct BoxServiceClient<T> {
+    pub struct PackageServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl BoxServiceClient<tonic::transport::Channel> {
+    impl PackageServiceClient<tonic::transport::Channel> {
         #[doc = r" Attempt to create a new client by connecting to a given endpoint."]
         pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
         where
@@ -170,7 +173,7 @@ pub mod box_service_client {
             Ok(Self::new(conn))
         }
     }
-    impl<T> BoxServiceClient<T>
+    impl<T> PackageServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::ResponseBody: Body + Send + 'static,
@@ -184,7 +187,7 @@ pub mod box_service_client {
         pub fn with_interceptor<F>(
             inner: T,
             interceptor: F,
-        ) -> BoxServiceClient<InterceptedService<T, F>>
+        ) -> PackageServiceClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
             T: tonic::codegen::Service<
@@ -196,7 +199,7 @@ pub mod box_service_client {
             <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
                 Into<StdError> + Send + Sync,
         {
-            BoxServiceClient::new(InterceptedService::new(inner, interceptor))
+            PackageServiceClient::new(InterceptedService::new(inner, interceptor))
         }
         #[doc = r" Compress requests with `gzip`."]
         #[doc = r""]
@@ -211,11 +214,11 @@ pub mod box_service_client {
             self.inner = self.inner.accept_gzip();
             self
         }
-        #[doc = "This method is used to add a box to a box"]
-        pub async fn add_box_to_box(
+        #[doc = "This method is used to add a container to a container"]
+        pub async fn add_container_to_container(
             &mut self,
-            request: impl tonic::IntoRequest<super::HandleBoxRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::HandleContainerRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -223,14 +226,16 @@ pub mod box_service_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/BoxService.BoxService/AddBoxToBox");
+            let path = http::uri::PathAndQuery::from_static(
+                "/PackageService.PackageService/AddContainerToContainer",
+            );
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = "This method is used to add a lot to a box"]
-        pub async fn add_lot_to_box(
+        #[doc = "This method is used to add a lot to a container"]
+        pub async fn add_lot_to_container(
             &mut self,
             request: impl tonic::IntoRequest<super::HandleLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -238,16 +243,18 @@ pub mod box_service_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/BoxService.BoxService/AddLotToBox");
+            let path = http::uri::PathAndQuery::from_static(
+                "/PackageService.PackageService/AddLotToContainer",
+            );
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = " This method is used to record a transaction indicating that a box and all"]
-        #[doc = "  of its contents (any contained boxes, lots and units) has been moved to"]
+        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = "  of its contents (any contained containers, lots and units) has been moved to"]
         #[doc = "  the queue specified."]
-        pub async fn add_box_to_queue(
+        pub async fn add_container_to_queue(
             &mut self,
-            request: impl tonic::IntoRequest<super::AddBoxToQueueRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::AddContainerToQueueRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -255,14 +262,16 @@ pub mod box_service_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/BoxService.BoxService/AddBoxToQueue");
+            let path = http::uri::PathAndQuery::from_static(
+                "/PackageService.PackageService/AddContainerToQueue",
+            );
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = "This method is used to add a unit to a box"]
-        pub async fn add_unit_to_box(
+        #[doc = "This method is used to add a unit to a container"]
+        pub async fn add_unit_to_container(
             &mut self,
             request: impl tonic::IntoRequest<super::HandleUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -270,15 +279,35 @@ pub mod box_service_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/BoxService.BoxService/AddUnitToBox");
+            let path = http::uri::PathAndQuery::from_static(
+                "/PackageService.PackageService/AddUnitToContainer",
+            );
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = "This method is used to change the production line of a box and all of its"]
-        #[doc = "  contents (any contained boxes, lots and units)."]
+        #[doc = "This method is used to change the production line of a container and all of its"]
+        #[doc = "  contents (any contained containers, lots and units)."]
         pub async fn change_production_line(
             &mut self,
             request: impl tonic::IntoRequest<super::ChangePLineRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/PackageService.PackageService/ChangeProductionLine",
+            );
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        #[doc = "This method is used to change the route of a container and all of its contents"]
+        #[doc = " (any contained containers, lots and units)."]
+        pub async fn change_route(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ContainerChangeRouteRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -287,31 +316,15 @@ pub mod box_service_client {
             })?;
             let codec = tonic::codec::ProstCodec::default();
             let path =
-                http::uri::PathAndQuery::from_static("/BoxService.BoxService/ChangeProductionLine");
+                http::uri::PathAndQuery::from_static("/PackageService.PackageService/ChangeRoute");
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = "This method is used to change the route of a box and all of its contents"]
-        #[doc = " (any contained boxes, lots and units)."]
-        pub async fn change_route(
-            &mut self,
-            request: impl tonic::IntoRequest<super::BoxChangeRouteRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/BoxService.BoxService/ChangeRoute");
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        #[doc = "This method is used to record a transaction indicating that a box and all"]
-        #[doc = " of its contents (any contained boxes, lots and units) have closed."]
+        #[doc = "This method is used to record a transaction indicating that a container and all"]
+        #[doc = " of its contents (any contained containers, lots and units) have closed."]
         pub async fn close(
             &mut self,
-            request: impl tonic::IntoRequest<super::BoxTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::ContainerTransactionRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -319,17 +332,17 @@ pub mod box_service_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/BoxService.BoxService/Close");
+            let path = http::uri::PathAndQuery::from_static("/PackageService.PackageService/Close");
             self.inner.unary(request.into_request(), path, codec).await
         }
         #[doc = "*"]
-        #[doc = " This method is used to record a transaction indicating that a box and all"]
-        #[doc = " of its contents (any contained boxes, lots and units) have completed the"]
+        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = " of its contents (any contained containers, lots and units) have completed the"]
         #[doc = " route step specified."]
         pub async fn complete_at_route_step(
             &mut self,
-            request: impl tonic::IntoRequest<super::BoxCompleteRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::ContainerCompleteRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -337,18 +350,37 @@ pub mod box_service_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/BoxService.BoxService/CompleteAtRouteStep");
+            let path = http::uri::PathAndQuery::from_static(
+                "/PackageService.PackageService/CompleteAtRouteStep",
+            );
             self.inner.unary(request.into_request(), path, codec).await
         }
         #[doc = "*"]
-        #[doc = " This method is used to record a transaction indicating that a box and all"]
-        #[doc = " of its contents (any contained boxes, lots and units) have started the"]
+        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = " of its contents (any contained containers, lots and units) have started the"]
         #[doc = " route step specified."]
         pub async fn start_at_route_step(
             &mut self,
-            request: impl tonic::IntoRequest<super::BoxStartRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::ContainerStartRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/PackageService.PackageService/StartAtRouteStep",
+            );
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = "   of its contents (any contained containers, lots and units) have finished."]
+        pub async fn finish(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ContainerTransactionRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -357,33 +389,17 @@ pub mod box_service_client {
             })?;
             let codec = tonic::codec::ProstCodec::default();
             let path =
-                http::uri::PathAndQuery::from_static("/BoxService.BoxService/StartAtRouteStep");
+                http::uri::PathAndQuery::from_static("/PackageService.PackageService/Finish");
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = " This method is used to record a transaction indicating that a box and all"]
-        #[doc = "   of its contents (any contained boxes, lots and units) have finished."]
-        pub async fn finish(
-            &mut self,
-            request: impl tonic::IntoRequest<super::BoxTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/BoxService.BoxService/Finish");
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        #[doc = " This method is used to record a transaction indicating that a box and all"]
-        #[doc = "     of its contents (any contained boxes, lots and units) have been placed on"]
+        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = "     of its contents (any contained containers, lots and units) have been placed on"]
         #[doc = "     hold. When an object is on hold no other transactions may be performed on"]
         #[doc = "     it, until it is released"]
         pub async fn hold(
             &mut self,
-            request: impl tonic::IntoRequest<super::BoxTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::ContainerTransactionRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -391,17 +407,17 @@ pub mod box_service_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/BoxService.BoxService/Hold");
+            let path = http::uri::PathAndQuery::from_static("/PackageService.PackageService/Hold");
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = "This method is used to record a transaction indicating that a box and its"]
-        #[doc = "     * containers (any container boxes and carriers) have opened. The open"]
+        #[doc = "This method is used to record a transaction indicating that a container and its"]
+        #[doc = "     * containers (any container containers) have opened. The open"]
         #[doc = "     * method is equivalent to the undoClose method, except that it propagates"]
-        #[doc = "     * upward to the Box's containers instead of downward to the Box's contents."]
+        #[doc = "     * upward to the Container's containers instead of downward to the Container's contents."]
         pub async fn open(
             &mut self,
-            request: impl tonic::IntoRequest<super::BoxTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::ContainerTransactionRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -409,18 +425,18 @@ pub mod box_service_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/BoxService.BoxService/Open");
+            let path = http::uri::PathAndQuery::from_static("/PackageService.PackageService/Open");
             self.inner.unary(request.into_request(), path, codec).await
         }
         #[doc = "*"]
-        #[doc = " This method is used to record a transaction indicating that a box and all"]
-        #[doc = " of its contents (any contained boxes, lots and units) have stopped"]
+        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = " of its contents (any contained containers, lots and units) have stopped"]
         #[doc = " processing. When an object is paused no other transactions may be"]
         #[doc = " performed on it, until it is restarted."]
         pub async fn pause(
             &mut self,
-            request: impl tonic::IntoRequest<super::BoxTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::ContainerTransactionRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -428,17 +444,17 @@ pub mod box_service_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/BoxService.BoxService/Pause");
+            let path = http::uri::PathAndQuery::from_static("/PackageService.PackageService/Pause");
             self.inner.unary(request.into_request(), path, codec).await
         }
         #[doc = "*"]
-        #[doc = " This method is used to record a transaction indicating that a box and all"]
-        #[doc = " of its contents (any contained boxes, lots and units) have been released"]
+        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = " of its contents (any contained containers, lots and units) have been released"]
         #[doc = " from hold or quarantine."]
         pub async fn release(
             &mut self,
-            request: impl tonic::IntoRequest<super::BoxTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::ContainerTransactionRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -446,16 +462,17 @@ pub mod box_service_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/BoxService.BoxService/Release");
+            let path =
+                http::uri::PathAndQuery::from_static("/PackageService.PackageService/Release");
             self.inner.unary(request.into_request(), path, codec).await
         }
         #[doc = "*"]
-        #[doc = " This method is used to record a transaction indicating that a box and all"]
-        #[doc = " of its contents (any contained boxes, lots and units) has been scrapped."]
+        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = " of its contents (any contained containers, lots and units) has been scrapped."]
         pub async fn scrap(
             &mut self,
-            request: impl tonic::IntoRequest<super::BoxTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::ContainerTransactionRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -463,14 +480,14 @@ pub mod box_service_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/BoxService.BoxService/Scrap");
+            let path = http::uri::PathAndQuery::from_static("/PackageService.PackageService/Scrap");
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = "This method removes everything from a box."]
+        #[doc = "This method removes everything from a container."]
         pub async fn remove_all(
             &mut self,
-            request: impl tonic::IntoRequest<super::ClearBoxRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::ClearContainerRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -478,13 +495,14 @@ pub mod box_service_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/BoxService.BoxService/RemoveAll");
+            let path =
+                http::uri::PathAndQuery::from_static("/PackageService.PackageService/RemoveAll");
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = "This method is used to remove a box from a box."]
-        pub async fn remove_box(
+        #[doc = "This method is used to remove a container from a container."]
+        pub async fn remove_container(
             &mut self,
-            request: impl tonic::IntoRequest<super::HandleBoxRequest>,
+            request: impl tonic::IntoRequest<super::HandleContainerRequest>,
         ) -> Result<tonic::Response<()>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
@@ -493,10 +511,12 @@ pub mod box_service_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/BoxService.BoxService/RemoveBox");
+            let path = http::uri::PathAndQuery::from_static(
+                "/PackageService.PackageService/RemoveContainer",
+            );
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = "This method is used to remove a lot from a box."]
+        #[doc = "This method is used to remove a lot from a container."]
         pub async fn remove_lot(
             &mut self,
             request: impl tonic::IntoRequest<super::HandleLotRequest>,
@@ -508,10 +528,11 @@ pub mod box_service_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/BoxService.BoxService/RemoveLot");
+            let path =
+                http::uri::PathAndQuery::from_static("/PackageService.PackageService/RemoveLot");
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = "This method is used to remove a unit from a box."]
+        #[doc = "This method is used to remove a unit from a container."]
         pub async fn remove_unit(
             &mut self,
             request: impl tonic::IntoRequest<super::HandleUnitRequest>,
@@ -523,15 +544,16 @@ pub mod box_service_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/BoxService.BoxService/RemoveUnit");
+            let path =
+                http::uri::PathAndQuery::from_static("/PackageService.PackageService/RemoveUnit");
             self.inner.unary(request.into_request(), path, codec).await
         }
         #[doc = "*"]
-        #[doc = " This method is used to save or update a box."]
-        pub async fn save_box(
+        #[doc = " This method is used to save or update a container."]
+        pub async fn save_container(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::structures::DBox>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::super::structures::Container>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -539,155 +561,157 @@ pub mod box_service_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/BoxService.BoxService/SaveBox");
+            let path = http::uri::PathAndQuery::from_static(
+                "/PackageService.PackageService/SaveContainer",
+            );
             self.inner.unary(request.into_request(), path, codec).await
         }
     }
 }
 #[doc = r" Generated server implementations."]
-pub mod box_service_server {
+pub mod package_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    #[doc = "Generated trait containing gRPC methods that should be implemented for use with BoxServiceServer."]
+    #[doc = "Generated trait containing gRPC methods that should be implemented for use with PackageServiceServer."]
     #[async_trait]
-    pub trait BoxService: Send + Sync + 'static {
-        #[doc = "This method is used to add a box to a box"]
-        async fn add_box_to_box(
+    pub trait PackageService: Send + Sync + 'static {
+        #[doc = "This method is used to add a container to a container"]
+        async fn add_container_to_container(
             &self,
-            request: tonic::Request<super::HandleBoxRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status>;
-        #[doc = "This method is used to add a lot to a box"]
-        async fn add_lot_to_box(
+            request: tonic::Request<super::HandleContainerRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
+        #[doc = "This method is used to add a lot to a container"]
+        async fn add_lot_to_container(
             &self,
             request: tonic::Request<super::HandleLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status>;
-        #[doc = " This method is used to record a transaction indicating that a box and all"]
-        #[doc = "  of its contents (any contained boxes, lots and units) has been moved to"]
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
+        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = "  of its contents (any contained containers, lots and units) has been moved to"]
         #[doc = "  the queue specified."]
-        async fn add_box_to_queue(
+        async fn add_container_to_queue(
             &self,
-            request: tonic::Request<super::AddBoxToQueueRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status>;
-        #[doc = "This method is used to add a unit to a box"]
-        async fn add_unit_to_box(
+            request: tonic::Request<super::AddContainerToQueueRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
+        #[doc = "This method is used to add a unit to a container"]
+        async fn add_unit_to_container(
             &self,
             request: tonic::Request<super::HandleUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status>;
-        #[doc = "This method is used to change the production line of a box and all of its"]
-        #[doc = "  contents (any contained boxes, lots and units)."]
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
+        #[doc = "This method is used to change the production line of a container and all of its"]
+        #[doc = "  contents (any contained containers, lots and units)."]
         async fn change_production_line(
             &self,
             request: tonic::Request<super::ChangePLineRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status>;
-        #[doc = "This method is used to change the route of a box and all of its contents"]
-        #[doc = " (any contained boxes, lots and units)."]
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
+        #[doc = "This method is used to change the route of a container and all of its contents"]
+        #[doc = " (any contained containers, lots and units)."]
         async fn change_route(
             &self,
-            request: tonic::Request<super::BoxChangeRouteRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status>;
-        #[doc = "This method is used to record a transaction indicating that a box and all"]
-        #[doc = " of its contents (any contained boxes, lots and units) have closed."]
+            request: tonic::Request<super::ContainerChangeRouteRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
+        #[doc = "This method is used to record a transaction indicating that a container and all"]
+        #[doc = " of its contents (any contained containers, lots and units) have closed."]
         async fn close(
             &self,
-            request: tonic::Request<super::BoxTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status>;
+            request: tonic::Request<super::ContainerTransactionRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
         #[doc = "*"]
-        #[doc = " This method is used to record a transaction indicating that a box and all"]
-        #[doc = " of its contents (any contained boxes, lots and units) have completed the"]
+        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = " of its contents (any contained containers, lots and units) have completed the"]
         #[doc = " route step specified."]
         async fn complete_at_route_step(
             &self,
-            request: tonic::Request<super::BoxCompleteRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status>;
+            request: tonic::Request<super::ContainerCompleteRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
         #[doc = "*"]
-        #[doc = " This method is used to record a transaction indicating that a box and all"]
-        #[doc = " of its contents (any contained boxes, lots and units) have started the"]
+        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = " of its contents (any contained containers, lots and units) have started the"]
         #[doc = " route step specified."]
         async fn start_at_route_step(
             &self,
-            request: tonic::Request<super::BoxStartRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status>;
-        #[doc = " This method is used to record a transaction indicating that a box and all"]
-        #[doc = "   of its contents (any contained boxes, lots and units) have finished."]
+            request: tonic::Request<super::ContainerStartRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
+        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = "   of its contents (any contained containers, lots and units) have finished."]
         async fn finish(
             &self,
-            request: tonic::Request<super::BoxTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status>;
-        #[doc = " This method is used to record a transaction indicating that a box and all"]
-        #[doc = "     of its contents (any contained boxes, lots and units) have been placed on"]
+            request: tonic::Request<super::ContainerTransactionRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
+        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = "     of its contents (any contained containers, lots and units) have been placed on"]
         #[doc = "     hold. When an object is on hold no other transactions may be performed on"]
         #[doc = "     it, until it is released"]
         async fn hold(
             &self,
-            request: tonic::Request<super::BoxTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status>;
-        #[doc = "This method is used to record a transaction indicating that a box and its"]
-        #[doc = "     * containers (any container boxes and carriers) have opened. The open"]
+            request: tonic::Request<super::ContainerTransactionRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
+        #[doc = "This method is used to record a transaction indicating that a container and its"]
+        #[doc = "     * containers (any container containers) have opened. The open"]
         #[doc = "     * method is equivalent to the undoClose method, except that it propagates"]
-        #[doc = "     * upward to the Box's containers instead of downward to the Box's contents."]
+        #[doc = "     * upward to the Container's containers instead of downward to the Container's contents."]
         async fn open(
             &self,
-            request: tonic::Request<super::BoxTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status>;
+            request: tonic::Request<super::ContainerTransactionRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
         #[doc = "*"]
-        #[doc = " This method is used to record a transaction indicating that a box and all"]
-        #[doc = " of its contents (any contained boxes, lots and units) have stopped"]
+        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = " of its contents (any contained containers, lots and units) have stopped"]
         #[doc = " processing. When an object is paused no other transactions may be"]
         #[doc = " performed on it, until it is restarted."]
         async fn pause(
             &self,
-            request: tonic::Request<super::BoxTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status>;
+            request: tonic::Request<super::ContainerTransactionRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
         #[doc = "*"]
-        #[doc = " This method is used to record a transaction indicating that a box and all"]
-        #[doc = " of its contents (any contained boxes, lots and units) have been released"]
+        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = " of its contents (any contained containers, lots and units) have been released"]
         #[doc = " from hold or quarantine."]
         async fn release(
             &self,
-            request: tonic::Request<super::BoxTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status>;
+            request: tonic::Request<super::ContainerTransactionRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
         #[doc = "*"]
-        #[doc = " This method is used to record a transaction indicating that a box and all"]
-        #[doc = " of its contents (any contained boxes, lots and units) has been scrapped."]
+        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = " of its contents (any contained containers, lots and units) has been scrapped."]
         async fn scrap(
             &self,
-            request: tonic::Request<super::BoxTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status>;
-        #[doc = "This method removes everything from a box."]
+            request: tonic::Request<super::ContainerTransactionRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
+        #[doc = "This method removes everything from a container."]
         async fn remove_all(
             &self,
-            request: tonic::Request<super::ClearBoxRequest>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status>;
-        #[doc = "This method is used to remove a box from a box."]
-        async fn remove_box(
+            request: tonic::Request<super::ClearContainerRequest>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
+        #[doc = "This method is used to remove a container from a container."]
+        async fn remove_container(
             &self,
-            request: tonic::Request<super::HandleBoxRequest>,
+            request: tonic::Request<super::HandleContainerRequest>,
         ) -> Result<tonic::Response<()>, tonic::Status>;
-        #[doc = "This method is used to remove a lot from a box."]
+        #[doc = "This method is used to remove a lot from a container."]
         async fn remove_lot(
             &self,
             request: tonic::Request<super::HandleLotRequest>,
         ) -> Result<tonic::Response<()>, tonic::Status>;
-        #[doc = "This method is used to remove a unit from a box."]
+        #[doc = "This method is used to remove a unit from a container."]
         async fn remove_unit(
             &self,
             request: tonic::Request<super::HandleUnitRequest>,
         ) -> Result<tonic::Response<()>, tonic::Status>;
         #[doc = "*"]
-        #[doc = " This method is used to save or update a box."]
-        async fn save_box(
+        #[doc = " This method is used to save or update a container."]
+        async fn save_container(
             &self,
-            request: tonic::Request<super::super::structures::DBox>,
-        ) -> Result<tonic::Response<super::super::structures::DBox>, tonic::Status>;
+            request: tonic::Request<super::super::structures::Container>,
+        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
     }
     #[derive(Debug)]
-    pub struct BoxServiceServer<T: BoxService> {
+    pub struct PackageServiceServer<T: PackageService> {
         inner: _Inner<T>,
         accept_compression_encodings: EnabledCompressionEncodings,
         send_compression_encodings: EnabledCompressionEncodings,
     }
     struct _Inner<T>(Arc<T>);
-    impl<T: BoxService> BoxServiceServer<T> {
+    impl<T: PackageService> PackageServiceServer<T> {
         pub fn new(inner: T) -> Self {
             let inner = Arc::new(inner);
             let inner = _Inner(inner);
@@ -714,9 +738,9 @@ pub mod box_service_server {
             self
         }
     }
-    impl<T, B> tonic::codegen::Service<http::Request<B>> for BoxServiceServer<T>
+    impl<T, B> tonic::codegen::Service<http::Request<B>> for PackageServiceServer<T>
     where
-        T: BoxService,
+        T: PackageService,
         B: Body + Send + 'static,
         B::Error: Into<StdError> + Send + 'static,
     {
@@ -729,18 +753,22 @@ pub mod box_service_server {
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
             let inner = self.inner.clone();
             match req.uri().path() {
-                "/BoxService.BoxService/AddBoxToBox" => {
+                "/PackageService.PackageService/AddContainerToContainer" => {
                     #[allow(non_camel_case_types)]
-                    struct AddBoxToBoxSvc<T: BoxService>(pub Arc<T>);
-                    impl<T: BoxService> tonic::server::UnaryService<super::HandleBoxRequest> for AddBoxToBoxSvc<T> {
-                        type Response = super::super::structures::DBox;
+                    struct AddContainerToContainerSvc<T: PackageService>(pub Arc<T>);
+                    impl<T: PackageService>
+                        tonic::server::UnaryService<super::HandleContainerRequest>
+                        for AddContainerToContainerSvc<T>
+                    {
+                        type Response = super::super::structures::Container;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::HandleBoxRequest>,
+                            request: tonic::Request<super::HandleContainerRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { (*inner).add_box_to_box(request).await };
+                            let fut =
+                                async move { (*inner).add_container_to_container(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -749,7 +777,7 @@ pub mod box_service_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = AddBoxToBoxSvc(inner);
+                        let method = AddContainerToContainerSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
                             accept_compression_encodings,
@@ -760,18 +788,20 @@ pub mod box_service_server {
                     };
                     Box::pin(fut)
                 }
-                "/BoxService.BoxService/AddLotToBox" => {
+                "/PackageService.PackageService/AddLotToContainer" => {
                     #[allow(non_camel_case_types)]
-                    struct AddLotToBoxSvc<T: BoxService>(pub Arc<T>);
-                    impl<T: BoxService> tonic::server::UnaryService<super::HandleLotRequest> for AddLotToBoxSvc<T> {
-                        type Response = super::super::structures::DBox;
+                    struct AddLotToContainerSvc<T: PackageService>(pub Arc<T>);
+                    impl<T: PackageService> tonic::server::UnaryService<super::HandleLotRequest>
+                        for AddLotToContainerSvc<T>
+                    {
+                        type Response = super::super::structures::Container;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<super::HandleLotRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { (*inner).add_lot_to_box(request).await };
+                            let fut = async move { (*inner).add_lot_to_container(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -780,7 +810,7 @@ pub mod box_service_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = AddLotToBoxSvc(inner);
+                        let method = AddLotToContainerSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
                             accept_compression_encodings,
@@ -791,20 +821,21 @@ pub mod box_service_server {
                     };
                     Box::pin(fut)
                 }
-                "/BoxService.BoxService/AddBoxToQueue" => {
+                "/PackageService.PackageService/AddContainerToQueue" => {
                     #[allow(non_camel_case_types)]
-                    struct AddBoxToQueueSvc<T: BoxService>(pub Arc<T>);
-                    impl<T: BoxService> tonic::server::UnaryService<super::AddBoxToQueueRequest>
-                        for AddBoxToQueueSvc<T>
+                    struct AddContainerToQueueSvc<T: PackageService>(pub Arc<T>);
+                    impl<T: PackageService>
+                        tonic::server::UnaryService<super::AddContainerToQueueRequest>
+                        for AddContainerToQueueSvc<T>
                     {
-                        type Response = super::super::structures::DBox;
+                        type Response = super::super::structures::Container;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::AddBoxToQueueRequest>,
+                            request: tonic::Request<super::AddContainerToQueueRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { (*inner).add_box_to_queue(request).await };
+                            let fut = async move { (*inner).add_container_to_queue(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -813,7 +844,7 @@ pub mod box_service_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = AddBoxToQueueSvc(inner);
+                        let method = AddContainerToQueueSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
                             accept_compression_encodings,
@@ -824,18 +855,20 @@ pub mod box_service_server {
                     };
                     Box::pin(fut)
                 }
-                "/BoxService.BoxService/AddUnitToBox" => {
+                "/PackageService.PackageService/AddUnitToContainer" => {
                     #[allow(non_camel_case_types)]
-                    struct AddUnitToBoxSvc<T: BoxService>(pub Arc<T>);
-                    impl<T: BoxService> tonic::server::UnaryService<super::HandleUnitRequest> for AddUnitToBoxSvc<T> {
-                        type Response = super::super::structures::DBox;
+                    struct AddUnitToContainerSvc<T: PackageService>(pub Arc<T>);
+                    impl<T: PackageService> tonic::server::UnaryService<super::HandleUnitRequest>
+                        for AddUnitToContainerSvc<T>
+                    {
+                        type Response = super::super::structures::Container;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<super::HandleUnitRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { (*inner).add_unit_to_box(request).await };
+                            let fut = async move { (*inner).add_unit_to_container(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -844,7 +877,7 @@ pub mod box_service_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = AddUnitToBoxSvc(inner);
+                        let method = AddUnitToContainerSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
                             accept_compression_encodings,
@@ -855,13 +888,13 @@ pub mod box_service_server {
                     };
                     Box::pin(fut)
                 }
-                "/BoxService.BoxService/ChangeProductionLine" => {
+                "/PackageService.PackageService/ChangeProductionLine" => {
                     #[allow(non_camel_case_types)]
-                    struct ChangeProductionLineSvc<T: BoxService>(pub Arc<T>);
-                    impl<T: BoxService> tonic::server::UnaryService<super::ChangePLineRequest>
+                    struct ChangeProductionLineSvc<T: PackageService>(pub Arc<T>);
+                    impl<T: PackageService> tonic::server::UnaryService<super::ChangePLineRequest>
                         for ChangeProductionLineSvc<T>
                     {
-                        type Response = super::super::structures::DBox;
+                        type Response = super::super::structures::Container;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -888,17 +921,18 @@ pub mod box_service_server {
                     };
                     Box::pin(fut)
                 }
-                "/BoxService.BoxService/ChangeRoute" => {
+                "/PackageService.PackageService/ChangeRoute" => {
                     #[allow(non_camel_case_types)]
-                    struct ChangeRouteSvc<T: BoxService>(pub Arc<T>);
-                    impl<T: BoxService> tonic::server::UnaryService<super::BoxChangeRouteRequest>
+                    struct ChangeRouteSvc<T: PackageService>(pub Arc<T>);
+                    impl<T: PackageService>
+                        tonic::server::UnaryService<super::ContainerChangeRouteRequest>
                         for ChangeRouteSvc<T>
                     {
-                        type Response = super::super::structures::DBox;
+                        type Response = super::super::structures::Container;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::BoxChangeRouteRequest>,
+                            request: tonic::Request<super::ContainerChangeRouteRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).change_route(request).await };
@@ -921,15 +955,18 @@ pub mod box_service_server {
                     };
                     Box::pin(fut)
                 }
-                "/BoxService.BoxService/Close" => {
+                "/PackageService.PackageService/Close" => {
                     #[allow(non_camel_case_types)]
-                    struct CloseSvc<T: BoxService>(pub Arc<T>);
-                    impl<T: BoxService> tonic::server::UnaryService<super::BoxTransactionRequest> for CloseSvc<T> {
-                        type Response = super::super::structures::DBox;
+                    struct CloseSvc<T: PackageService>(pub Arc<T>);
+                    impl<T: PackageService>
+                        tonic::server::UnaryService<super::ContainerTransactionRequest>
+                        for CloseSvc<T>
+                    {
+                        type Response = super::super::structures::Container;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::BoxTransactionRequest>,
+                            request: tonic::Request<super::ContainerTransactionRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).close(request).await };
@@ -952,17 +989,18 @@ pub mod box_service_server {
                     };
                     Box::pin(fut)
                 }
-                "/BoxService.BoxService/CompleteAtRouteStep" => {
+                "/PackageService.PackageService/CompleteAtRouteStep" => {
                     #[allow(non_camel_case_types)]
-                    struct CompleteAtRouteStepSvc<T: BoxService>(pub Arc<T>);
-                    impl<T: BoxService> tonic::server::UnaryService<super::BoxCompleteRequest>
+                    struct CompleteAtRouteStepSvc<T: PackageService>(pub Arc<T>);
+                    impl<T: PackageService>
+                        tonic::server::UnaryService<super::ContainerCompleteRequest>
                         for CompleteAtRouteStepSvc<T>
                     {
-                        type Response = super::super::structures::DBox;
+                        type Response = super::super::structures::Container;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::BoxCompleteRequest>,
+                            request: tonic::Request<super::ContainerCompleteRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).complete_at_route_step(request).await };
@@ -985,15 +1023,18 @@ pub mod box_service_server {
                     };
                     Box::pin(fut)
                 }
-                "/BoxService.BoxService/StartAtRouteStep" => {
+                "/PackageService.PackageService/StartAtRouteStep" => {
                     #[allow(non_camel_case_types)]
-                    struct StartAtRouteStepSvc<T: BoxService>(pub Arc<T>);
-                    impl<T: BoxService> tonic::server::UnaryService<super::BoxStartRequest> for StartAtRouteStepSvc<T> {
-                        type Response = super::super::structures::DBox;
+                    struct StartAtRouteStepSvc<T: PackageService>(pub Arc<T>);
+                    impl<T: PackageService>
+                        tonic::server::UnaryService<super::ContainerStartRequest>
+                        for StartAtRouteStepSvc<T>
+                    {
+                        type Response = super::super::structures::Container;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::BoxStartRequest>,
+                            request: tonic::Request<super::ContainerStartRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).start_at_route_step(request).await };
@@ -1016,15 +1057,18 @@ pub mod box_service_server {
                     };
                     Box::pin(fut)
                 }
-                "/BoxService.BoxService/Finish" => {
+                "/PackageService.PackageService/Finish" => {
                     #[allow(non_camel_case_types)]
-                    struct FinishSvc<T: BoxService>(pub Arc<T>);
-                    impl<T: BoxService> tonic::server::UnaryService<super::BoxTransactionRequest> for FinishSvc<T> {
-                        type Response = super::super::structures::DBox;
+                    struct FinishSvc<T: PackageService>(pub Arc<T>);
+                    impl<T: PackageService>
+                        tonic::server::UnaryService<super::ContainerTransactionRequest>
+                        for FinishSvc<T>
+                    {
+                        type Response = super::super::structures::Container;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::BoxTransactionRequest>,
+                            request: tonic::Request<super::ContainerTransactionRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).finish(request).await };
@@ -1047,15 +1091,18 @@ pub mod box_service_server {
                     };
                     Box::pin(fut)
                 }
-                "/BoxService.BoxService/Hold" => {
+                "/PackageService.PackageService/Hold" => {
                     #[allow(non_camel_case_types)]
-                    struct HoldSvc<T: BoxService>(pub Arc<T>);
-                    impl<T: BoxService> tonic::server::UnaryService<super::BoxTransactionRequest> for HoldSvc<T> {
-                        type Response = super::super::structures::DBox;
+                    struct HoldSvc<T: PackageService>(pub Arc<T>);
+                    impl<T: PackageService>
+                        tonic::server::UnaryService<super::ContainerTransactionRequest>
+                        for HoldSvc<T>
+                    {
+                        type Response = super::super::structures::Container;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::BoxTransactionRequest>,
+                            request: tonic::Request<super::ContainerTransactionRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).hold(request).await };
@@ -1078,15 +1125,18 @@ pub mod box_service_server {
                     };
                     Box::pin(fut)
                 }
-                "/BoxService.BoxService/Open" => {
+                "/PackageService.PackageService/Open" => {
                     #[allow(non_camel_case_types)]
-                    struct OpenSvc<T: BoxService>(pub Arc<T>);
-                    impl<T: BoxService> tonic::server::UnaryService<super::BoxTransactionRequest> for OpenSvc<T> {
-                        type Response = super::super::structures::DBox;
+                    struct OpenSvc<T: PackageService>(pub Arc<T>);
+                    impl<T: PackageService>
+                        tonic::server::UnaryService<super::ContainerTransactionRequest>
+                        for OpenSvc<T>
+                    {
+                        type Response = super::super::structures::Container;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::BoxTransactionRequest>,
+                            request: tonic::Request<super::ContainerTransactionRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).open(request).await };
@@ -1109,15 +1159,18 @@ pub mod box_service_server {
                     };
                     Box::pin(fut)
                 }
-                "/BoxService.BoxService/Pause" => {
+                "/PackageService.PackageService/Pause" => {
                     #[allow(non_camel_case_types)]
-                    struct PauseSvc<T: BoxService>(pub Arc<T>);
-                    impl<T: BoxService> tonic::server::UnaryService<super::BoxTransactionRequest> for PauseSvc<T> {
-                        type Response = super::super::structures::DBox;
+                    struct PauseSvc<T: PackageService>(pub Arc<T>);
+                    impl<T: PackageService>
+                        tonic::server::UnaryService<super::ContainerTransactionRequest>
+                        for PauseSvc<T>
+                    {
+                        type Response = super::super::structures::Container;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::BoxTransactionRequest>,
+                            request: tonic::Request<super::ContainerTransactionRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).pause(request).await };
@@ -1140,15 +1193,18 @@ pub mod box_service_server {
                     };
                     Box::pin(fut)
                 }
-                "/BoxService.BoxService/Release" => {
+                "/PackageService.PackageService/Release" => {
                     #[allow(non_camel_case_types)]
-                    struct ReleaseSvc<T: BoxService>(pub Arc<T>);
-                    impl<T: BoxService> tonic::server::UnaryService<super::BoxTransactionRequest> for ReleaseSvc<T> {
-                        type Response = super::super::structures::DBox;
+                    struct ReleaseSvc<T: PackageService>(pub Arc<T>);
+                    impl<T: PackageService>
+                        tonic::server::UnaryService<super::ContainerTransactionRequest>
+                        for ReleaseSvc<T>
+                    {
+                        type Response = super::super::structures::Container;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::BoxTransactionRequest>,
+                            request: tonic::Request<super::ContainerTransactionRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).release(request).await };
@@ -1171,15 +1227,18 @@ pub mod box_service_server {
                     };
                     Box::pin(fut)
                 }
-                "/BoxService.BoxService/Scrap" => {
+                "/PackageService.PackageService/Scrap" => {
                     #[allow(non_camel_case_types)]
-                    struct ScrapSvc<T: BoxService>(pub Arc<T>);
-                    impl<T: BoxService> tonic::server::UnaryService<super::BoxTransactionRequest> for ScrapSvc<T> {
-                        type Response = super::super::structures::DBox;
+                    struct ScrapSvc<T: PackageService>(pub Arc<T>);
+                    impl<T: PackageService>
+                        tonic::server::UnaryService<super::ContainerTransactionRequest>
+                        for ScrapSvc<T>
+                    {
+                        type Response = super::super::structures::Container;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::BoxTransactionRequest>,
+                            request: tonic::Request<super::ContainerTransactionRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).scrap(request).await };
@@ -1202,15 +1261,18 @@ pub mod box_service_server {
                     };
                     Box::pin(fut)
                 }
-                "/BoxService.BoxService/RemoveAll" => {
+                "/PackageService.PackageService/RemoveAll" => {
                     #[allow(non_camel_case_types)]
-                    struct RemoveAllSvc<T: BoxService>(pub Arc<T>);
-                    impl<T: BoxService> tonic::server::UnaryService<super::ClearBoxRequest> for RemoveAllSvc<T> {
-                        type Response = super::super::structures::DBox;
+                    struct RemoveAllSvc<T: PackageService>(pub Arc<T>);
+                    impl<T: PackageService>
+                        tonic::server::UnaryService<super::ClearContainerRequest>
+                        for RemoveAllSvc<T>
+                    {
+                        type Response = super::super::structures::Container;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::ClearBoxRequest>,
+                            request: tonic::Request<super::ClearContainerRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).remove_all(request).await };
@@ -1233,18 +1295,21 @@ pub mod box_service_server {
                     };
                     Box::pin(fut)
                 }
-                "/BoxService.BoxService/RemoveBox" => {
+                "/PackageService.PackageService/RemoveContainer" => {
                     #[allow(non_camel_case_types)]
-                    struct RemoveBoxSvc<T: BoxService>(pub Arc<T>);
-                    impl<T: BoxService> tonic::server::UnaryService<super::HandleBoxRequest> for RemoveBoxSvc<T> {
+                    struct RemoveContainerSvc<T: PackageService>(pub Arc<T>);
+                    impl<T: PackageService>
+                        tonic::server::UnaryService<super::HandleContainerRequest>
+                        for RemoveContainerSvc<T>
+                    {
                         type Response = ();
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::HandleBoxRequest>,
+                            request: tonic::Request<super::HandleContainerRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { (*inner).remove_box(request).await };
+                            let fut = async move { (*inner).remove_container(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1253,7 +1318,7 @@ pub mod box_service_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = RemoveBoxSvc(inner);
+                        let method = RemoveContainerSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
                             accept_compression_encodings,
@@ -1264,10 +1329,10 @@ pub mod box_service_server {
                     };
                     Box::pin(fut)
                 }
-                "/BoxService.BoxService/RemoveLot" => {
+                "/PackageService.PackageService/RemoveLot" => {
                     #[allow(non_camel_case_types)]
-                    struct RemoveLotSvc<T: BoxService>(pub Arc<T>);
-                    impl<T: BoxService> tonic::server::UnaryService<super::HandleLotRequest> for RemoveLotSvc<T> {
+                    struct RemoveLotSvc<T: PackageService>(pub Arc<T>);
+                    impl<T: PackageService> tonic::server::UnaryService<super::HandleLotRequest> for RemoveLotSvc<T> {
                         type Response = ();
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
@@ -1295,10 +1360,10 @@ pub mod box_service_server {
                     };
                     Box::pin(fut)
                 }
-                "/BoxService.BoxService/RemoveUnit" => {
+                "/PackageService.PackageService/RemoveUnit" => {
                     #[allow(non_camel_case_types)]
-                    struct RemoveUnitSvc<T: BoxService>(pub Arc<T>);
-                    impl<T: BoxService> tonic::server::UnaryService<super::HandleUnitRequest> for RemoveUnitSvc<T> {
+                    struct RemoveUnitSvc<T: PackageService>(pub Arc<T>);
+                    impl<T: PackageService> tonic::server::UnaryService<super::HandleUnitRequest> for RemoveUnitSvc<T> {
                         type Response = ();
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
@@ -1326,18 +1391,21 @@ pub mod box_service_server {
                     };
                     Box::pin(fut)
                 }
-                "/BoxService.BoxService/SaveBox" => {
+                "/PackageService.PackageService/SaveContainer" => {
                     #[allow(non_camel_case_types)]
-                    struct SaveBoxSvc<T: BoxService>(pub Arc<T>);
-                    impl<T: BoxService> tonic::server::UnaryService<super::super::structures::DBox> for SaveBoxSvc<T> {
-                        type Response = super::super::structures::DBox;
+                    struct SaveContainerSvc<T: PackageService>(pub Arc<T>);
+                    impl<T: PackageService>
+                        tonic::server::UnaryService<super::super::structures::Container>
+                        for SaveContainerSvc<T>
+                    {
+                        type Response = super::super::structures::Container;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::super::structures::DBox>,
+                            request: tonic::Request<super::super::structures::Container>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { (*inner).save_box(request).await };
+                            let fut = async move { (*inner).save_container(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1346,7 +1414,7 @@ pub mod box_service_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = SaveBoxSvc(inner);
+                        let method = SaveContainerSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
                             accept_compression_encodings,
@@ -1368,7 +1436,7 @@ pub mod box_service_server {
             }
         }
     }
-    impl<T: BoxService> Clone for BoxServiceServer<T> {
+    impl<T: PackageService> Clone for PackageServiceServer<T> {
         fn clone(&self) -> Self {
             let inner = self.inner.clone();
             Self {
@@ -1378,7 +1446,7 @@ pub mod box_service_server {
             }
         }
     }
-    impl<T: BoxService> Clone for _Inner<T> {
+    impl<T: PackageService> Clone for _Inner<T> {
         fn clone(&self) -> Self {
             Self(self.0.clone())
         }
@@ -1388,7 +1456,7 @@ pub mod box_service_server {
             write!(f, "{:?}", self.0)
         }
     }
-    impl<T: BoxService> tonic::transport::NamedService for BoxServiceServer<T> {
-        const NAME: &'static str = "BoxService.BoxService";
+    impl<T: PackageService> tonic::transport::NamedService for PackageServiceServer<T> {
+        const NAME: &'static str = "PackageService.PackageService";
     }
 }
