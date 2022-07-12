@@ -7,9 +7,9 @@ option java_package = "com.athena.api.service";
 package WorkStationService;
 
 service WorkStationService{
-  rpc AddTools(AddToolRequest)returns(structures.WorkStation){}
-  rpc ChangePriority(structures.ChangePriorityRequest)returns(structures.WorkStation){}
-  rpc RemoveTools(RemoveToolRequest)returns(structures.WorkStation){}
+  rpc AddTools(AddToolRequest)returns(structures.DWorkStation){}
+  rpc ChangePriority(structures.ChangePriorityRequest)returns(structures.DWorkStation){}
+  rpc RemoveTools(RemoveToolRequest)returns(structures.DWorkStation){}
 
 }
 

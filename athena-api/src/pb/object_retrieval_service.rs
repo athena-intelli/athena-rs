@@ -68,7 +68,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_factory_by_id(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::Factory>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DFactory>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -84,7 +84,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_factory_by_code(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectCode>,
-        ) -> Result<tonic::Response<super::super::structures::Factory>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DFactory>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -100,7 +100,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_workshop_by_id(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::Workshop>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DWorkshop>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -116,7 +116,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_workshop_by_code(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectCode>,
-        ) -> Result<tonic::Response<super::super::structures::Workshop>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DWorkshop>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -132,7 +132,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_production_line_by_id(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::ProductionLine>, tonic::Status>
+        ) -> Result<tonic::Response<super::super::structures::DProductionLine>, tonic::Status>
         {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
@@ -149,7 +149,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_production_line_by_code(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectCode>,
-        ) -> Result<tonic::Response<super::super::structures::ProductionLine>, tonic::Status>
+        ) -> Result<tonic::Response<super::super::structures::DProductionLine>, tonic::Status>
         {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
@@ -166,7 +166,8 @@ pub mod object_retrieval_service_client {
         pub async fn get_work_station_by_id(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::WorkStation>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DWorkStation>, tonic::Status>
+        {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -182,7 +183,8 @@ pub mod object_retrieval_service_client {
         pub async fn get_work_station_by_code(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectCode>,
-        ) -> Result<tonic::Response<super::super::structures::WorkStation>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DWorkStation>, tonic::Status>
+        {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -198,7 +200,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_equipment_by_id(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::Equipment>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DEquipment>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -214,7 +216,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_equipment_by_code(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectCode>,
-        ) -> Result<tonic::Response<super::super::structures::Equipment>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DEquipment>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -230,7 +232,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_part_by_id(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::Part>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DPart>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -246,7 +248,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_part_by_number_and_revision(
             &mut self,
             request: impl tonic::IntoRequest<super::PartNumberAndRevisionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Part>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DPart>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -262,7 +264,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_location_by_id(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::Location>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DLocation>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -278,7 +280,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_location_by_code(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectCode>,
-        ) -> Result<tonic::Response<super::super::structures::Location>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DLocation>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -294,7 +296,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_lot_by_id(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -310,7 +312,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_lot_by_serial_number(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectSerialNumber>,
-        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -326,7 +328,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_runtime_bom_by_id(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::RuntimeBom>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DRuntimeBom>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -342,7 +344,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_route_by_id(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::Route>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DRoute>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -358,7 +360,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_route_by_code_and_version(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectCode>,
-        ) -> Result<tonic::Response<super::super::structures::Route>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DRoute>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -374,7 +376,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_operation_by_id(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::RouteOperation>, tonic::Status>
+        ) -> Result<tonic::Response<super::super::structures::DRouteOperation>, tonic::Status>
         {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
@@ -391,7 +393,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_operation_by_code(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectCode>,
-        ) -> Result<tonic::Response<super::super::structures::RouteOperation>, tonic::Status>
+        ) -> Result<tonic::Response<super::super::structures::DRouteOperation>, tonic::Status>
         {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
@@ -408,7 +410,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_unit_by_id(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -424,7 +426,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_unit_by_seria_number(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectSerialNumber>,
-        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -440,7 +442,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_user_by_id(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::User>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DUser>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -456,7 +458,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_user_by_name(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectName>,
-        ) -> Result<tonic::Response<super::super::structures::User>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DUser>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -472,7 +474,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_work_order_by_id(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -488,7 +490,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_work_order_by_number(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectName>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -504,7 +506,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_doc_by_id(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::Doc>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DDoc>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -520,7 +522,7 @@ pub mod object_retrieval_service_client {
         pub async fn get_doc_by_code(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ObjectCode>,
-        ) -> Result<tonic::Response<super::super::structures::Doc>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DDoc>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -537,7 +539,7 @@ pub mod object_retrieval_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::Filter>,
         ) -> Result<
-            tonic::Response<tonic::codec::Streaming<super::super::structures::Equipment>>,
+            tonic::Response<tonic::codec::Streaming<super::super::structures::DEquipment>>,
             tonic::Status,
         > {
             self.inner.ready().await.map_err(|e| {
@@ -558,7 +560,7 @@ pub mod object_retrieval_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::Filter>,
         ) -> Result<
-            tonic::Response<tonic::codec::Streaming<super::super::structures::WorkStation>>,
+            tonic::Response<tonic::codec::Streaming<super::super::structures::DWorkStation>>,
             tonic::Status,
         > {
             self.inner.ready().await.map_err(|e| {
@@ -579,7 +581,7 @@ pub mod object_retrieval_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::Filter>,
         ) -> Result<
-            tonic::Response<tonic::codec::Streaming<super::super::structures::ProductionLine>>,
+            tonic::Response<tonic::codec::Streaming<super::super::structures::DProductionLine>>,
             tonic::Status,
         > {
             self.inner.ready().await.map_err(|e| {
@@ -600,7 +602,7 @@ pub mod object_retrieval_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::Filter>,
         ) -> Result<
-            tonic::Response<tonic::codec::Streaming<super::super::structures::Workshop>>,
+            tonic::Response<tonic::codec::Streaming<super::super::structures::DWorkshop>>,
             tonic::Status,
         > {
             self.inner.ready().await.map_err(|e| {
@@ -621,7 +623,7 @@ pub mod object_retrieval_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::Filter>,
         ) -> Result<
-            tonic::Response<tonic::codec::Streaming<super::super::structures::Factory>>,
+            tonic::Response<tonic::codec::Streaming<super::super::structures::DFactory>>,
             tonic::Status,
         > {
             self.inner.ready().await.map_err(|e| {
@@ -642,7 +644,7 @@ pub mod object_retrieval_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::Filter>,
         ) -> Result<
-            tonic::Response<tonic::codec::Streaming<super::super::structures::ConsumedPart>>,
+            tonic::Response<tonic::codec::Streaming<super::super::structures::DConsumedPart>>,
             tonic::Status,
         > {
             self.inner.ready().await.map_err(|e| {
@@ -663,7 +665,7 @@ pub mod object_retrieval_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::Filter>,
         ) -> Result<
-            tonic::Response<tonic::codec::Streaming<super::super::structures::Bom>>,
+            tonic::Response<tonic::codec::Streaming<super::super::structures::DBom>>,
             tonic::Status,
         > {
             self.inner.ready().await.map_err(|e| {
@@ -684,7 +686,7 @@ pub mod object_retrieval_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::Filter>,
         ) -> Result<
-            tonic::Response<tonic::codec::Streaming<super::super::structures::BomItem>>,
+            tonic::Response<tonic::codec::Streaming<super::super::structures::DBomItem>>,
             tonic::Status,
         > {
             self.inner.ready().await.map_err(|e| {
@@ -705,7 +707,7 @@ pub mod object_retrieval_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::Filter>,
         ) -> Result<
-            tonic::Response<tonic::codec::Streaming<super::super::structures::Container>>,
+            tonic::Response<tonic::codec::Streaming<super::super::structures::DContainer>>,
             tonic::Status,
         > {
             self.inner.ready().await.map_err(|e| {
@@ -726,7 +728,7 @@ pub mod object_retrieval_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::Filter>,
         ) -> Result<
-            tonic::Response<tonic::codec::Streaming<super::super::structures::Lot>>,
+            tonic::Response<tonic::codec::Streaming<super::super::structures::DLot>>,
             tonic::Status,
         > {
             self.inner.ready().await.map_err(|e| {
@@ -747,7 +749,7 @@ pub mod object_retrieval_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::Filter>,
         ) -> Result<
-            tonic::Response<tonic::codec::Streaming<super::super::structures::Unit>>,
+            tonic::Response<tonic::codec::Streaming<super::super::structures::DUnit>>,
             tonic::Status,
         > {
             self.inner.ready().await.map_err(|e| {
@@ -768,7 +770,7 @@ pub mod object_retrieval_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::Filter>,
         ) -> Result<
-            tonic::Response<tonic::codec::Streaming<super::super::structures::Part>>,
+            tonic::Response<tonic::codec::Streaming<super::super::structures::DPart>>,
             tonic::Status,
         > {
             self.inner.ready().await.map_err(|e| {
@@ -789,7 +791,7 @@ pub mod object_retrieval_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::Filter>,
         ) -> Result<
-            tonic::Response<tonic::codec::Streaming<super::super::structures::Route>>,
+            tonic::Response<tonic::codec::Streaming<super::super::structures::DRoute>>,
             tonic::Status,
         > {
             self.inner.ready().await.map_err(|e| {
@@ -810,7 +812,7 @@ pub mod object_retrieval_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::Filter>,
         ) -> Result<
-            tonic::Response<tonic::codec::Streaming<super::super::structures::RouteStep>>,
+            tonic::Response<tonic::codec::Streaming<super::super::structures::DRouteStep>>,
             tonic::Status,
         > {
             self.inner.ready().await.map_err(|e| {
@@ -831,7 +833,7 @@ pub mod object_retrieval_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::Filter>,
         ) -> Result<
-            tonic::Response<tonic::codec::Streaming<super::super::structures::RouteOperation>>,
+            tonic::Response<tonic::codec::Streaming<super::super::structures::DRouteOperation>>,
             tonic::Status,
         > {
             self.inner.ready().await.map_err(|e| {
@@ -852,7 +854,7 @@ pub mod object_retrieval_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::Filter>,
         ) -> Result<
-            tonic::Response<tonic::codec::Streaming<super::super::structures::RuntimeBomItem>>,
+            tonic::Response<tonic::codec::Streaming<super::super::structures::DRuntimeBomItem>>,
             tonic::Status,
         > {
             self.inner.ready().await.map_err(|e| {
@@ -873,7 +875,7 @@ pub mod object_retrieval_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::Filter>,
         ) -> Result<
-            tonic::Response<tonic::codec::Streaming<super::super::structures::RuntimeBom>>,
+            tonic::Response<tonic::codec::Streaming<super::super::structures::DRuntimeBom>>,
             tonic::Status,
         > {
             self.inner.ready().await.map_err(|e| {
@@ -894,7 +896,7 @@ pub mod object_retrieval_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::Filter>,
         ) -> Result<
-            tonic::Response<tonic::codec::Streaming<super::super::structures::WorkOrder>>,
+            tonic::Response<tonic::codec::Streaming<super::super::structures::DWorkOrder>>,
             tonic::Status,
         > {
             self.inner.ready().await.map_err(|e| {
@@ -915,7 +917,7 @@ pub mod object_retrieval_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::Filter>,
         ) -> Result<
-            tonic::Response<tonic::codec::Streaming<super::super::structures::User>>,
+            tonic::Response<tonic::codec::Streaming<super::super::structures::DUser>>,
             tonic::Status,
         > {
             self.inner.ready().await.map_err(|e| {
@@ -936,7 +938,7 @@ pub mod object_retrieval_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::Filter>,
         ) -> Result<
-            tonic::Response<tonic::codec::Streaming<super::super::structures::Doc>>,
+            tonic::Response<tonic::codec::Streaming<super::super::structures::DDoc>>,
             tonic::Status,
         > {
             self.inner.ready().await.map_err(|e| {
@@ -965,121 +967,121 @@ pub mod object_retrieval_service_server {
         async fn get_factory_by_id(
             &self,
             request: tonic::Request<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::Factory>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DFactory>, tonic::Status>;
         async fn get_factory_by_code(
             &self,
             request: tonic::Request<super::super::structures::ObjectCode>,
-        ) -> Result<tonic::Response<super::super::structures::Factory>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DFactory>, tonic::Status>;
         async fn get_workshop_by_id(
             &self,
             request: tonic::Request<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::Workshop>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DWorkshop>, tonic::Status>;
         async fn get_workshop_by_code(
             &self,
             request: tonic::Request<super::super::structures::ObjectCode>,
-        ) -> Result<tonic::Response<super::super::structures::Workshop>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DWorkshop>, tonic::Status>;
         async fn get_production_line_by_id(
             &self,
             request: tonic::Request<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::ProductionLine>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DProductionLine>, tonic::Status>;
         async fn get_production_line_by_code(
             &self,
             request: tonic::Request<super::super::structures::ObjectCode>,
-        ) -> Result<tonic::Response<super::super::structures::ProductionLine>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DProductionLine>, tonic::Status>;
         async fn get_work_station_by_id(
             &self,
             request: tonic::Request<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::WorkStation>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DWorkStation>, tonic::Status>;
         async fn get_work_station_by_code(
             &self,
             request: tonic::Request<super::super::structures::ObjectCode>,
-        ) -> Result<tonic::Response<super::super::structures::WorkStation>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DWorkStation>, tonic::Status>;
         async fn get_equipment_by_id(
             &self,
             request: tonic::Request<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::Equipment>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DEquipment>, tonic::Status>;
         async fn get_equipment_by_code(
             &self,
             request: tonic::Request<super::super::structures::ObjectCode>,
-        ) -> Result<tonic::Response<super::super::structures::Equipment>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DEquipment>, tonic::Status>;
         async fn get_part_by_id(
             &self,
             request: tonic::Request<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::Part>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DPart>, tonic::Status>;
         async fn get_part_by_number_and_revision(
             &self,
             request: tonic::Request<super::PartNumberAndRevisionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Part>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DPart>, tonic::Status>;
         async fn get_location_by_id(
             &self,
             request: tonic::Request<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::Location>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DLocation>, tonic::Status>;
         async fn get_location_by_code(
             &self,
             request: tonic::Request<super::super::structures::ObjectCode>,
-        ) -> Result<tonic::Response<super::super::structures::Location>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DLocation>, tonic::Status>;
         async fn get_lot_by_id(
             &self,
             request: tonic::Request<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
         async fn get_lot_by_serial_number(
             &self,
             request: tonic::Request<super::super::structures::ObjectSerialNumber>,
-        ) -> Result<tonic::Response<super::super::structures::Lot>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DLot>, tonic::Status>;
         async fn get_runtime_bom_by_id(
             &self,
             request: tonic::Request<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::RuntimeBom>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DRuntimeBom>, tonic::Status>;
         async fn get_route_by_id(
             &self,
             request: tonic::Request<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::Route>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DRoute>, tonic::Status>;
         async fn get_route_by_code_and_version(
             &self,
             request: tonic::Request<super::super::structures::ObjectCode>,
-        ) -> Result<tonic::Response<super::super::structures::Route>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DRoute>, tonic::Status>;
         async fn get_operation_by_id(
             &self,
             request: tonic::Request<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::RouteOperation>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DRouteOperation>, tonic::Status>;
         async fn get_operation_by_code(
             &self,
             request: tonic::Request<super::super::structures::ObjectCode>,
-        ) -> Result<tonic::Response<super::super::structures::RouteOperation>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DRouteOperation>, tonic::Status>;
         async fn get_unit_by_id(
             &self,
             request: tonic::Request<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
         async fn get_unit_by_seria_number(
             &self,
             request: tonic::Request<super::super::structures::ObjectSerialNumber>,
-        ) -> Result<tonic::Response<super::super::structures::Unit>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DUnit>, tonic::Status>;
         async fn get_user_by_id(
             &self,
             request: tonic::Request<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::User>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DUser>, tonic::Status>;
         async fn get_user_by_name(
             &self,
             request: tonic::Request<super::super::structures::ObjectName>,
-        ) -> Result<tonic::Response<super::super::structures::User>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DUser>, tonic::Status>;
         async fn get_work_order_by_id(
             &self,
             request: tonic::Request<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status>;
         async fn get_work_order_by_number(
             &self,
             request: tonic::Request<super::super::structures::ObjectName>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status>;
         async fn get_doc_by_id(
             &self,
             request: tonic::Request<super::super::structures::ObjectId>,
-        ) -> Result<tonic::Response<super::super::structures::Doc>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DDoc>, tonic::Status>;
         async fn get_doc_by_code(
             &self,
             request: tonic::Request<super::super::structures::ObjectCode>,
-        ) -> Result<tonic::Response<super::super::structures::Doc>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DDoc>, tonic::Status>;
         #[doc = "Server streaming response type for the GetEquipments method."]
-        type GetEquipmentsStream: futures_core::Stream<Item = Result<super::super::structures::Equipment, tonic::Status>>
+        type GetEquipmentsStream: futures_core::Stream<Item = Result<super::super::structures::DEquipment, tonic::Status>>
             + Send
             + 'static;
         async fn get_equipments(
@@ -1088,7 +1090,7 @@ pub mod object_retrieval_service_server {
         ) -> Result<tonic::Response<Self::GetEquipmentsStream>, tonic::Status>;
         #[doc = "Server streaming response type for the GetWorkStations method."]
         type GetWorkStationsStream: futures_core::Stream<
-                Item = Result<super::super::structures::WorkStation, tonic::Status>,
+                Item = Result<super::super::structures::DWorkStation, tonic::Status>,
             > + Send
             + 'static;
         async fn get_work_stations(
@@ -1097,7 +1099,7 @@ pub mod object_retrieval_service_server {
         ) -> Result<tonic::Response<Self::GetWorkStationsStream>, tonic::Status>;
         #[doc = "Server streaming response type for the GetProductionLines method."]
         type GetProductionLinesStream: futures_core::Stream<
-                Item = Result<super::super::structures::ProductionLine, tonic::Status>,
+                Item = Result<super::super::structures::DProductionLine, tonic::Status>,
             > + Send
             + 'static;
         async fn get_production_lines(
@@ -1105,7 +1107,7 @@ pub mod object_retrieval_service_server {
             request: tonic::Request<super::super::structures::Filter>,
         ) -> Result<tonic::Response<Self::GetProductionLinesStream>, tonic::Status>;
         #[doc = "Server streaming response type for the GetWorkshops method."]
-        type GetWorkshopsStream: futures_core::Stream<Item = Result<super::super::structures::Workshop, tonic::Status>>
+        type GetWorkshopsStream: futures_core::Stream<Item = Result<super::super::structures::DWorkshop, tonic::Status>>
             + Send
             + 'static;
         async fn get_workshops(
@@ -1113,7 +1115,7 @@ pub mod object_retrieval_service_server {
             request: tonic::Request<super::super::structures::Filter>,
         ) -> Result<tonic::Response<Self::GetWorkshopsStream>, tonic::Status>;
         #[doc = "Server streaming response type for the GetFactories method."]
-        type GetFactoriesStream: futures_core::Stream<Item = Result<super::super::structures::Factory, tonic::Status>>
+        type GetFactoriesStream: futures_core::Stream<Item = Result<super::super::structures::DFactory, tonic::Status>>
             + Send
             + 'static;
         async fn get_factories(
@@ -1122,7 +1124,7 @@ pub mod object_retrieval_service_server {
         ) -> Result<tonic::Response<Self::GetFactoriesStream>, tonic::Status>;
         #[doc = "Server streaming response type for the GetConsumeParts method."]
         type GetConsumePartsStream: futures_core::Stream<
-                Item = Result<super::super::structures::ConsumedPart, tonic::Status>,
+                Item = Result<super::super::structures::DConsumedPart, tonic::Status>,
             > + Send
             + 'static;
         async fn get_consume_parts(
@@ -1130,7 +1132,7 @@ pub mod object_retrieval_service_server {
             request: tonic::Request<super::super::structures::Filter>,
         ) -> Result<tonic::Response<Self::GetConsumePartsStream>, tonic::Status>;
         #[doc = "Server streaming response type for the GetBOMs method."]
-        type GetBOMsStream: futures_core::Stream<Item = Result<super::super::structures::Bom, tonic::Status>>
+        type GetBOMsStream: futures_core::Stream<Item = Result<super::super::structures::DBom, tonic::Status>>
             + Send
             + 'static;
         async fn get_bo_ms(
@@ -1138,7 +1140,7 @@ pub mod object_retrieval_service_server {
             request: tonic::Request<super::super::structures::Filter>,
         ) -> Result<tonic::Response<Self::GetBOMsStream>, tonic::Status>;
         #[doc = "Server streaming response type for the GetBOMItems method."]
-        type GetBOMItemsStream: futures_core::Stream<Item = Result<super::super::structures::BomItem, tonic::Status>>
+        type GetBOMItemsStream: futures_core::Stream<Item = Result<super::super::structures::DBomItem, tonic::Status>>
             + Send
             + 'static;
         async fn get_bom_items(
@@ -1146,7 +1148,7 @@ pub mod object_retrieval_service_server {
             request: tonic::Request<super::super::structures::Filter>,
         ) -> Result<tonic::Response<Self::GetBOMItemsStream>, tonic::Status>;
         #[doc = "Server streaming response type for the GetContainers method."]
-        type GetContainersStream: futures_core::Stream<Item = Result<super::super::structures::Container, tonic::Status>>
+        type GetContainersStream: futures_core::Stream<Item = Result<super::super::structures::DContainer, tonic::Status>>
             + Send
             + 'static;
         async fn get_containers(
@@ -1154,7 +1156,7 @@ pub mod object_retrieval_service_server {
             request: tonic::Request<super::super::structures::Filter>,
         ) -> Result<tonic::Response<Self::GetContainersStream>, tonic::Status>;
         #[doc = "Server streaming response type for the GetLots method."]
-        type GetLotsStream: futures_core::Stream<Item = Result<super::super::structures::Lot, tonic::Status>>
+        type GetLotsStream: futures_core::Stream<Item = Result<super::super::structures::DLot, tonic::Status>>
             + Send
             + 'static;
         async fn get_lots(
@@ -1162,7 +1164,7 @@ pub mod object_retrieval_service_server {
             request: tonic::Request<super::super::structures::Filter>,
         ) -> Result<tonic::Response<Self::GetLotsStream>, tonic::Status>;
         #[doc = "Server streaming response type for the GetUnits method."]
-        type GetUnitsStream: futures_core::Stream<Item = Result<super::super::structures::Unit, tonic::Status>>
+        type GetUnitsStream: futures_core::Stream<Item = Result<super::super::structures::DUnit, tonic::Status>>
             + Send
             + 'static;
         async fn get_units(
@@ -1170,7 +1172,7 @@ pub mod object_retrieval_service_server {
             request: tonic::Request<super::super::structures::Filter>,
         ) -> Result<tonic::Response<Self::GetUnitsStream>, tonic::Status>;
         #[doc = "Server streaming response type for the GetParts method."]
-        type GetPartsStream: futures_core::Stream<Item = Result<super::super::structures::Part, tonic::Status>>
+        type GetPartsStream: futures_core::Stream<Item = Result<super::super::structures::DPart, tonic::Status>>
             + Send
             + 'static;
         async fn get_parts(
@@ -1178,7 +1180,7 @@ pub mod object_retrieval_service_server {
             request: tonic::Request<super::super::structures::Filter>,
         ) -> Result<tonic::Response<Self::GetPartsStream>, tonic::Status>;
         #[doc = "Server streaming response type for the GetRoutes method."]
-        type GetRoutesStream: futures_core::Stream<Item = Result<super::super::structures::Route, tonic::Status>>
+        type GetRoutesStream: futures_core::Stream<Item = Result<super::super::structures::DRoute, tonic::Status>>
             + Send
             + 'static;
         async fn get_routes(
@@ -1186,7 +1188,7 @@ pub mod object_retrieval_service_server {
             request: tonic::Request<super::super::structures::Filter>,
         ) -> Result<tonic::Response<Self::GetRoutesStream>, tonic::Status>;
         #[doc = "Server streaming response type for the GetRouteSteps method."]
-        type GetRouteStepsStream: futures_core::Stream<Item = Result<super::super::structures::RouteStep, tonic::Status>>
+        type GetRouteStepsStream: futures_core::Stream<Item = Result<super::super::structures::DRouteStep, tonic::Status>>
             + Send
             + 'static;
         async fn get_route_steps(
@@ -1195,7 +1197,7 @@ pub mod object_retrieval_service_server {
         ) -> Result<tonic::Response<Self::GetRouteStepsStream>, tonic::Status>;
         #[doc = "Server streaming response type for the GetRouteOperations method."]
         type GetRouteOperationsStream: futures_core::Stream<
-                Item = Result<super::super::structures::RouteOperation, tonic::Status>,
+                Item = Result<super::super::structures::DRouteOperation, tonic::Status>,
             > + Send
             + 'static;
         async fn get_route_operations(
@@ -1204,7 +1206,7 @@ pub mod object_retrieval_service_server {
         ) -> Result<tonic::Response<Self::GetRouteOperationsStream>, tonic::Status>;
         #[doc = "Server streaming response type for the GetRuntimeBomItems method."]
         type GetRuntimeBomItemsStream: futures_core::Stream<
-                Item = Result<super::super::structures::RuntimeBomItem, tonic::Status>,
+                Item = Result<super::super::structures::DRuntimeBomItem, tonic::Status>,
             > + Send
             + 'static;
         async fn get_runtime_bom_items(
@@ -1212,15 +1214,16 @@ pub mod object_retrieval_service_server {
             request: tonic::Request<super::super::structures::Filter>,
         ) -> Result<tonic::Response<Self::GetRuntimeBomItemsStream>, tonic::Status>;
         #[doc = "Server streaming response type for the GetRuntimeBoms method."]
-        type GetRuntimeBomsStream: futures_core::Stream<Item = Result<super::super::structures::RuntimeBom, tonic::Status>>
-            + Send
+        type GetRuntimeBomsStream: futures_core::Stream<
+                Item = Result<super::super::structures::DRuntimeBom, tonic::Status>,
+            > + Send
             + 'static;
         async fn get_runtime_boms(
             &self,
             request: tonic::Request<super::super::structures::Filter>,
         ) -> Result<tonic::Response<Self::GetRuntimeBomsStream>, tonic::Status>;
         #[doc = "Server streaming response type for the GetWorkOrders method."]
-        type GetWorkOrdersStream: futures_core::Stream<Item = Result<super::super::structures::WorkOrder, tonic::Status>>
+        type GetWorkOrdersStream: futures_core::Stream<Item = Result<super::super::structures::DWorkOrder, tonic::Status>>
             + Send
             + 'static;
         async fn get_work_orders(
@@ -1228,7 +1231,7 @@ pub mod object_retrieval_service_server {
             request: tonic::Request<super::super::structures::Filter>,
         ) -> Result<tonic::Response<Self::GetWorkOrdersStream>, tonic::Status>;
         #[doc = "Server streaming response type for the GetUsers method."]
-        type GetUsersStream: futures_core::Stream<Item = Result<super::super::structures::User, tonic::Status>>
+        type GetUsersStream: futures_core::Stream<Item = Result<super::super::structures::DUser, tonic::Status>>
             + Send
             + 'static;
         async fn get_users(
@@ -1236,7 +1239,7 @@ pub mod object_retrieval_service_server {
             request: tonic::Request<super::super::structures::Filter>,
         ) -> Result<tonic::Response<Self::GetUsersStream>, tonic::Status>;
         #[doc = "Server streaming response type for the GetDocs method."]
-        type GetDocsStream: futures_core::Stream<Item = Result<super::super::structures::Doc, tonic::Status>>
+        type GetDocsStream: futures_core::Stream<Item = Result<super::super::structures::DDoc, tonic::Status>>
             + Send
             + 'static;
         async fn get_docs(
@@ -1300,7 +1303,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectId>
                         for GetFactoryByIdSvc<T>
                     {
-                        type Response = super::super::structures::Factory;
+                        type Response = super::super::structures::DFactory;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1334,7 +1337,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectCode>
                         for GetFactoryByCodeSvc<T>
                     {
-                        type Response = super::super::structures::Factory;
+                        type Response = super::super::structures::DFactory;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1368,7 +1371,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectId>
                         for GetWorkshopByIdSvc<T>
                     {
-                        type Response = super::super::structures::Workshop;
+                        type Response = super::super::structures::DWorkshop;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1402,7 +1405,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectCode>
                         for GetWorkshopByCodeSvc<T>
                     {
-                        type Response = super::super::structures::Workshop;
+                        type Response = super::super::structures::DWorkshop;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1436,7 +1439,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectId>
                         for GetProductionLineByIdSvc<T>
                     {
-                        type Response = super::super::structures::ProductionLine;
+                        type Response = super::super::structures::DProductionLine;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1471,7 +1474,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectCode>
                         for GetProductionLineByCodeSvc<T>
                     {
-                        type Response = super::super::structures::ProductionLine;
+                        type Response = super::super::structures::DProductionLine;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1506,7 +1509,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectId>
                         for GetWorkStationByIdSvc<T>
                     {
-                        type Response = super::super::structures::WorkStation;
+                        type Response = super::super::structures::DWorkStation;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1540,7 +1543,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectCode>
                         for GetWorkStationByCodeSvc<T>
                     {
-                        type Response = super::super::structures::WorkStation;
+                        type Response = super::super::structures::DWorkStation;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1575,7 +1578,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectId>
                         for GetEquipmentByIdSvc<T>
                     {
-                        type Response = super::super::structures::Equipment;
+                        type Response = super::super::structures::DEquipment;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1609,7 +1612,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectCode>
                         for GetEquipmentByCodeSvc<T>
                     {
-                        type Response = super::super::structures::Equipment;
+                        type Response = super::super::structures::DEquipment;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1643,7 +1646,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectId>
                         for GetPartByIDSvc<T>
                     {
-                        type Response = super::super::structures::Part;
+                        type Response = super::super::structures::DPart;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1677,7 +1680,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::PartNumberAndRevisionRequest>
                         for GetPartByNumberAndRevisionSvc<T>
                     {
-                        type Response = super::super::structures::Part;
+                        type Response = super::super::structures::DPart;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1713,7 +1716,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectId>
                         for GetLocationByIdSvc<T>
                     {
-                        type Response = super::super::structures::Location;
+                        type Response = super::super::structures::DLocation;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1747,7 +1750,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectCode>
                         for GetLocationByCodeSvc<T>
                     {
-                        type Response = super::super::structures::Location;
+                        type Response = super::super::structures::DLocation;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1781,7 +1784,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectId>
                         for GetLotByIdSvc<T>
                     {
-                        type Response = super::super::structures::Lot;
+                        type Response = super::super::structures::DLot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1815,7 +1818,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectSerialNumber>
                         for GetLotBySerialNumberSvc<T>
                     {
-                        type Response = super::super::structures::Lot;
+                        type Response = super::super::structures::DLot;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1850,7 +1853,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectId>
                         for GetRuntimeBomByIdSvc<T>
                     {
-                        type Response = super::super::structures::RuntimeBom;
+                        type Response = super::super::structures::DRuntimeBom;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1884,7 +1887,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectId>
                         for GetRouteByIdSvc<T>
                     {
-                        type Response = super::super::structures::Route;
+                        type Response = super::super::structures::DRoute;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1918,7 +1921,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectCode>
                         for GetRouteByCodeAndVersionSvc<T>
                     {
-                        type Response = super::super::structures::Route;
+                        type Response = super::super::structures::DRoute;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1954,7 +1957,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectId>
                         for GetOperationByIdSvc<T>
                     {
-                        type Response = super::super::structures::RouteOperation;
+                        type Response = super::super::structures::DRouteOperation;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1988,7 +1991,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectCode>
                         for GetOperationByCodeSvc<T>
                     {
-                        type Response = super::super::structures::RouteOperation;
+                        type Response = super::super::structures::DRouteOperation;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -2022,7 +2025,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectId>
                         for GetUnitByIdSvc<T>
                     {
-                        type Response = super::super::structures::Unit;
+                        type Response = super::super::structures::DUnit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -2056,7 +2059,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectSerialNumber>
                         for GetUnitBySeriaNumberSvc<T>
                     {
-                        type Response = super::super::structures::Unit;
+                        type Response = super::super::structures::DUnit;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -2091,7 +2094,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectId>
                         for GetUserByIdSvc<T>
                     {
-                        type Response = super::super::structures::User;
+                        type Response = super::super::structures::DUser;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -2125,7 +2128,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectName>
                         for GetUserByNameSvc<T>
                     {
-                        type Response = super::super::structures::User;
+                        type Response = super::super::structures::DUser;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -2159,7 +2162,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectId>
                         for GetWorkOrderByIdSvc<T>
                     {
-                        type Response = super::super::structures::WorkOrder;
+                        type Response = super::super::structures::DWorkOrder;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -2193,7 +2196,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectName>
                         for GetWorkOrderByNumberSvc<T>
                     {
-                        type Response = super::super::structures::WorkOrder;
+                        type Response = super::super::structures::DWorkOrder;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -2228,7 +2231,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectId>
                         for GetDocByIdSvc<T>
                     {
-                        type Response = super::super::structures::Doc;
+                        type Response = super::super::structures::DDoc;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -2262,7 +2265,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::UnaryService<super::super::structures::ObjectCode>
                         for GetDocByCodeSvc<T>
                     {
-                        type Response = super::super::structures::Doc;
+                        type Response = super::super::structures::DDoc;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -2296,7 +2299,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::ServerStreamingService<super::super::structures::Filter>
                         for GetEquipmentsSvc<T>
                     {
-                        type Response = super::super::structures::Equipment;
+                        type Response = super::super::structures::DEquipment;
                         type ResponseStream = T::GetEquipmentsStream;
                         type Future =
                             BoxFuture<tonic::Response<Self::ResponseStream>, tonic::Status>;
@@ -2332,7 +2335,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::ServerStreamingService<super::super::structures::Filter>
                         for GetWorkStationsSvc<T>
                     {
-                        type Response = super::super::structures::WorkStation;
+                        type Response = super::super::structures::DWorkStation;
                         type ResponseStream = T::GetWorkStationsStream;
                         type Future =
                             BoxFuture<tonic::Response<Self::ResponseStream>, tonic::Status>;
@@ -2368,7 +2371,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::ServerStreamingService<super::super::structures::Filter>
                         for GetProductionLinesSvc<T>
                     {
-                        type Response = super::super::structures::ProductionLine;
+                        type Response = super::super::structures::DProductionLine;
                         type ResponseStream = T::GetProductionLinesStream;
                         type Future =
                             BoxFuture<tonic::Response<Self::ResponseStream>, tonic::Status>;
@@ -2404,7 +2407,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::ServerStreamingService<super::super::structures::Filter>
                         for GetWorkshopsSvc<T>
                     {
-                        type Response = super::super::structures::Workshop;
+                        type Response = super::super::structures::DWorkshop;
                         type ResponseStream = T::GetWorkshopsStream;
                         type Future =
                             BoxFuture<tonic::Response<Self::ResponseStream>, tonic::Status>;
@@ -2440,7 +2443,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::ServerStreamingService<super::super::structures::Filter>
                         for GetFactoriesSvc<T>
                     {
-                        type Response = super::super::structures::Factory;
+                        type Response = super::super::structures::DFactory;
                         type ResponseStream = T::GetFactoriesStream;
                         type Future =
                             BoxFuture<tonic::Response<Self::ResponseStream>, tonic::Status>;
@@ -2476,7 +2479,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::ServerStreamingService<super::super::structures::Filter>
                         for GetConsumePartsSvc<T>
                     {
-                        type Response = super::super::structures::ConsumedPart;
+                        type Response = super::super::structures::DConsumedPart;
                         type ResponseStream = T::GetConsumePartsStream;
                         type Future =
                             BoxFuture<tonic::Response<Self::ResponseStream>, tonic::Status>;
@@ -2512,7 +2515,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::ServerStreamingService<super::super::structures::Filter>
                         for GetBOMsSvc<T>
                     {
-                        type Response = super::super::structures::Bom;
+                        type Response = super::super::structures::DBom;
                         type ResponseStream = T::GetBOMsStream;
                         type Future =
                             BoxFuture<tonic::Response<Self::ResponseStream>, tonic::Status>;
@@ -2548,7 +2551,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::ServerStreamingService<super::super::structures::Filter>
                         for GetBOMItemsSvc<T>
                     {
-                        type Response = super::super::structures::BomItem;
+                        type Response = super::super::structures::DBomItem;
                         type ResponseStream = T::GetBOMItemsStream;
                         type Future =
                             BoxFuture<tonic::Response<Self::ResponseStream>, tonic::Status>;
@@ -2584,7 +2587,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::ServerStreamingService<super::super::structures::Filter>
                         for GetContainersSvc<T>
                     {
-                        type Response = super::super::structures::Container;
+                        type Response = super::super::structures::DContainer;
                         type ResponseStream = T::GetContainersStream;
                         type Future =
                             BoxFuture<tonic::Response<Self::ResponseStream>, tonic::Status>;
@@ -2620,7 +2623,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::ServerStreamingService<super::super::structures::Filter>
                         for GetLotsSvc<T>
                     {
-                        type Response = super::super::structures::Lot;
+                        type Response = super::super::structures::DLot;
                         type ResponseStream = T::GetLotsStream;
                         type Future =
                             BoxFuture<tonic::Response<Self::ResponseStream>, tonic::Status>;
@@ -2656,7 +2659,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::ServerStreamingService<super::super::structures::Filter>
                         for GetUnitsSvc<T>
                     {
-                        type Response = super::super::structures::Unit;
+                        type Response = super::super::structures::DUnit;
                         type ResponseStream = T::GetUnitsStream;
                         type Future =
                             BoxFuture<tonic::Response<Self::ResponseStream>, tonic::Status>;
@@ -2692,7 +2695,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::ServerStreamingService<super::super::structures::Filter>
                         for GetPartsSvc<T>
                     {
-                        type Response = super::super::structures::Part;
+                        type Response = super::super::structures::DPart;
                         type ResponseStream = T::GetPartsStream;
                         type Future =
                             BoxFuture<tonic::Response<Self::ResponseStream>, tonic::Status>;
@@ -2728,7 +2731,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::ServerStreamingService<super::super::structures::Filter>
                         for GetRoutesSvc<T>
                     {
-                        type Response = super::super::structures::Route;
+                        type Response = super::super::structures::DRoute;
                         type ResponseStream = T::GetRoutesStream;
                         type Future =
                             BoxFuture<tonic::Response<Self::ResponseStream>, tonic::Status>;
@@ -2764,7 +2767,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::ServerStreamingService<super::super::structures::Filter>
                         for GetRouteStepsSvc<T>
                     {
-                        type Response = super::super::structures::RouteStep;
+                        type Response = super::super::structures::DRouteStep;
                         type ResponseStream = T::GetRouteStepsStream;
                         type Future =
                             BoxFuture<tonic::Response<Self::ResponseStream>, tonic::Status>;
@@ -2800,7 +2803,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::ServerStreamingService<super::super::structures::Filter>
                         for GetRouteOperationsSvc<T>
                     {
-                        type Response = super::super::structures::RouteOperation;
+                        type Response = super::super::structures::DRouteOperation;
                         type ResponseStream = T::GetRouteOperationsStream;
                         type Future =
                             BoxFuture<tonic::Response<Self::ResponseStream>, tonic::Status>;
@@ -2836,7 +2839,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::ServerStreamingService<super::super::structures::Filter>
                         for GetRuntimeBomItemsSvc<T>
                     {
-                        type Response = super::super::structures::RuntimeBomItem;
+                        type Response = super::super::structures::DRuntimeBomItem;
                         type ResponseStream = T::GetRuntimeBomItemsStream;
                         type Future =
                             BoxFuture<tonic::Response<Self::ResponseStream>, tonic::Status>;
@@ -2872,7 +2875,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::ServerStreamingService<super::super::structures::Filter>
                         for GetRuntimeBomsSvc<T>
                     {
-                        type Response = super::super::structures::RuntimeBom;
+                        type Response = super::super::structures::DRuntimeBom;
                         type ResponseStream = T::GetRuntimeBomsStream;
                         type Future =
                             BoxFuture<tonic::Response<Self::ResponseStream>, tonic::Status>;
@@ -2908,7 +2911,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::ServerStreamingService<super::super::structures::Filter>
                         for GetWorkOrdersSvc<T>
                     {
-                        type Response = super::super::structures::WorkOrder;
+                        type Response = super::super::structures::DWorkOrder;
                         type ResponseStream = T::GetWorkOrdersStream;
                         type Future =
                             BoxFuture<tonic::Response<Self::ResponseStream>, tonic::Status>;
@@ -2944,7 +2947,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::ServerStreamingService<super::super::structures::Filter>
                         for GetUsersSvc<T>
                     {
-                        type Response = super::super::structures::User;
+                        type Response = super::super::structures::DUser;
                         type ResponseStream = T::GetUsersStream;
                         type Future =
                             BoxFuture<tonic::Response<Self::ResponseStream>, tonic::Status>;
@@ -2980,7 +2983,7 @@ pub mod object_retrieval_service_server {
                         tonic::server::ServerStreamingService<super::super::structures::Filter>
                         for GetDocsSvc<T>
                     {
-                        type Response = super::super::structures::Doc;
+                        type Response = super::super::structures::DDoc;
                         type ResponseStream = T::GetDocsStream;
                         type Future =
                             BoxFuture<tonic::Response<Self::ResponseStream>, tonic::Status>;

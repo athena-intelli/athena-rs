@@ -8,96 +8,96 @@ option java_package = "com.service";
 package PackageService;
 
 service PackageService{
-  //This method is used to add a container to a container
-  rpc AddContainerToContainer(HandleContainerRequest) returns (structures.Container){}
-  //This method is used to add a lot to a container
-  rpc AddLotToContainer(HandleLotRequest) returns (structures.Container){}
-  // This method is used to record a transaction indicating that a container and all
+  //This method is used to add a DContainer to a DContainer
+  rpc AddContainerToContainer(HandleContainerRequest) returns (structures.DContainer){}
+  //This method is used to add a lot to a DContainer
+  rpc AddLotToContainer(HandleLotRequest) returns (structures.DContainer){}
+  // This method is used to record a transaction indicating that a DContainer and all
   //  of its contents (any contained containers, lots and units) has been moved to
   //  the queue specified.
-  rpc AddContainerToQueue(AddContainerToQueueRequest) returns (structures.Container){}
-  //This method is used to add a unit to a container
-  rpc AddUnitToContainer(HandleUnitRequest) returns (structures.Container){}
+  rpc AddContainerToQueue(AddContainerToQueueRequest) returns (structures.DContainer){}
+  //This method is used to add a unit to a DContainer
+  rpc AddUnitToContainer(HandleUnitRequest) returns (structures.DContainer){}
 
-  //This method is used to change the production line of a container and all of its
+  //This method is used to change the production line of a DContainer and all of its
   //  contents (any contained containers, lots and units).
-  rpc ChangeProductionLine(ChangePLineRequest) returns (structures.Container){}
+  rpc ChangeProductionLine(ChangePLineRequest) returns (structures.DContainer){}
 
-  //This method is used to change the route of a container and all of its contents
+  //This method is used to change the route of a DContainer and all of its contents
   // (any contained containers, lots and units).
-  rpc ChangeRoute(ContainerChangeRouteRequest) returns (structures.Container){}
+  rpc ChangeRoute(ContainerChangeRouteRequest) returns (structures.DContainer){}
 
-  //This method is used to record a transaction indicating that a container and all
+  //This method is used to record a transaction indicating that a DContainer and all
   // of its contents (any contained containers, lots and units) have closed.
-  rpc Close(ContainerTransactionRequest) returns (structures.Container){}
+  rpc Close(ContainerTransactionRequest) returns (structures.DContainer){}
 
   /**
-     * This method is used to record a transaction indicating that a container and all
+     * This method is used to record a transaction indicating that a DContainer and all
      * of its contents (any contained containers, lots and units) have completed the
      * route step specified.
    */
-  rpc CompleteAtRouteStep(ContainerCompleteRequest) returns (structures.Container){}
+  rpc CompleteAtRouteStep(ContainerCompleteRequest) returns (structures.DContainer){}
 
   /**
-     * This method is used to record a transaction indicating that a container and all
+     * This method is used to record a transaction indicating that a DContainer and all
      * of its contents (any contained containers, lots and units) have started the
      * route step specified.
    */
-  rpc StartAtRouteStep(ContainerStartRequest) returns (structures.Container){}
+  rpc StartAtRouteStep(ContainerStartRequest) returns (structures.DContainer){}
 
-  // This method is used to record a transaction indicating that a container and all
+  // This method is used to record a transaction indicating that a DContainer and all
   //   of its contents (any contained containers, lots and units) have finished.
-  rpc Finish(ContainerTransactionRequest) returns (structures.Container){}
+  rpc Finish(ContainerTransactionRequest) returns (structures.DContainer){}
 
-  // This method is used to record a transaction indicating that a container and all
+  // This method is used to record a transaction indicating that a DContainer and all
   //     of its contents (any contained containers, lots and units) have been placed on
   //     hold. When an object is on hold no other transactions may be performed on
   //     it, until it is released
-  rpc Hold(ContainerTransactionRequest) returns (structures.Container){}
+  rpc Hold(ContainerTransactionRequest) returns (structures.DContainer){}
 
-  //This method is used to record a transaction indicating that a container and its
-  //     * containers (any container containers) have opened. The open
+  //This method is used to record a transaction indicating that a DContainer and its
+  //     * containers (any DContainer containers) have opened. The open
   //     * method is equivalent to the undoClose method, except that it propagates
-  //     * upward to the Container's containers instead of downward to the Container's contents.
-  rpc Open(ContainerTransactionRequest) returns (structures.Container){}
+  //     * upward to the DContainer's containers instead of downward to the DContainer's contents.
+  rpc Open(ContainerTransactionRequest) returns (structures.DContainer){}
 
   /**
-     * This method is used to record a transaction indicating that a container and all
+     * This method is used to record a transaction indicating that a DContainer and all
      * of its contents (any contained containers, lots and units) have stopped
      * processing. When an object is paused no other transactions may be
      * performed on it, until it is restarted.
    */
-  rpc Pause(ContainerTransactionRequest) returns (structures.Container){}
+  rpc Pause(ContainerTransactionRequest) returns (structures.DContainer){}
 
   /**
-     * This method is used to record a transaction indicating that a container and all
+     * This method is used to record a transaction indicating that a DContainer and all
      * of its contents (any contained containers, lots and units) have been released
      * from hold or quarantine.
    */
-  rpc Release(ContainerTransactionRequest) returns (structures.Container){}
+  rpc Release(ContainerTransactionRequest) returns (structures.DContainer){}
 
   /**
-   * This method is used to record a transaction indicating that a container and all
+   * This method is used to record a transaction indicating that a DContainer and all
    * of its contents (any contained containers, lots and units) has been scrapped.
    */
-  rpc Scrap(ContainerTransactionRequest) returns (structures.Container){}
+  rpc Scrap(ContainerTransactionRequest) returns (structures.DContainer){}
 
-  //This method removes everything from a container.
-  rpc RemoveAll(ClearContainerRequest) returns (structures.Container){}
+  //This method removes everything from a DContainer.
+  rpc RemoveAll(ClearContainerRequest) returns (structures.DContainer){}
 
-  //This method is used to remove a container from a container.
+  //This method is used to remove a DContainer from a DContainer.
   rpc RemoveContainer(HandleContainerRequest) returns (google.protobuf.Empty){}
 
-  //This method is used to remove a lot from a container.
+  //This method is used to remove a lot from a DContainer.
   rpc RemoveLot(HandleLotRequest) returns (google.protobuf.Empty){}
 
-  //This method is used to remove a unit from a container.
+  //This method is used to remove a unit from a DContainer.
   rpc RemoveUnit(HandleUnitRequest) returns (google.protobuf.Empty){}
 
   /**
-     * This method is used to save or update a container.
+     * This method is used to save or update a DContainer.
    */
-  rpc SaveContainer(structures.Container) returns (structures.Container){}
+  rpc SaveContainer(structures.DContainer) returns (structures.DContainer){}
 
 }
 

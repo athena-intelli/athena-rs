@@ -8,27 +8,27 @@ option java_package = "com.athena.api.service";
 package WorkOrderService;
 
 service WorkOrderService{
-  rpc ChangeOrderPriority(structures.ChangePriorityRequest)returns(structures.WorkOrder){}
-  rpc Close(TransitionOrderRequest)returns(structures.WorkOrder){}
-  rpc Finish(TransitionOrderRequest)returns(structures.WorkOrder){}
-  rpc Hold(TransitionOrderRequest)returns(structures.WorkOrder){}
-  rpc Open(TransitionOrderRequest)returns(structures.WorkOrder){}
-  rpc Quarantine(TransitionOrderRequest)returns(structures.WorkOrder){}
-  rpc Release(TransitionOrderRequest)returns(structures.WorkOrder){}
+  rpc ChangeOrderPriority(structures.ChangePriorityRequest)returns(structures.DWorkOrder){}
+  rpc Close(TransitionOrderRequest)returns(structures.DWorkOrder){}
+  rpc Finish(TransitionOrderRequest)returns(structures.DWorkOrder){}
+  rpc Hold(TransitionOrderRequest)returns(structures.DWorkOrder){}
+  rpc Open(TransitionOrderRequest)returns(structures.DWorkOrder){}
+  rpc Quarantine(TransitionOrderRequest)returns(structures.DWorkOrder){}
+  rpc Release(TransitionOrderRequest)returns(structures.DWorkOrder){}
   rpc DeleteOrder(DeleteOrderRequest)returns(google.protobuf.Empty){}
-  rpc SaveWorkOrder(structures.WorkOrder)returns(structures.WorkOrder){}
-  rpc Ship(TransitionOrderRequest)returns(structures.WorkOrder){}
-  rpc UndoClose(TransitionOrderRequest)returns(structures.WorkOrder){}
+  rpc SaveWorkOrder(structures.DWorkOrder)returns(structures.DWorkOrder){}
+  rpc Ship(TransitionOrderRequest)returns(structures.DWorkOrder){}
+  rpc UndoClose(TransitionOrderRequest)returns(structures.DWorkOrder){}
 
   // This method is used to record a transaction indicating that this
-  // WorkOrder and all of its children (any Lots, Units) have
+  // DWorkOrder and all of its children (any Lots, Units) have
   // started at the route step specified.
-  rpc StartAtRouteStep(StartOrderRequest)returns(structures.WorkOrder){}
+  rpc StartAtRouteStep(StartOrderRequest)returns(structures.DWorkOrder){}
 
   //  This method is used to record a transaction indicating that this
-  //  WorkOrder and all of its children (any  Lots, Units) have
+  //  DWorkOrder and all of its children (any  Lots, Units) have
   //  completed the route step specified.
-  rpc CompleteAtRouteStep(CompleteOrderRequest)returns(structures.WorkOrder){}
+  rpc CompleteAtRouteStep(CompleteOrderRequest)returns(structures.DWorkOrder){}
 }
 
 enum TransitionOrderState{

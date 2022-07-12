@@ -85,7 +85,8 @@ pub mod work_station_service_client {
         pub async fn add_tools(
             &mut self,
             request: impl tonic::IntoRequest<super::AddToolRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkStation>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DWorkStation>, tonic::Status>
+        {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -101,7 +102,8 @@ pub mod work_station_service_client {
         pub async fn change_priority(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ChangePriorityRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkStation>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DWorkStation>, tonic::Status>
+        {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -117,7 +119,8 @@ pub mod work_station_service_client {
         pub async fn remove_tools(
             &mut self,
             request: impl tonic::IntoRequest<super::RemoveToolRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkStation>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DWorkStation>, tonic::Status>
+        {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -142,15 +145,15 @@ pub mod work_station_service_server {
         async fn add_tools(
             &self,
             request: tonic::Request<super::AddToolRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkStation>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DWorkStation>, tonic::Status>;
         async fn change_priority(
             &self,
             request: tonic::Request<super::super::structures::ChangePriorityRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkStation>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DWorkStation>, tonic::Status>;
         async fn remove_tools(
             &self,
             request: tonic::Request<super::RemoveToolRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkStation>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DWorkStation>, tonic::Status>;
     }
     #[derive(Debug)]
     pub struct WorkStationServiceServer<T: WorkStationService> {
@@ -205,7 +208,7 @@ pub mod work_station_service_server {
                     #[allow(non_camel_case_types)]
                     struct AddToolsSvc<T: WorkStationService>(pub Arc<T>);
                     impl<T: WorkStationService> tonic::server::UnaryService<super::AddToolRequest> for AddToolsSvc<T> {
-                        type Response = super::super::structures::WorkStation;
+                        type Response = super::super::structures::DWorkStation;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -239,7 +242,7 @@ pub mod work_station_service_server {
                         tonic::server::UnaryService<super::super::structures::ChangePriorityRequest>
                         for ChangePrioritySvc<T>
                     {
-                        type Response = super::super::structures::WorkStation;
+                        type Response = super::super::structures::DWorkStation;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -275,7 +278,7 @@ pub mod work_station_service_server {
                         tonic::server::UnaryService<super::RemoveToolRequest>
                         for RemoveToolsSvc<T>
                     {
-                        type Response = super::super::structures::WorkStation;
+                        type Response = super::super::structures::DWorkStation;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,

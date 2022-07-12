@@ -9,19 +9,19 @@ package SecurityService;
 
 service SecurityService{
 
-  // user login
+  // DUser login
   rpc Login(UsernameAndPasswordToken) returns (LoginResponse){}
 
-  // user logout
+  // DUser logout
   rpc Logout(UsernameAndPasswordToken) returns (google.protobuf.Empty){}
 
-  // change user password
+  // change DUser password
   rpc ChangePassword(ChangePasswordRequest) returns(google.protobuf.Empty){}
 
 }
 
 message LoginResponse{
-  structures.User user = 1;
+  structures.DUser DUser = 1;
   string access_token = 2;
 }
 

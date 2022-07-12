@@ -48,79 +48,79 @@ impl ObjectStorageService for ObjectStorageServiceImpl {
         todo!()
     }
 
-    async fn change_production_line_priority(&self, request: Request<ChangePriorityRequest>) -> Result<Response<ProductionLine>, Status> {
+    async fn change_production_line_priority(&self, request: Request<ChangePriorityRequest>) -> Result<Response<DProductionLine>, Status> {
         todo!()
     }
 
-    async fn change_equipment_priority(&self, request: Request<ChangePriorityRequest>) -> Result<Response<Equipment>, Status> {
+    async fn change_equipment_priority(&self, request: Request<ChangePriorityRequest>) -> Result<Response<DEquipment>, Status> {
         todo!()
     }
 
-    async fn save_user(&self, request: Request<User>) -> Result<Response<User>, Status> {
+    async fn save_user(&self, request: Request<DUser>) -> Result<Response<DUser>, Status> {
         todo!()
     }
 
-    async fn save_bom(&self, request: Request<Bom>) -> Result<Response<Bom>, Status> {
+    async fn save_bom(&self, request: Request<DBom>) -> Result<Response<DBom>, Status> {
         todo!()
     }
 
-    async fn save_runtime_bom(&self, request: Request<RuntimeBom>) -> Result<Response<RuntimeBom>, Status> {
+    async fn save_runtime_bom(&self, request: Request<DRuntimeBom>) -> Result<Response<DRuntimeBom>, Status> {
         todo!()
     }
 
-    async fn save_equipment(&self, request: Request<Equipment>) -> Result<Response<Equipment>, Status> {
+    async fn save_equipment(&self, request: Request<DEquipment>) -> Result<Response<DEquipment>, Status> {
         todo!()
     }
 
-    async fn save_workshop(&self, request: Request<Workshop>) -> Result<Response<Workshop>, Status> {
+    async fn save_workshop(&self, request: Request<DWorkshop>) -> Result<Response<DWorkshop>, Status> {
         todo!()
     }
 
-    async fn save_factory(&self, request: Request<Factory>) -> Result<Response<Factory>, Status> {
+    async fn save_factory(&self, request: Request<DFactory>) -> Result<Response<DFactory>, Status> {
         todo!()
     }
 
-    async fn save_shift(&self, request: Request<Shift>) -> Result<Response<Shift>, Status> {
+    async fn save_shift(&self, request: Request<DShift>) -> Result<Response<DShift>, Status> {
         todo!()
     }
 
-    async fn save_work_station(&self, request: Request<WorkStation>) -> Result<Response<WorkStation>, Status> {
+    async fn save_work_station(&self, request: Request<DWorkStation>) -> Result<Response<DWorkStation>, Status> {
         todo!()
     }
 
-    async fn save_equipment_class(&self, request: Request<EquipmentClass>) -> Result<Response<EquipmentClass>, Status> {
+    async fn save_equipment_class(&self, request: Request<DEquipmentClass>) -> Result<Response<DEquipmentClass>, Status> {
         todo!()
     }
 
-    async fn save_part_class(&self, request: Request<PartClass>) -> Result<Response<PartClass>, Status> {
+    async fn save_part_class(&self, request: Request<DPartClass>) -> Result<Response<DPartClass>, Status> {
         todo!()
     }
 
-    async fn save_part(&self, request: Request<Part>) -> Result<Response<Part>, Status> {
+    async fn save_part(&self, request: Request<DPart>) -> Result<Response<DPart>, Status> {
         todo!()
     }
 
-    async fn save_location(&self, request: Request<Location>) -> Result<Response<Location>, Status> {
+    async fn save_location(&self, request: Request<DLocation>) -> Result<Response<DLocation>, Status> {
         todo!()
     }
 
-    async fn save_route(&self, request: Request<Route>) -> Result<Response<Route>, Status> {
+    async fn save_route(&self, request: Request<DRoute>) -> Result<Response<DRoute>, Status> {
         todo!()
     }
 
-    async fn save_route_operation(&self, request: Request<RouteOperation>) -> Result<Response<RouteOperation>, Status> {
+    async fn save_route_operation(&self, request: Request<DRouteOperation>) -> Result<Response<DRouteOperation>, Status> {
         todo!()
     }
 
-    async fn save_doc(&self, request: Request<Doc>) -> Result<Response<Doc>, Status> {
+    async fn save_doc(&self, request: Request<DDoc>) -> Result<Response<DDoc>, Status> {
         todo!()
     }
 
-    async fn save_customer(&self, request: Request<Customer>) -> Result<Response<Customer>, Status> {
+    async fn save_customer(&self, request: Request<DCustomer>) -> Result<Response<DCustomer>, Status> {
         todo!()
     }
 
-    async fn save_supplier(&self, request: Request<Supplier>) -> Result<Response<Supplier>, Status> {
+    async fn save_supplier(&self, request: Request<DSupplier>) -> Result<Response<DSupplier>, Status> {
         todo!()
     }
 }

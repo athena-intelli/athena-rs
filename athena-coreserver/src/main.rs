@@ -17,6 +17,7 @@ use crate::services::work_order_service::WorkOrderServiceImpl;
 use crate::services::work_station_service::WorkStationServiceImpl;
 
 mod services;
+mod types;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -41,6 +42,5 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .add_service(station_service)
         .serve(addr)
         .await?;
-
     Ok(())
 }

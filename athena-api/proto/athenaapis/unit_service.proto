@@ -8,35 +8,35 @@ package UnitService;
 
 service UnitService{
 
-  rpc AddToQueue(AddUnitToQueueRequest) returns(structures.Unit){}
-  rpc SaveUnit(structures.Unit) returns(structures.Unit){}
-  rpc Cancel(TransitionUnitRequest)returns(structures.Unit){}
-  rpc Close(TransitionUnitRequest)returns(structures.Unit){}
-  rpc Finish(TransitionUnitRequest)returns(structures.Unit){}
-  rpc Hold(TransitionUnitRequest)returns(structures.Unit){}
-  rpc Pause(TransitionUnitRequest)returns(structures.Unit){}
-  rpc Quarantine(TransitionUnitRequest)returns(structures.Unit){}
-  rpc Release(TransitionUnitRequest)returns(structures.Unit){}
-  rpc Ship(TransitionUnitRequest)returns(structures.Unit){}
-  rpc Scrap(TransitionUnitRequest)returns(structures.Unit){}
-  rpc UndoClose(TransitionUnitRequest)returns(structures.Unit){}
-  rpc UndoFinish(TransitionUnitRequest)returns(structures.Unit){}
-  rpc UndoScrap(TransitionUnitRequest)returns(structures.Unit){}
-  rpc UndoShip(TransitionUnitRequest)returns(structures.Unit){}
-  rpc ChangeBom(UnitChangeBomRequest)returns(structures.Unit){}
-  rpc ChangeBomFromPart(UnitChangeBomFromPartRequest)returns(structures.Unit){}
-  rpc ChangeLot(ChangeLotRequest)returns(structures.Unit){}
-  rpc ChangePart(UnitChangePartRequest)returns(structures.Unit){}
-  rpc ChangePartOnly(UnitChangePartRequest)returns(structures.Unit){}
-  rpc ChangePriority(structures.ChangePriorityRequest)returns(structures.Unit){}
-  rpc ChangeProductionLine(ChangeProductionLineRequest)returns(structures.Unit){}
-  rpc ChangeRoute(UnitChangeRouteRequest)returns(structures.Unit){}
-  rpc ChangeSerialNumber(ChangeSerialNumberRequest)returns(structures.Unit){}
-  rpc CompleteAtRouteStep(UnitCompleteAtRouteStepRequest)returns(structures.Unit){}
-  rpc StartAtRouteStep(UnitStartAtRouteStepRequest)returns(structures.Unit){}
-  rpc Restart(RestartUnitRequest)returns(structures.Unit){}
-  rpc CreateStandAloneUnit(CreateStandAloneUnitRequest)returns(structures.Unit){}
-  rpc CreateStandAloneUnits(CreateStandAloneUnitRequest)returns(stream structures.Unit){}
+  rpc AddToQueue(AddUnitToQueueRequest) returns(structures.DUnit){}
+  rpc SaveUnit(structures.DUnit) returns(structures.DUnit){}
+  rpc Cancel(TransitionUnitRequest)returns(structures.DUnit){}
+  rpc Close(TransitionUnitRequest)returns(structures.DUnit){}
+  rpc Finish(TransitionUnitRequest)returns(structures.DUnit){}
+  rpc Hold(TransitionUnitRequest)returns(structures.DUnit){}
+  rpc Pause(TransitionUnitRequest)returns(structures.DUnit){}
+  rpc Quarantine(TransitionUnitRequest)returns(structures.DUnit){}
+  rpc Release(TransitionUnitRequest)returns(structures.DUnit){}
+  rpc Ship(TransitionUnitRequest)returns(structures.DUnit){}
+  rpc Scrap(TransitionUnitRequest)returns(structures.DUnit){}
+  rpc UndoClose(TransitionUnitRequest)returns(structures.DUnit){}
+  rpc UndoFinish(TransitionUnitRequest)returns(structures.DUnit){}
+  rpc UndoScrap(TransitionUnitRequest)returns(structures.DUnit){}
+  rpc UndoShip(TransitionUnitRequest)returns(structures.DUnit){}
+  rpc ChangeBom(UnitChangeBomRequest)returns(structures.DUnit){}
+  rpc ChangeBomFromPart(UnitChangeBomFromPartRequest)returns(structures.DUnit){}
+  rpc ChangeLot(ChangeLotRequest)returns(structures.DUnit){}
+  rpc ChangePart(UnitChangePartRequest)returns(structures.DUnit){}
+  rpc ChangePartOnly(UnitChangePartRequest)returns(structures.DUnit){}
+  rpc ChangePriority(structures.ChangePriorityRequest)returns(structures.DUnit){}
+  rpc ChangeProductionLine(ChangeProductionLineRequest)returns(structures.DUnit){}
+  rpc ChangeRoute(UnitChangeRouteRequest)returns(structures.DUnit){}
+  rpc ChangeSerialNumber(ChangeSerialNumberRequest)returns(structures.DUnit){}
+  rpc CompleteAtRouteStep(UnitCompleteAtRouteStepRequest)returns(structures.DUnit){}
+  rpc StartAtRouteStep(UnitStartAtRouteStepRequest)returns(structures.DUnit){}
+  rpc Restart(RestartUnitRequest)returns(structures.DUnit){}
+  rpc CreateStandAloneUnit(CreateStandAloneUnitRequest)returns(structures.DUnit){}
+  rpc CreateStandAloneUnits(CreateStandAloneUnitRequest)returns(stream structures.DUnit){}
 
 }
 
@@ -66,6 +66,7 @@ message UnitStartAtRouteStepRequest{
   google.protobuf.Timestamp transaction_time = 4;
   bool override_route_enforcement = 5;
 }
+
 message UnitCompleteAtRouteStepRequest{
   uint64 unit_id = 1;
   string route_step_number = 2;
@@ -125,7 +126,7 @@ message UnitChangeBomFromPartRequest{
   uint64 unit_id = 1;
   string part_number = 2;
   string part_revision = 3;
-  structures.Bom bom = 4;
+  structures.DBom bom = 4;
   string comment = 5;
   google.protobuf.Timestamp transaction_time = 6;
 }

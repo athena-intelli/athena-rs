@@ -1,10 +1,9 @@
-mod types;
+use lazy_static::lazy_static;
 
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        let result = 2 + 2;
-        assert_eq!(result, 4);
-    }
+mod types;
+mod client;
+
+
+lazy_static! {
+ pub static ref ATHENA_CLIENT: client::AthenaClient = client::AthenaClient::init();
 }

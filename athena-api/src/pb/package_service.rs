@@ -214,11 +214,11 @@ pub mod package_service_client {
             self.inner = self.inner.accept_gzip();
             self
         }
-        #[doc = "This method is used to add a container to a container"]
+        #[doc = "This method is used to add a DContainer to a DContainer"]
         pub async fn add_container_to_container(
             &mut self,
             request: impl tonic::IntoRequest<super::HandleContainerRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -231,11 +231,11 @@ pub mod package_service_client {
             );
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = "This method is used to add a lot to a container"]
+        #[doc = "This method is used to add a lot to a DContainer"]
         pub async fn add_lot_to_container(
             &mut self,
             request: impl tonic::IntoRequest<super::HandleLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -248,13 +248,13 @@ pub mod package_service_client {
             );
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = " This method is used to record a transaction indicating that a DContainer and all"]
         #[doc = "  of its contents (any contained containers, lots and units) has been moved to"]
         #[doc = "  the queue specified."]
         pub async fn add_container_to_queue(
             &mut self,
             request: impl tonic::IntoRequest<super::AddContainerToQueueRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -267,11 +267,11 @@ pub mod package_service_client {
             );
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = "This method is used to add a unit to a container"]
+        #[doc = "This method is used to add a unit to a DContainer"]
         pub async fn add_unit_to_container(
             &mut self,
             request: impl tonic::IntoRequest<super::HandleUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -284,12 +284,12 @@ pub mod package_service_client {
             );
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = "This method is used to change the production line of a container and all of its"]
+        #[doc = "This method is used to change the production line of a DContainer and all of its"]
         #[doc = "  contents (any contained containers, lots and units)."]
         pub async fn change_production_line(
             &mut self,
             request: impl tonic::IntoRequest<super::ChangePLineRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -302,12 +302,12 @@ pub mod package_service_client {
             );
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = "This method is used to change the route of a container and all of its contents"]
+        #[doc = "This method is used to change the route of a DContainer and all of its contents"]
         #[doc = " (any contained containers, lots and units)."]
         pub async fn change_route(
             &mut self,
             request: impl tonic::IntoRequest<super::ContainerChangeRouteRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -319,12 +319,12 @@ pub mod package_service_client {
                 http::uri::PathAndQuery::from_static("/PackageService.PackageService/ChangeRoute");
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = "This method is used to record a transaction indicating that a container and all"]
+        #[doc = "This method is used to record a transaction indicating that a DContainer and all"]
         #[doc = " of its contents (any contained containers, lots and units) have closed."]
         pub async fn close(
             &mut self,
             request: impl tonic::IntoRequest<super::ContainerTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -336,13 +336,13 @@ pub mod package_service_client {
             self.inner.unary(request.into_request(), path, codec).await
         }
         #[doc = "*"]
-        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = " This method is used to record a transaction indicating that a DContainer and all"]
         #[doc = " of its contents (any contained containers, lots and units) have completed the"]
         #[doc = " route step specified."]
         pub async fn complete_at_route_step(
             &mut self,
             request: impl tonic::IntoRequest<super::ContainerCompleteRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -356,13 +356,13 @@ pub mod package_service_client {
             self.inner.unary(request.into_request(), path, codec).await
         }
         #[doc = "*"]
-        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = " This method is used to record a transaction indicating that a DContainer and all"]
         #[doc = " of its contents (any contained containers, lots and units) have started the"]
         #[doc = " route step specified."]
         pub async fn start_at_route_step(
             &mut self,
             request: impl tonic::IntoRequest<super::ContainerStartRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -375,12 +375,12 @@ pub mod package_service_client {
             );
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = " This method is used to record a transaction indicating that a DContainer and all"]
         #[doc = "   of its contents (any contained containers, lots and units) have finished."]
         pub async fn finish(
             &mut self,
             request: impl tonic::IntoRequest<super::ContainerTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -392,14 +392,14 @@ pub mod package_service_client {
                 http::uri::PathAndQuery::from_static("/PackageService.PackageService/Finish");
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = " This method is used to record a transaction indicating that a DContainer and all"]
         #[doc = "     of its contents (any contained containers, lots and units) have been placed on"]
         #[doc = "     hold. When an object is on hold no other transactions may be performed on"]
         #[doc = "     it, until it is released"]
         pub async fn hold(
             &mut self,
             request: impl tonic::IntoRequest<super::ContainerTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -410,14 +410,14 @@ pub mod package_service_client {
             let path = http::uri::PathAndQuery::from_static("/PackageService.PackageService/Hold");
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = "This method is used to record a transaction indicating that a container and its"]
-        #[doc = "     * containers (any container containers) have opened. The open"]
+        #[doc = "This method is used to record a transaction indicating that a DContainer and its"]
+        #[doc = "     * containers (any DContainer containers) have opened. The open"]
         #[doc = "     * method is equivalent to the undoClose method, except that it propagates"]
-        #[doc = "     * upward to the Container's containers instead of downward to the Container's contents."]
+        #[doc = "     * upward to the DContainer's containers instead of downward to the DContainer's contents."]
         pub async fn open(
             &mut self,
             request: impl tonic::IntoRequest<super::ContainerTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -429,14 +429,14 @@ pub mod package_service_client {
             self.inner.unary(request.into_request(), path, codec).await
         }
         #[doc = "*"]
-        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = " This method is used to record a transaction indicating that a DContainer and all"]
         #[doc = " of its contents (any contained containers, lots and units) have stopped"]
         #[doc = " processing. When an object is paused no other transactions may be"]
         #[doc = " performed on it, until it is restarted."]
         pub async fn pause(
             &mut self,
             request: impl tonic::IntoRequest<super::ContainerTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -448,13 +448,13 @@ pub mod package_service_client {
             self.inner.unary(request.into_request(), path, codec).await
         }
         #[doc = "*"]
-        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = " This method is used to record a transaction indicating that a DContainer and all"]
         #[doc = " of its contents (any contained containers, lots and units) have been released"]
         #[doc = " from hold or quarantine."]
         pub async fn release(
             &mut self,
             request: impl tonic::IntoRequest<super::ContainerTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -467,12 +467,12 @@ pub mod package_service_client {
             self.inner.unary(request.into_request(), path, codec).await
         }
         #[doc = "*"]
-        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = " This method is used to record a transaction indicating that a DContainer and all"]
         #[doc = " of its contents (any contained containers, lots and units) has been scrapped."]
         pub async fn scrap(
             &mut self,
             request: impl tonic::IntoRequest<super::ContainerTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -483,11 +483,11 @@ pub mod package_service_client {
             let path = http::uri::PathAndQuery::from_static("/PackageService.PackageService/Scrap");
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = "This method removes everything from a container."]
+        #[doc = "This method removes everything from a DContainer."]
         pub async fn remove_all(
             &mut self,
             request: impl tonic::IntoRequest<super::ClearContainerRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -499,7 +499,7 @@ pub mod package_service_client {
                 http::uri::PathAndQuery::from_static("/PackageService.PackageService/RemoveAll");
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = "This method is used to remove a container from a container."]
+        #[doc = "This method is used to remove a DContainer from a DContainer."]
         pub async fn remove_container(
             &mut self,
             request: impl tonic::IntoRequest<super::HandleContainerRequest>,
@@ -516,7 +516,7 @@ pub mod package_service_client {
             );
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = "This method is used to remove a lot from a container."]
+        #[doc = "This method is used to remove a lot from a DContainer."]
         pub async fn remove_lot(
             &mut self,
             request: impl tonic::IntoRequest<super::HandleLotRequest>,
@@ -532,7 +532,7 @@ pub mod package_service_client {
                 http::uri::PathAndQuery::from_static("/PackageService.PackageService/RemoveLot");
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = "This method is used to remove a unit from a container."]
+        #[doc = "This method is used to remove a unit from a DContainer."]
         pub async fn remove_unit(
             &mut self,
             request: impl tonic::IntoRequest<super::HandleUnitRequest>,
@@ -549,11 +549,11 @@ pub mod package_service_client {
             self.inner.unary(request.into_request(), path, codec).await
         }
         #[doc = "*"]
-        #[doc = " This method is used to save or update a container."]
+        #[doc = " This method is used to save or update a DContainer."]
         pub async fn save_container(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::structures::Container>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::super::structures::DContainer>,
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -575,134 +575,134 @@ pub mod package_service_server {
     #[doc = "Generated trait containing gRPC methods that should be implemented for use with PackageServiceServer."]
     #[async_trait]
     pub trait PackageService: Send + Sync + 'static {
-        #[doc = "This method is used to add a container to a container"]
+        #[doc = "This method is used to add a DContainer to a DContainer"]
         async fn add_container_to_container(
             &self,
             request: tonic::Request<super::HandleContainerRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
-        #[doc = "This method is used to add a lot to a container"]
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status>;
+        #[doc = "This method is used to add a lot to a DContainer"]
         async fn add_lot_to_container(
             &self,
             request: tonic::Request<super::HandleLotRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
-        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status>;
+        #[doc = " This method is used to record a transaction indicating that a DContainer and all"]
         #[doc = "  of its contents (any contained containers, lots and units) has been moved to"]
         #[doc = "  the queue specified."]
         async fn add_container_to_queue(
             &self,
             request: tonic::Request<super::AddContainerToQueueRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
-        #[doc = "This method is used to add a unit to a container"]
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status>;
+        #[doc = "This method is used to add a unit to a DContainer"]
         async fn add_unit_to_container(
             &self,
             request: tonic::Request<super::HandleUnitRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
-        #[doc = "This method is used to change the production line of a container and all of its"]
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status>;
+        #[doc = "This method is used to change the production line of a DContainer and all of its"]
         #[doc = "  contents (any contained containers, lots and units)."]
         async fn change_production_line(
             &self,
             request: tonic::Request<super::ChangePLineRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
-        #[doc = "This method is used to change the route of a container and all of its contents"]
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status>;
+        #[doc = "This method is used to change the route of a DContainer and all of its contents"]
         #[doc = " (any contained containers, lots and units)."]
         async fn change_route(
             &self,
             request: tonic::Request<super::ContainerChangeRouteRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
-        #[doc = "This method is used to record a transaction indicating that a container and all"]
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status>;
+        #[doc = "This method is used to record a transaction indicating that a DContainer and all"]
         #[doc = " of its contents (any contained containers, lots and units) have closed."]
         async fn close(
             &self,
             request: tonic::Request<super::ContainerTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status>;
         #[doc = "*"]
-        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = " This method is used to record a transaction indicating that a DContainer and all"]
         #[doc = " of its contents (any contained containers, lots and units) have completed the"]
         #[doc = " route step specified."]
         async fn complete_at_route_step(
             &self,
             request: tonic::Request<super::ContainerCompleteRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status>;
         #[doc = "*"]
-        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = " This method is used to record a transaction indicating that a DContainer and all"]
         #[doc = " of its contents (any contained containers, lots and units) have started the"]
         #[doc = " route step specified."]
         async fn start_at_route_step(
             &self,
             request: tonic::Request<super::ContainerStartRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
-        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status>;
+        #[doc = " This method is used to record a transaction indicating that a DContainer and all"]
         #[doc = "   of its contents (any contained containers, lots and units) have finished."]
         async fn finish(
             &self,
             request: tonic::Request<super::ContainerTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
-        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status>;
+        #[doc = " This method is used to record a transaction indicating that a DContainer and all"]
         #[doc = "     of its contents (any contained containers, lots and units) have been placed on"]
         #[doc = "     hold. When an object is on hold no other transactions may be performed on"]
         #[doc = "     it, until it is released"]
         async fn hold(
             &self,
             request: tonic::Request<super::ContainerTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
-        #[doc = "This method is used to record a transaction indicating that a container and its"]
-        #[doc = "     * containers (any container containers) have opened. The open"]
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status>;
+        #[doc = "This method is used to record a transaction indicating that a DContainer and its"]
+        #[doc = "     * containers (any DContainer containers) have opened. The open"]
         #[doc = "     * method is equivalent to the undoClose method, except that it propagates"]
-        #[doc = "     * upward to the Container's containers instead of downward to the Container's contents."]
+        #[doc = "     * upward to the DContainer's containers instead of downward to the DContainer's contents."]
         async fn open(
             &self,
             request: tonic::Request<super::ContainerTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status>;
         #[doc = "*"]
-        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = " This method is used to record a transaction indicating that a DContainer and all"]
         #[doc = " of its contents (any contained containers, lots and units) have stopped"]
         #[doc = " processing. When an object is paused no other transactions may be"]
         #[doc = " performed on it, until it is restarted."]
         async fn pause(
             &self,
             request: tonic::Request<super::ContainerTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status>;
         #[doc = "*"]
-        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = " This method is used to record a transaction indicating that a DContainer and all"]
         #[doc = " of its contents (any contained containers, lots and units) have been released"]
         #[doc = " from hold or quarantine."]
         async fn release(
             &self,
             request: tonic::Request<super::ContainerTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status>;
         #[doc = "*"]
-        #[doc = " This method is used to record a transaction indicating that a container and all"]
+        #[doc = " This method is used to record a transaction indicating that a DContainer and all"]
         #[doc = " of its contents (any contained containers, lots and units) has been scrapped."]
         async fn scrap(
             &self,
             request: tonic::Request<super::ContainerTransactionRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
-        #[doc = "This method removes everything from a container."]
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status>;
+        #[doc = "This method removes everything from a DContainer."]
         async fn remove_all(
             &self,
             request: tonic::Request<super::ClearContainerRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
-        #[doc = "This method is used to remove a container from a container."]
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status>;
+        #[doc = "This method is used to remove a DContainer from a DContainer."]
         async fn remove_container(
             &self,
             request: tonic::Request<super::HandleContainerRequest>,
         ) -> Result<tonic::Response<()>, tonic::Status>;
-        #[doc = "This method is used to remove a lot from a container."]
+        #[doc = "This method is used to remove a lot from a DContainer."]
         async fn remove_lot(
             &self,
             request: tonic::Request<super::HandleLotRequest>,
         ) -> Result<tonic::Response<()>, tonic::Status>;
-        #[doc = "This method is used to remove a unit from a container."]
+        #[doc = "This method is used to remove a unit from a DContainer."]
         async fn remove_unit(
             &self,
             request: tonic::Request<super::HandleUnitRequest>,
         ) -> Result<tonic::Response<()>, tonic::Status>;
         #[doc = "*"]
-        #[doc = " This method is used to save or update a container."]
+        #[doc = " This method is used to save or update a DContainer."]
         async fn save_container(
             &self,
-            request: tonic::Request<super::super::structures::Container>,
-        ) -> Result<tonic::Response<super::super::structures::Container>, tonic::Status>;
+            request: tonic::Request<super::super::structures::DContainer>,
+        ) -> Result<tonic::Response<super::super::structures::DContainer>, tonic::Status>;
     }
     #[derive(Debug)]
     pub struct PackageServiceServer<T: PackageService> {
@@ -760,7 +760,7 @@ pub mod package_service_server {
                         tonic::server::UnaryService<super::HandleContainerRequest>
                         for AddContainerToContainerSvc<T>
                     {
-                        type Response = super::super::structures::Container;
+                        type Response = super::super::structures::DContainer;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -794,7 +794,7 @@ pub mod package_service_server {
                     impl<T: PackageService> tonic::server::UnaryService<super::HandleLotRequest>
                         for AddLotToContainerSvc<T>
                     {
-                        type Response = super::super::structures::Container;
+                        type Response = super::super::structures::DContainer;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -828,7 +828,7 @@ pub mod package_service_server {
                         tonic::server::UnaryService<super::AddContainerToQueueRequest>
                         for AddContainerToQueueSvc<T>
                     {
-                        type Response = super::super::structures::Container;
+                        type Response = super::super::structures::DContainer;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -861,7 +861,7 @@ pub mod package_service_server {
                     impl<T: PackageService> tonic::server::UnaryService<super::HandleUnitRequest>
                         for AddUnitToContainerSvc<T>
                     {
-                        type Response = super::super::structures::Container;
+                        type Response = super::super::structures::DContainer;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -894,7 +894,7 @@ pub mod package_service_server {
                     impl<T: PackageService> tonic::server::UnaryService<super::ChangePLineRequest>
                         for ChangeProductionLineSvc<T>
                     {
-                        type Response = super::super::structures::Container;
+                        type Response = super::super::structures::DContainer;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -928,7 +928,7 @@ pub mod package_service_server {
                         tonic::server::UnaryService<super::ContainerChangeRouteRequest>
                         for ChangeRouteSvc<T>
                     {
-                        type Response = super::super::structures::Container;
+                        type Response = super::super::structures::DContainer;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -962,7 +962,7 @@ pub mod package_service_server {
                         tonic::server::UnaryService<super::ContainerTransactionRequest>
                         for CloseSvc<T>
                     {
-                        type Response = super::super::structures::Container;
+                        type Response = super::super::structures::DContainer;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -996,7 +996,7 @@ pub mod package_service_server {
                         tonic::server::UnaryService<super::ContainerCompleteRequest>
                         for CompleteAtRouteStepSvc<T>
                     {
-                        type Response = super::super::structures::Container;
+                        type Response = super::super::structures::DContainer;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1030,7 +1030,7 @@ pub mod package_service_server {
                         tonic::server::UnaryService<super::ContainerStartRequest>
                         for StartAtRouteStepSvc<T>
                     {
-                        type Response = super::super::structures::Container;
+                        type Response = super::super::structures::DContainer;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1064,7 +1064,7 @@ pub mod package_service_server {
                         tonic::server::UnaryService<super::ContainerTransactionRequest>
                         for FinishSvc<T>
                     {
-                        type Response = super::super::structures::Container;
+                        type Response = super::super::structures::DContainer;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1098,7 +1098,7 @@ pub mod package_service_server {
                         tonic::server::UnaryService<super::ContainerTransactionRequest>
                         for HoldSvc<T>
                     {
-                        type Response = super::super::structures::Container;
+                        type Response = super::super::structures::DContainer;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1132,7 +1132,7 @@ pub mod package_service_server {
                         tonic::server::UnaryService<super::ContainerTransactionRequest>
                         for OpenSvc<T>
                     {
-                        type Response = super::super::structures::Container;
+                        type Response = super::super::structures::DContainer;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1166,7 +1166,7 @@ pub mod package_service_server {
                         tonic::server::UnaryService<super::ContainerTransactionRequest>
                         for PauseSvc<T>
                     {
-                        type Response = super::super::structures::Container;
+                        type Response = super::super::structures::DContainer;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1200,7 +1200,7 @@ pub mod package_service_server {
                         tonic::server::UnaryService<super::ContainerTransactionRequest>
                         for ReleaseSvc<T>
                     {
-                        type Response = super::super::structures::Container;
+                        type Response = super::super::structures::DContainer;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1234,7 +1234,7 @@ pub mod package_service_server {
                         tonic::server::UnaryService<super::ContainerTransactionRequest>
                         for ScrapSvc<T>
                     {
-                        type Response = super::super::structures::Container;
+                        type Response = super::super::structures::DContainer;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1268,7 +1268,7 @@ pub mod package_service_server {
                         tonic::server::UnaryService<super::ClearContainerRequest>
                         for RemoveAllSvc<T>
                     {
-                        type Response = super::super::structures::Container;
+                        type Response = super::super::structures::DContainer;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1395,14 +1395,14 @@ pub mod package_service_server {
                     #[allow(non_camel_case_types)]
                     struct SaveContainerSvc<T: PackageService>(pub Arc<T>);
                     impl<T: PackageService>
-                        tonic::server::UnaryService<super::super::structures::Container>
+                        tonic::server::UnaryService<super::super::structures::DContainer>
                         for SaveContainerSvc<T>
                     {
-                        type Response = super::super::structures::Container;
+                        type Response = super::super::structures::DContainer;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::super::structures::Container>,
+                            request: tonic::Request<super::super::structures::DContainer>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).save_container(request).await };

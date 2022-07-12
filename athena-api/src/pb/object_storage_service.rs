@@ -231,7 +231,7 @@ pub mod object_storage_service_client {
         pub async fn change_production_line_priority(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ChangePriorityRequest>,
-        ) -> Result<tonic::Response<super::super::structures::ProductionLine>, tonic::Status>
+        ) -> Result<tonic::Response<super::super::structures::DProductionLine>, tonic::Status>
         {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
@@ -248,7 +248,7 @@ pub mod object_storage_service_client {
         pub async fn change_equipment_priority(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ChangePriorityRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Equipment>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DEquipment>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -263,8 +263,8 @@ pub mod object_storage_service_client {
         }
         pub async fn save_user(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::structures::User>,
-        ) -> Result<tonic::Response<super::super::structures::User>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::super::structures::DUser>,
+        ) -> Result<tonic::Response<super::super::structures::DUser>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -279,8 +279,8 @@ pub mod object_storage_service_client {
         }
         pub async fn save_bom(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::structures::Bom>,
-        ) -> Result<tonic::Response<super::super::structures::Bom>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::super::structures::DBom>,
+        ) -> Result<tonic::Response<super::super::structures::DBom>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -295,8 +295,8 @@ pub mod object_storage_service_client {
         }
         pub async fn save_runtime_bom(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::structures::RuntimeBom>,
-        ) -> Result<tonic::Response<super::super::structures::RuntimeBom>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::super::structures::DRuntimeBom>,
+        ) -> Result<tonic::Response<super::super::structures::DRuntimeBom>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -311,8 +311,8 @@ pub mod object_storage_service_client {
         }
         pub async fn save_equipment(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::structures::Equipment>,
-        ) -> Result<tonic::Response<super::super::structures::Equipment>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::super::structures::DEquipment>,
+        ) -> Result<tonic::Response<super::super::structures::DEquipment>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -327,8 +327,8 @@ pub mod object_storage_service_client {
         }
         pub async fn save_workshop(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::structures::Workshop>,
-        ) -> Result<tonic::Response<super::super::structures::Workshop>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::super::structures::DWorkshop>,
+        ) -> Result<tonic::Response<super::super::structures::DWorkshop>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -343,8 +343,8 @@ pub mod object_storage_service_client {
         }
         pub async fn save_factory(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::structures::Factory>,
-        ) -> Result<tonic::Response<super::super::structures::Factory>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::super::structures::DFactory>,
+        ) -> Result<tonic::Response<super::super::structures::DFactory>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -359,8 +359,8 @@ pub mod object_storage_service_client {
         }
         pub async fn save_shift(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::structures::Shift>,
-        ) -> Result<tonic::Response<super::super::structures::Shift>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::super::structures::DShift>,
+        ) -> Result<tonic::Response<super::super::structures::DShift>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -375,8 +375,9 @@ pub mod object_storage_service_client {
         }
         pub async fn save_work_station(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::structures::WorkStation>,
-        ) -> Result<tonic::Response<super::super::structures::WorkStation>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::super::structures::DWorkStation>,
+        ) -> Result<tonic::Response<super::super::structures::DWorkStation>, tonic::Status>
+        {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -391,8 +392,8 @@ pub mod object_storage_service_client {
         }
         pub async fn save_equipment_class(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::structures::EquipmentClass>,
-        ) -> Result<tonic::Response<super::super::structures::EquipmentClass>, tonic::Status>
+            request: impl tonic::IntoRequest<super::super::structures::DEquipmentClass>,
+        ) -> Result<tonic::Response<super::super::structures::DEquipmentClass>, tonic::Status>
         {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
@@ -408,8 +409,8 @@ pub mod object_storage_service_client {
         }
         pub async fn save_part_class(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::structures::PartClass>,
-        ) -> Result<tonic::Response<super::super::structures::PartClass>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::super::structures::DPartClass>,
+        ) -> Result<tonic::Response<super::super::structures::DPartClass>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -424,8 +425,8 @@ pub mod object_storage_service_client {
         }
         pub async fn save_part(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::structures::Part>,
-        ) -> Result<tonic::Response<super::super::structures::Part>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::super::structures::DPart>,
+        ) -> Result<tonic::Response<super::super::structures::DPart>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -440,8 +441,8 @@ pub mod object_storage_service_client {
         }
         pub async fn save_location(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::structures::Location>,
-        ) -> Result<tonic::Response<super::super::structures::Location>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::super::structures::DLocation>,
+        ) -> Result<tonic::Response<super::super::structures::DLocation>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -456,8 +457,8 @@ pub mod object_storage_service_client {
         }
         pub async fn save_route(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::structures::Route>,
-        ) -> Result<tonic::Response<super::super::structures::Route>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::super::structures::DRoute>,
+        ) -> Result<tonic::Response<super::super::structures::DRoute>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -472,8 +473,8 @@ pub mod object_storage_service_client {
         }
         pub async fn save_route_operation(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::structures::RouteOperation>,
-        ) -> Result<tonic::Response<super::super::structures::RouteOperation>, tonic::Status>
+            request: impl tonic::IntoRequest<super::super::structures::DRouteOperation>,
+        ) -> Result<tonic::Response<super::super::structures::DRouteOperation>, tonic::Status>
         {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
@@ -489,8 +490,8 @@ pub mod object_storage_service_client {
         }
         pub async fn save_doc(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::structures::Doc>,
-        ) -> Result<tonic::Response<super::super::structures::Doc>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::super::structures::DDoc>,
+        ) -> Result<tonic::Response<super::super::structures::DDoc>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -505,8 +506,8 @@ pub mod object_storage_service_client {
         }
         pub async fn save_customer(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::structures::Customer>,
-        ) -> Result<tonic::Response<super::super::structures::Customer>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::super::structures::DCustomer>,
+        ) -> Result<tonic::Response<super::super::structures::DCustomer>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -521,8 +522,8 @@ pub mod object_storage_service_client {
         }
         pub async fn save_supplier(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::structures::Supplier>,
-        ) -> Result<tonic::Response<super::super::structures::Supplier>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::super::structures::DSupplier>,
+        ) -> Result<tonic::Response<super::super::structures::DSupplier>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -587,79 +588,79 @@ pub mod object_storage_service_server {
         async fn change_production_line_priority(
             &self,
             request: tonic::Request<super::super::structures::ChangePriorityRequest>,
-        ) -> Result<tonic::Response<super::super::structures::ProductionLine>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DProductionLine>, tonic::Status>;
         async fn change_equipment_priority(
             &self,
             request: tonic::Request<super::super::structures::ChangePriorityRequest>,
-        ) -> Result<tonic::Response<super::super::structures::Equipment>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DEquipment>, tonic::Status>;
         async fn save_user(
             &self,
-            request: tonic::Request<super::super::structures::User>,
-        ) -> Result<tonic::Response<super::super::structures::User>, tonic::Status>;
+            request: tonic::Request<super::super::structures::DUser>,
+        ) -> Result<tonic::Response<super::super::structures::DUser>, tonic::Status>;
         async fn save_bom(
             &self,
-            request: tonic::Request<super::super::structures::Bom>,
-        ) -> Result<tonic::Response<super::super::structures::Bom>, tonic::Status>;
+            request: tonic::Request<super::super::structures::DBom>,
+        ) -> Result<tonic::Response<super::super::structures::DBom>, tonic::Status>;
         async fn save_runtime_bom(
             &self,
-            request: tonic::Request<super::super::structures::RuntimeBom>,
-        ) -> Result<tonic::Response<super::super::structures::RuntimeBom>, tonic::Status>;
+            request: tonic::Request<super::super::structures::DRuntimeBom>,
+        ) -> Result<tonic::Response<super::super::structures::DRuntimeBom>, tonic::Status>;
         async fn save_equipment(
             &self,
-            request: tonic::Request<super::super::structures::Equipment>,
-        ) -> Result<tonic::Response<super::super::structures::Equipment>, tonic::Status>;
+            request: tonic::Request<super::super::structures::DEquipment>,
+        ) -> Result<tonic::Response<super::super::structures::DEquipment>, tonic::Status>;
         async fn save_workshop(
             &self,
-            request: tonic::Request<super::super::structures::Workshop>,
-        ) -> Result<tonic::Response<super::super::structures::Workshop>, tonic::Status>;
+            request: tonic::Request<super::super::structures::DWorkshop>,
+        ) -> Result<tonic::Response<super::super::structures::DWorkshop>, tonic::Status>;
         async fn save_factory(
             &self,
-            request: tonic::Request<super::super::structures::Factory>,
-        ) -> Result<tonic::Response<super::super::structures::Factory>, tonic::Status>;
+            request: tonic::Request<super::super::structures::DFactory>,
+        ) -> Result<tonic::Response<super::super::structures::DFactory>, tonic::Status>;
         async fn save_shift(
             &self,
-            request: tonic::Request<super::super::structures::Shift>,
-        ) -> Result<tonic::Response<super::super::structures::Shift>, tonic::Status>;
+            request: tonic::Request<super::super::structures::DShift>,
+        ) -> Result<tonic::Response<super::super::structures::DShift>, tonic::Status>;
         async fn save_work_station(
             &self,
-            request: tonic::Request<super::super::structures::WorkStation>,
-        ) -> Result<tonic::Response<super::super::structures::WorkStation>, tonic::Status>;
+            request: tonic::Request<super::super::structures::DWorkStation>,
+        ) -> Result<tonic::Response<super::super::structures::DWorkStation>, tonic::Status>;
         async fn save_equipment_class(
             &self,
-            request: tonic::Request<super::super::structures::EquipmentClass>,
-        ) -> Result<tonic::Response<super::super::structures::EquipmentClass>, tonic::Status>;
+            request: tonic::Request<super::super::structures::DEquipmentClass>,
+        ) -> Result<tonic::Response<super::super::structures::DEquipmentClass>, tonic::Status>;
         async fn save_part_class(
             &self,
-            request: tonic::Request<super::super::structures::PartClass>,
-        ) -> Result<tonic::Response<super::super::structures::PartClass>, tonic::Status>;
+            request: tonic::Request<super::super::structures::DPartClass>,
+        ) -> Result<tonic::Response<super::super::structures::DPartClass>, tonic::Status>;
         async fn save_part(
             &self,
-            request: tonic::Request<super::super::structures::Part>,
-        ) -> Result<tonic::Response<super::super::structures::Part>, tonic::Status>;
+            request: tonic::Request<super::super::structures::DPart>,
+        ) -> Result<tonic::Response<super::super::structures::DPart>, tonic::Status>;
         async fn save_location(
             &self,
-            request: tonic::Request<super::super::structures::Location>,
-        ) -> Result<tonic::Response<super::super::structures::Location>, tonic::Status>;
+            request: tonic::Request<super::super::structures::DLocation>,
+        ) -> Result<tonic::Response<super::super::structures::DLocation>, tonic::Status>;
         async fn save_route(
             &self,
-            request: tonic::Request<super::super::structures::Route>,
-        ) -> Result<tonic::Response<super::super::structures::Route>, tonic::Status>;
+            request: tonic::Request<super::super::structures::DRoute>,
+        ) -> Result<tonic::Response<super::super::structures::DRoute>, tonic::Status>;
         async fn save_route_operation(
             &self,
-            request: tonic::Request<super::super::structures::RouteOperation>,
-        ) -> Result<tonic::Response<super::super::structures::RouteOperation>, tonic::Status>;
+            request: tonic::Request<super::super::structures::DRouteOperation>,
+        ) -> Result<tonic::Response<super::super::structures::DRouteOperation>, tonic::Status>;
         async fn save_doc(
             &self,
-            request: tonic::Request<super::super::structures::Doc>,
-        ) -> Result<tonic::Response<super::super::structures::Doc>, tonic::Status>;
+            request: tonic::Request<super::super::structures::DDoc>,
+        ) -> Result<tonic::Response<super::super::structures::DDoc>, tonic::Status>;
         async fn save_customer(
             &self,
-            request: tonic::Request<super::super::structures::Customer>,
-        ) -> Result<tonic::Response<super::super::structures::Customer>, tonic::Status>;
+            request: tonic::Request<super::super::structures::DCustomer>,
+        ) -> Result<tonic::Response<super::super::structures::DCustomer>, tonic::Status>;
         async fn save_supplier(
             &self,
-            request: tonic::Request<super::super::structures::Supplier>,
-        ) -> Result<tonic::Response<super::super::structures::Supplier>, tonic::Status>;
+            request: tonic::Request<super::super::structures::DSupplier>,
+        ) -> Result<tonic::Response<super::super::structures::DSupplier>, tonic::Status>;
     }
     #[doc = " The ObjectStorage definition."]
     #[derive(Debug)]
@@ -1059,7 +1060,7 @@ pub mod object_storage_service_server {
                         tonic::server::UnaryService<super::super::structures::ChangePriorityRequest>
                         for ChangeProductionLinePrioritySvc<T>
                     {
-                        type Response = super::super::structures::ProductionLine;
+                        type Response = super::super::structures::DProductionLine;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1097,7 +1098,7 @@ pub mod object_storage_service_server {
                         tonic::server::UnaryService<super::super::structures::ChangePriorityRequest>
                         for ChangeEquipmentPrioritySvc<T>
                     {
-                        type Response = super::super::structures::Equipment;
+                        type Response = super::super::structures::DEquipment;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -1131,14 +1132,14 @@ pub mod object_storage_service_server {
                     #[allow(non_camel_case_types)]
                     struct SaveUserSvc<T: ObjectStorageService>(pub Arc<T>);
                     impl<T: ObjectStorageService>
-                        tonic::server::UnaryService<super::super::structures::User>
+                        tonic::server::UnaryService<super::super::structures::DUser>
                         for SaveUserSvc<T>
                     {
-                        type Response = super::super::structures::User;
+                        type Response = super::super::structures::DUser;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::super::structures::User>,
+                            request: tonic::Request<super::super::structures::DUser>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).save_user(request).await };
@@ -1165,14 +1166,14 @@ pub mod object_storage_service_server {
                     #[allow(non_camel_case_types)]
                     struct SaveBomSvc<T: ObjectStorageService>(pub Arc<T>);
                     impl<T: ObjectStorageService>
-                        tonic::server::UnaryService<super::super::structures::Bom>
+                        tonic::server::UnaryService<super::super::structures::DBom>
                         for SaveBomSvc<T>
                     {
-                        type Response = super::super::structures::Bom;
+                        type Response = super::super::structures::DBom;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::super::structures::Bom>,
+                            request: tonic::Request<super::super::structures::DBom>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).save_bom(request).await };
@@ -1199,14 +1200,14 @@ pub mod object_storage_service_server {
                     #[allow(non_camel_case_types)]
                     struct SaveRuntimeBomSvc<T: ObjectStorageService>(pub Arc<T>);
                     impl<T: ObjectStorageService>
-                        tonic::server::UnaryService<super::super::structures::RuntimeBom>
+                        tonic::server::UnaryService<super::super::structures::DRuntimeBom>
                         for SaveRuntimeBomSvc<T>
                     {
-                        type Response = super::super::structures::RuntimeBom;
+                        type Response = super::super::structures::DRuntimeBom;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::super::structures::RuntimeBom>,
+                            request: tonic::Request<super::super::structures::DRuntimeBom>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).save_runtime_bom(request).await };
@@ -1233,14 +1234,14 @@ pub mod object_storage_service_server {
                     #[allow(non_camel_case_types)]
                     struct SaveEquipmentSvc<T: ObjectStorageService>(pub Arc<T>);
                     impl<T: ObjectStorageService>
-                        tonic::server::UnaryService<super::super::structures::Equipment>
+                        tonic::server::UnaryService<super::super::structures::DEquipment>
                         for SaveEquipmentSvc<T>
                     {
-                        type Response = super::super::structures::Equipment;
+                        type Response = super::super::structures::DEquipment;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::super::structures::Equipment>,
+                            request: tonic::Request<super::super::structures::DEquipment>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).save_equipment(request).await };
@@ -1267,14 +1268,14 @@ pub mod object_storage_service_server {
                     #[allow(non_camel_case_types)]
                     struct SaveWorkshopSvc<T: ObjectStorageService>(pub Arc<T>);
                     impl<T: ObjectStorageService>
-                        tonic::server::UnaryService<super::super::structures::Workshop>
+                        tonic::server::UnaryService<super::super::structures::DWorkshop>
                         for SaveWorkshopSvc<T>
                     {
-                        type Response = super::super::structures::Workshop;
+                        type Response = super::super::structures::DWorkshop;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::super::structures::Workshop>,
+                            request: tonic::Request<super::super::structures::DWorkshop>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).save_workshop(request).await };
@@ -1301,14 +1302,14 @@ pub mod object_storage_service_server {
                     #[allow(non_camel_case_types)]
                     struct SaveFactorySvc<T: ObjectStorageService>(pub Arc<T>);
                     impl<T: ObjectStorageService>
-                        tonic::server::UnaryService<super::super::structures::Factory>
+                        tonic::server::UnaryService<super::super::structures::DFactory>
                         for SaveFactorySvc<T>
                     {
-                        type Response = super::super::structures::Factory;
+                        type Response = super::super::structures::DFactory;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::super::structures::Factory>,
+                            request: tonic::Request<super::super::structures::DFactory>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).save_factory(request).await };
@@ -1335,14 +1336,14 @@ pub mod object_storage_service_server {
                     #[allow(non_camel_case_types)]
                     struct SaveShiftSvc<T: ObjectStorageService>(pub Arc<T>);
                     impl<T: ObjectStorageService>
-                        tonic::server::UnaryService<super::super::structures::Shift>
+                        tonic::server::UnaryService<super::super::structures::DShift>
                         for SaveShiftSvc<T>
                     {
-                        type Response = super::super::structures::Shift;
+                        type Response = super::super::structures::DShift;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::super::structures::Shift>,
+                            request: tonic::Request<super::super::structures::DShift>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).save_shift(request).await };
@@ -1369,14 +1370,14 @@ pub mod object_storage_service_server {
                     #[allow(non_camel_case_types)]
                     struct SaveWorkStationSvc<T: ObjectStorageService>(pub Arc<T>);
                     impl<T: ObjectStorageService>
-                        tonic::server::UnaryService<super::super::structures::WorkStation>
+                        tonic::server::UnaryService<super::super::structures::DWorkStation>
                         for SaveWorkStationSvc<T>
                     {
-                        type Response = super::super::structures::WorkStation;
+                        type Response = super::super::structures::DWorkStation;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::super::structures::WorkStation>,
+                            request: tonic::Request<super::super::structures::DWorkStation>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).save_work_station(request).await };
@@ -1403,14 +1404,14 @@ pub mod object_storage_service_server {
                     #[allow(non_camel_case_types)]
                     struct SaveEquipmentClassSvc<T: ObjectStorageService>(pub Arc<T>);
                     impl<T: ObjectStorageService>
-                        tonic::server::UnaryService<super::super::structures::EquipmentClass>
+                        tonic::server::UnaryService<super::super::structures::DEquipmentClass>
                         for SaveEquipmentClassSvc<T>
                     {
-                        type Response = super::super::structures::EquipmentClass;
+                        type Response = super::super::structures::DEquipmentClass;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::super::structures::EquipmentClass>,
+                            request: tonic::Request<super::super::structures::DEquipmentClass>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).save_equipment_class(request).await };
@@ -1437,14 +1438,14 @@ pub mod object_storage_service_server {
                     #[allow(non_camel_case_types)]
                     struct SavePartClassSvc<T: ObjectStorageService>(pub Arc<T>);
                     impl<T: ObjectStorageService>
-                        tonic::server::UnaryService<super::super::structures::PartClass>
+                        tonic::server::UnaryService<super::super::structures::DPartClass>
                         for SavePartClassSvc<T>
                     {
-                        type Response = super::super::structures::PartClass;
+                        type Response = super::super::structures::DPartClass;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::super::structures::PartClass>,
+                            request: tonic::Request<super::super::structures::DPartClass>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).save_part_class(request).await };
@@ -1471,14 +1472,14 @@ pub mod object_storage_service_server {
                     #[allow(non_camel_case_types)]
                     struct SavePartSvc<T: ObjectStorageService>(pub Arc<T>);
                     impl<T: ObjectStorageService>
-                        tonic::server::UnaryService<super::super::structures::Part>
+                        tonic::server::UnaryService<super::super::structures::DPart>
                         for SavePartSvc<T>
                     {
-                        type Response = super::super::structures::Part;
+                        type Response = super::super::structures::DPart;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::super::structures::Part>,
+                            request: tonic::Request<super::super::structures::DPart>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).save_part(request).await };
@@ -1505,14 +1506,14 @@ pub mod object_storage_service_server {
                     #[allow(non_camel_case_types)]
                     struct SaveLocationSvc<T: ObjectStorageService>(pub Arc<T>);
                     impl<T: ObjectStorageService>
-                        tonic::server::UnaryService<super::super::structures::Location>
+                        tonic::server::UnaryService<super::super::structures::DLocation>
                         for SaveLocationSvc<T>
                     {
-                        type Response = super::super::structures::Location;
+                        type Response = super::super::structures::DLocation;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::super::structures::Location>,
+                            request: tonic::Request<super::super::structures::DLocation>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).save_location(request).await };
@@ -1539,14 +1540,14 @@ pub mod object_storage_service_server {
                     #[allow(non_camel_case_types)]
                     struct SaveRouteSvc<T: ObjectStorageService>(pub Arc<T>);
                     impl<T: ObjectStorageService>
-                        tonic::server::UnaryService<super::super::structures::Route>
+                        tonic::server::UnaryService<super::super::structures::DRoute>
                         for SaveRouteSvc<T>
                     {
-                        type Response = super::super::structures::Route;
+                        type Response = super::super::structures::DRoute;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::super::structures::Route>,
+                            request: tonic::Request<super::super::structures::DRoute>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).save_route(request).await };
@@ -1573,14 +1574,14 @@ pub mod object_storage_service_server {
                     #[allow(non_camel_case_types)]
                     struct SaveRouteOperationSvc<T: ObjectStorageService>(pub Arc<T>);
                     impl<T: ObjectStorageService>
-                        tonic::server::UnaryService<super::super::structures::RouteOperation>
+                        tonic::server::UnaryService<super::super::structures::DRouteOperation>
                         for SaveRouteOperationSvc<T>
                     {
-                        type Response = super::super::structures::RouteOperation;
+                        type Response = super::super::structures::DRouteOperation;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::super::structures::RouteOperation>,
+                            request: tonic::Request<super::super::structures::DRouteOperation>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).save_route_operation(request).await };
@@ -1607,14 +1608,14 @@ pub mod object_storage_service_server {
                     #[allow(non_camel_case_types)]
                     struct SaveDocSvc<T: ObjectStorageService>(pub Arc<T>);
                     impl<T: ObjectStorageService>
-                        tonic::server::UnaryService<super::super::structures::Doc>
+                        tonic::server::UnaryService<super::super::structures::DDoc>
                         for SaveDocSvc<T>
                     {
-                        type Response = super::super::structures::Doc;
+                        type Response = super::super::structures::DDoc;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::super::structures::Doc>,
+                            request: tonic::Request<super::super::structures::DDoc>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).save_doc(request).await };
@@ -1641,14 +1642,14 @@ pub mod object_storage_service_server {
                     #[allow(non_camel_case_types)]
                     struct SaveCustomerSvc<T: ObjectStorageService>(pub Arc<T>);
                     impl<T: ObjectStorageService>
-                        tonic::server::UnaryService<super::super::structures::Customer>
+                        tonic::server::UnaryService<super::super::structures::DCustomer>
                         for SaveCustomerSvc<T>
                     {
-                        type Response = super::super::structures::Customer;
+                        type Response = super::super::structures::DCustomer;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::super::structures::Customer>,
+                            request: tonic::Request<super::super::structures::DCustomer>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).save_customer(request).await };
@@ -1675,14 +1676,14 @@ pub mod object_storage_service_server {
                     #[allow(non_camel_case_types)]
                     struct SaveSupplierSvc<T: ObjectStorageService>(pub Arc<T>);
                     impl<T: ObjectStorageService>
-                        tonic::server::UnaryService<super::super::structures::Supplier>
+                        tonic::server::UnaryService<super::super::structures::DSupplier>
                         for SaveSupplierSvc<T>
                     {
-                        type Response = super::super::structures::Supplier;
+                        type Response = super::super::structures::DSupplier;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::super::structures::Supplier>,
+                            request: tonic::Request<super::super::structures::DSupplier>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).save_supplier(request).await };

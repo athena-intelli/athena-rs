@@ -1,7 +1,7 @@
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LoginResponse {
     #[prost(message, optional, tag = "1")]
-    pub user: ::core::option::Option<super::structures::User>,
+    pub d_user: ::core::option::Option<super::structures::DUser>,
     #[prost(string, tag = "2")]
     pub access_token: ::prost::alloc::string::String,
 }
@@ -92,7 +92,7 @@ pub mod security_service_client {
             self.inner = self.inner.accept_gzip();
             self
         }
-        #[doc = " user login"]
+        #[doc = " DUser login"]
         pub async fn login(
             &mut self,
             request: impl tonic::IntoRequest<super::UsernameAndPasswordToken>,
@@ -108,7 +108,7 @@ pub mod security_service_client {
                 http::uri::PathAndQuery::from_static("/SecurityService.SecurityService/Login");
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = " user logout"]
+        #[doc = " DUser logout"]
         pub async fn logout(
             &mut self,
             request: impl tonic::IntoRequest<super::UsernameAndPasswordToken>,
@@ -124,7 +124,7 @@ pub mod security_service_client {
                 http::uri::PathAndQuery::from_static("/SecurityService.SecurityService/Logout");
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = " change user password"]
+        #[doc = " change DUser password"]
         pub async fn change_password(
             &mut self,
             request: impl tonic::IntoRequest<super::ChangePasswordRequest>,
@@ -150,17 +150,17 @@ pub mod security_service_server {
     #[doc = "Generated trait containing gRPC methods that should be implemented for use with SecurityServiceServer."]
     #[async_trait]
     pub trait SecurityService: Send + Sync + 'static {
-        #[doc = " user login"]
+        #[doc = " DUser login"]
         async fn login(
             &self,
             request: tonic::Request<super::UsernameAndPasswordToken>,
         ) -> Result<tonic::Response<super::LoginResponse>, tonic::Status>;
-        #[doc = " user logout"]
+        #[doc = " DUser logout"]
         async fn logout(
             &self,
             request: tonic::Request<super::UsernameAndPasswordToken>,
         ) -> Result<tonic::Response<()>, tonic::Status>;
-        #[doc = " change user password"]
+        #[doc = " change DUser password"]
         async fn change_password(
             &self,
             request: tonic::Request<super::ChangePasswordRequest>,

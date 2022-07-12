@@ -46,10 +46,10 @@ message EAInstanceItem{
 }
 
 /**
- * User ata Transfer Object
+ * DUser ata Transfer Object
  */
-message User{
-  BaseAttributes base = 1;
+message DUser{
+  DBaseAttributes base = 1;
   string user_name = 10;
   string password = 11;
   string email = 12;
@@ -60,56 +60,56 @@ message User{
   bool password_changed = 17;
   google.protobuf.Timestamp password_expiration = 18;
   bool password_modifiable = 19;
-  Shift shift = 22;
+  DShift DShift = 22;
   google.protobuf.Timestamp user_expiration = 23;
   EAInstance extended_attributes = 24;
-  repeated UserGroupUser user_group_users = 25;
-  repeated UserRole user_roles = 26;
+  repeated DUserGroupUser user_group_users = 25;
+  repeated DUserRole user_roles = 26;
 }
 
-message UserGroup{
-  BaseAttributes base = 1;
+message DUserGroup{
+  DBaseAttributes base = 1;
   EAInstance extended_attributes = 10;
   string group_name = 11;
   string email = 12;
   uint64 shift_id = 13;
-  repeated UserGroupUser user_group_users = 14;
+  repeated DUserGroupUser user_group_users = 14;
 }
 
-message UserGroupUser{
-  BaseAttributes base = 1;
+message DUserGroupUser{
+  DBaseAttributes base = 1;
   uint64 group_id = 10;
   uint64 user_id = 11;
 }
 
-message Role{
-  BaseAttributes base = 1;
+message DRole{
+  DBaseAttributes base = 1;
   EAInstance extended_attributes = 10;
   string role_name = 11;
-  repeated UserRole user_roles = 12;
+  repeated DUserRole user_roles = 12;
 }
 
-message UserRole{
-  BaseAttributes base = 1;
+message DUserRole{
+  DBaseAttributes base = 1;
   uint64 role_id = 10;
   uint64 user_id = 11;
   google.protobuf.Timestamp effective_start_time = 12;
   google.protobuf.Timestamp effective_end_time = 13;
 }
 
-message Shift{
-  BaseAttributes base = 1;
+message DShift{
+  DBaseAttributes base = 1;
   string shift_code = 10;
   string start_time = 11;
   string end_time = 12;
   string name = 13;
   EAInstance extended_attributes = 14;
   bool over_day = 15;
-  repeated Shifturation shift_durations = 16;
+  repeated DShifturation shift_durations = 16;
 }
 
-message Shifturation{
-  BaseAttributes base = 1;
+message DShifturation{
+  DBaseAttributes base = 1;
   uint64 shift_id = 10;
   string start_time = 11;
   string end_time = 12;
@@ -117,7 +117,7 @@ message Shifturation{
   string type = 14;
 }
 
-message BaseAttributes{
+message DBaseAttributes{
   uint64 id = 1;
   string factory_code = 2;
   string category = 3;
@@ -132,11 +132,11 @@ message BaseAttributes{
 }
 
 /**
- * Factory ata Transfer Object
+ * DFactory ata Transfer Object
  */
-message Factory{
-  BaseAttributes base = 1;
-  repeated Workshop workshops = 10;
+message DFactory{
+  DBaseAttributes base = 1;
+  repeated DWorkshop workshops = 10;
   string time_zone = 11;
   uint64 location_id = 12;
   uint64 work_schedule_id = 13;
@@ -145,11 +145,11 @@ message Factory{
 }
 
 /**
- * Workshop ata Transfer Object
+ * DWorkshop ata Transfer Object
  */
-message Workshop{
-  BaseAttributes base = 1;
-  repeated Workshop workshops = 10;
+message DWorkshop{
+  DBaseAttributes base = 1;
+  repeated DWorkshop workshops = 10;
   uint64 location_id = 11;
   string time_zone = 12;
   uint64 work_schedule_id = 13;
@@ -159,15 +159,15 @@ message Workshop{
 }
 
 
-message Location{
-  BaseAttributes base = 1;
+message DLocation{
+  DBaseAttributes base = 1;
   string location_code = 10;
   EAInstance extended_attributes = 11;
 }
 
 
-message Bom{
-  BaseAttributes base = 1;
+message DBom{
+  DBaseAttributes base = 1;
   string bom_name = 10;
   string bom_revision = 11;
   string bom_type = 12;
@@ -177,8 +177,8 @@ message Bom{
 
 }
 
-message BomItem{
-  BaseAttributes base = 1;
+message DBomItem{
+  DBaseAttributes base = 1;
   uint64 bom_id = 10;
   string consumption_type = 11;
   string part_number = 12;
@@ -187,13 +187,13 @@ message BomItem{
   bool record_consumption = 15;
   string uom = 16;
   EAInstance extended_attributes = 17;
-  repeated AlternateBomItem alternate_items = 18;
+  repeated DAlternateBomItem alternate_items = 18;
   string position_number = 19;
   string component_location = 20;
 }
 
-message AlternateBomItem{
-  BaseAttributes base = 1;
+message DAlternateBomItem{
+  DBaseAttributes base = 1;
   EAInstance extended_attributes = 10;
   uint64 bom_id = 11;
   uint64 bom_item_id = 12;
@@ -203,10 +203,10 @@ message AlternateBomItem{
 
 }
 
-message RuntimeBom{
-  BaseAttributes base = 1;
+message DRuntimeBom{
+  DBaseAttributes base = 1;
   EAInstance extended_attributes = 10;
-  repeated RuntimeBomItem bom_items = 11;
+  repeated DRuntimeBomItem bom_items = 11;
   bool bom_items_changed = 12;
   uint64 tracked_object_id = 13;
   string tracked_object_type = 14;
@@ -215,8 +215,8 @@ message RuntimeBom{
   string uom = 17;
 }
 
-message RuntimeBomItem{
-  BaseAttributes base = 1;
+message DRuntimeBomItem{
+  DBaseAttributes base = 1;
   uint64 bom_id = 10;
   string consumption_type = 11;
   string part_number = 12;
@@ -229,8 +229,8 @@ message RuntimeBomItem{
   string tracked_object_type = 19;
 }
 
-message Doc{
-  BaseAttributes base = 1;
+message DDoc{
+  DBaseAttributes base = 1;
   string doc_code = 9;
   string doc_version = 10;
   EAInstance extended_attributes = 11;
@@ -241,8 +241,8 @@ message Doc{
   string class_code = 16;
 }
 
-message Equipment{
-  BaseAttributes base = 1;
+message DEquipment{
+  DBaseAttributes base = 1;
   string capacity = 10;
   string identity = 11;
   repeated uint64 child_equipment_ids = 12;
@@ -255,28 +255,28 @@ message Equipment{
   repeated uint64 doc_ids = 19;
   string name = 20;
   EAInstance extended_attributes = 21;
-  EquipmentClass equipment_class = 22;
+  DEquipmentClass equipment_class = 22;
 
 }
 
-message EquipmentClass{
-  BaseAttributes base = 1;
+message DEquipmentClass{
+  DBaseAttributes base = 1;
   string class_code = 10;
   string name = 11;
   EAInstance extended_attributes = 12;
 }
 
-message WorkStation{
-  BaseAttributes base = 1;
+message DWorkStation{
+  DBaseAttributes base = 1;
   string station_code = 10;
   string name = 11;
   uint64 production_line_id = 12;
-  Location location = 13;
+  DLocation DLocation = 13;
   EAInstance extended_attributes = 14;
 }
 
-message Trackable{
-  BaseAttributes base = 1;
+message DTrackable{
+  DBaseAttributes base = 1;
   uint64 tracked_object_status_id = 10;
   string operation_code = 11;
   string production_line_code = 12;
@@ -316,11 +316,11 @@ message Trackable{
   string location_name = 27;
 }
 
-message Container{
-  BaseAttributes base = 1;
-  // the actual number of containers in a Container
+message DContainer{
+  DBaseAttributes base = 1;
+  // the actual number of containers in a DContainer
   uint32 container_count = 10;
-  // the number of allowed items in this Container
+  // the number of allowed items in this DContainer
   uint32 capacity = 11;
   string serial_number = 13;
   uint32 lot_count = 14;
@@ -333,13 +333,13 @@ message Container{
   string previous_node_name = 21;
   string previous_node_type = 22;
   EAInstance extended_attributes = 23;
-  Trackable tracked_data = 24;
+  DTrackable tracked_data = 24;
 }
 
-message Lot{
-  BaseAttributes base = 1;
+message DLot{
+  DBaseAttributes base = 1;
   EAInstance extended_attributes = 10;
-  Trackable trackable = 11;
+  DTrackable DTrackable = 11;
   string serial_number = 12;
   string order_number = 13;
   string part_number = 14;
@@ -351,7 +351,7 @@ message Lot{
   bool good = 20;
   uint32 priority = 21;
   uint32 rework_count = 22;
-  Trackable tracked_data = 23;
+  DTrackable tracked_data = 23;
   google.protobuf.Timestamp finished_time = 24;
   google.protobuf.Timestamp closed_time = 25;
   google.protobuf.Timestamp promised_time = 26;
@@ -361,8 +361,8 @@ message Lot{
   bool consumed = 30;
 }
 
-message Unit{
-  BaseAttributes base = 1;
+message DUnit{
+  DBaseAttributes base = 1;
   string serial_number = 10;
   string order_number = 11;
   EAInstance extended_attributes = 12;
@@ -384,15 +384,15 @@ message Unit{
   uint32 rework_count = 29;
   google.protobuf.Timestamp shipped_time = 30;
   google.protobuf.Timestamp expiration_time = 31;
-  Trackable tracked_data = 32;
+  DTrackable tracked_data = 32;
   bool scrapped = 33;
   bool consumed = 34;
   string current_status = 35;
   string previous_status = 36;
 }
 
-message Route{
-  BaseAttributes base = 1;
+message DRoute{
+  DBaseAttributes base = 1;
   string route_code = 10;
   string route_version = 11;
   string name = 12;
@@ -401,39 +401,39 @@ message Route{
   EAInstance extended_attributes = 15;
   repeated uint64 production_line_ids = 16;
   uint64 default_production_line_id = 17;
-  repeated RouteArc route_arcs = 18;
-  repeated RouteStep route_steps = 19;
-  repeated RouteQueue route_queues = 20;
+  repeated DRouteArc route_arcs = 18;
+  repeated DRouteStep route_steps = 19;
+  repeated DRouteQueue route_queues = 20;
 }
 
-message RouteStep{
-  BaseAttributes base = 1;
+message DRouteStep{
+  DBaseAttributes base = 1;
   EAInstance extended_attributes = 10;
   string step_number = 11;
   string step_name = 12;
   uint32 cycle_duration = 13;
   enums.CycleDurationType type = 14;
   uint32 enforcement = 15;
-  // true: Means this Route Step must be included.
-  // false: Means this Route Step need not be included.
+  // true: Means this DRoute Step must be included.
+  // false: Means this DRoute Step need not be included.
   bool failure = 16;
   uint64 operation_id = 17;
   string operation_code = 18;
   uint32 pixel_x = 19;
   uint32 pixel_y = 20;
   enums.RouteStepType step_type = 21;
-  //Primary keys of Equipments assigned to the Route Step.
+  //Primary keys of Equipments assigned to the DRoute Step.
   repeated uint64 equipment_ids = 23;
-  //Primary keys of Work stations assigned to the Route Step.
+  //Primary keys of Work stations assigned to the DRoute Step.
   repeated uint64 work_station_ids = 24;
-  //Primary keys of Production Lines associated with this Route Step.
+  //Primary keys of Production Lines associated with this DRoute Step.
   repeated uint64 production_line_ids = 25;
   repeated uint64 embedded_route_ids = 26;
 
 }
 
-message RouteQueue{
-  BaseAttributes base = 1;
+message DRouteQueue{
+  DBaseAttributes base = 1;
   EAInstance extended_attributes = 10;
   bool auto_start = 11;
   uint32 queue_duration = 12;
@@ -449,8 +449,8 @@ message RouteQueue{
   string route_queue_name = 23;
 }
 
-message RouteArc{
-  BaseAttributes base = 1;
+message DRouteArc{
+  DBaseAttributes base = 1;
   enums.RouteArcNodeType to_node_type = 10;
   string to_node_name = 11;
   enums.RouteArcNodeType from_node_type = 12;
@@ -460,8 +460,8 @@ message RouteArc{
 }
 
 
-message RouteOperation{
-  BaseAttributes base = 1;
+message DRouteOperation{
+  DBaseAttributes base = 1;
   EAInstance extended_attributes = 10;
   string code = 11;
   string name = 12;
@@ -470,8 +470,8 @@ message RouteOperation{
   uint32 cycle_duration = 14;
 }
 
-message Part{
-  BaseAttributes base = 1;
+message DPart{
+  DBaseAttributes base = 1;
   string part_number = 10;
   string part_revision = 11;
   uint64 bom_id = 12;
@@ -481,14 +481,14 @@ message Part{
   uint32 shelf_life = 16;
   string uom = 17;
   EAInstance extended_attributes = 18;
-  repeated PartClass part_classes = 19;
+  repeated DPartClass part_classes = 19;
   string bu = 20;
   string prod_spec = 21;
   string status = 22;
 }
 
-message AlternatePart{
-  BaseAttributes base = 1;
+message DAlternatePart{
+  DBaseAttributes base = 1;
   uint64 parent_id = 10;
   string parent_type = 11;
   string part_number = 12;
@@ -497,23 +497,23 @@ message AlternatePart{
   double max_replacement_percent = 15;
 }
 
-message AlternatePartGroup{
-  BaseAttributes base = 1;
+message DAlternatePartGroup{
+  DBaseAttributes base = 1;
   uint64 parent_id = 10;
   string parent_type = 11;
-  repeated AlternatePart alternate_parts = 12;
+  repeated DAlternatePart alternate_parts = 12;
   EAInstance extended_attributes = 13;
   double max_replacement_percent = 14;
 }
 
-message PartClass{
-  BaseAttributes base = 1;
+message DPartClass{
+  DBaseAttributes base = 1;
   string class_name = 10;
   EAInstance extended_attributes = 11;
 }
 
-message Customer{
-  BaseAttributes base = 1;
+message DCustomer{
+  DBaseAttributes base = 1;
   string code = 10;
   string name = 11;
   string contact = 12;
@@ -523,8 +523,8 @@ message Customer{
   string status = 16;
 }
 
-message Supplier{
-  BaseAttributes base = 1;
+message DSupplier{
+  DBaseAttributes base = 1;
   string code = 10;
   string name = 11;
   string contact = 12;
@@ -533,8 +533,8 @@ message Supplier{
   EAInstance extended_attributes = 15;
 }
 
-message WorkOrder{
-  BaseAttributes base = 1;
+message DWorkOrder{
+  DBaseAttributes base = 1;
   string order_number = 10;
   google.protobuf.Timestamp closed_time = 11;
   string comment = 12;
@@ -561,14 +561,14 @@ message WorkOrder{
   string origin_number = 34;
 }
 
-message TestDefinition{
-  BaseAttributes base = 1;
+message DTestDefinition{
+  DBaseAttributes base = 1;
   EAInstance extended_attributes = 10;
   string name = 11;
 }
 
-message TestInstance{
-  BaseAttributes base = 1;
+message DTestInstance{
+  DBaseAttributes base = 1;
   EAInstance extended_attributes = 10;
   string location_code = 11;
   uint64 object_id = 12;
@@ -585,7 +585,7 @@ message TestInstance{
   bool test_valid = 23;
   uint64 test_definition_id = 24;
   string test_equipment_identity = 25;
-  repeated DefectRepairEntry defect_repair_entries = 26;
+  repeated DDefectRepairEntry defect_repair_entries = 26;
   string test_user = 27;
   string work_station_code = 28;
   string work_station_name = 29;
@@ -593,8 +593,8 @@ message TestInstance{
   string production_line_name = 31;
 }
 
-message DefectRepairEntry{
-  BaseAttributes base = 1;
+message DDefectRepairEntry{
+  DBaseAttributes base = 1;
   EAInstance extended_attributes = 10;
   uint64 test_instance_id = 11;
   string defect_operation_name = 12;
@@ -622,25 +622,25 @@ message DefectRepairEntry{
   string object_type = 34;
 }
 
-message ProductionLine{
-  BaseAttributes base = 1;
+message DProductionLine{
+  DBaseAttributes base = 1;
   EAInstance extended_attributes = 10;
   string code = 11;
   string name = 12;
   string capacity = 13;
-  Location location = 14;
+  DLocation DLocation = 14;
   repeated uint64 production_queue_ids = 15;
   repeated uint64 storage_unit_ids = 16;
   repeated uint64 work_station_ids = 17;
 }
 
-message StorageUnit{
-  BaseAttributes base = 1;
+message DStorageUnit{
+  DBaseAttributes base = 1;
   EAInstance extended_attributes = 9;
-  Location location = 10;
+  DLocation DLocation = 10;
   int32 maximum_storage_duration = 11;
   int32 minimum_storage_duration = 12;
-  PartClass part_class = 13;
+  DPartClass part_class = 13;
 }
 
 message Filter{
@@ -678,7 +678,7 @@ message FilterParameter{
 
 
 message ChecklistDefinition{
-  BaseAttributes base = 1;
+  DBaseAttributes base = 1;
   EAInstance extended_attributes = 10;
   repeated ChecklistDefinitionItem items = 11;
   bool checklist_items_changed = 12;
@@ -696,7 +696,7 @@ message ChecklistDefinitionItem{
 }
 
 message ChecklistInstance{
-  BaseAttributes base = 1;
+  DBaseAttributes base = 1;
   EAInstance extended_attributes = 10;
   repeated ChecklistInstanceItem items = 11;
   bool checklist_items_changed = 12;
@@ -729,8 +729,8 @@ message ChangePriorityRequest{
   google.protobuf.Timestamp transaction_time = 4;
 }
 
-message ConsumedPart{
-  BaseAttributes base = 1;
+message DConsumedPart{
+  DBaseAttributes base = 1;
   EAInstance extended_attributes = 10;
   uint64 alternate_bom_item_id = 11;
   string consumption_status = 12;
@@ -761,8 +761,8 @@ message ConsumedPart{
   string tracked_obj_type = 37;
 }
 
-message ProductConfiguration{
-  BaseAttributes base = 1;
+message DProductConfiguration{
+  DBaseAttributes base = 1;
   EAInstance extended_attributes = 10;
   string name = 11;
   string version = 12;
@@ -777,8 +777,8 @@ message ProductConfiguration{
   string order_number = 21;
 }
 
-message ProductConfigurationRoute{
-  BaseAttributes base = 1;
+message DProductConfigurationRoute{
+  DBaseAttributes base = 1;
   EAInstance extended_attributes = 10;
   uint64 production_config_id = 12;
   uint64 route_id = 13;
@@ -790,8 +790,8 @@ message ProductConfigurationRoute{
   bool valid = 19;
 }
 
-message ProductConfigurationRouteStep{
-  BaseAttributes base = 1;
+message DProductConfigurationRouteStep{
+  DBaseAttributes base = 1;
   EAInstance extended_attributes = 10;
   uint64 production_config_id = 11;
   uint64 production_config_route_id = 12;
@@ -799,8 +799,8 @@ message ProductConfigurationRouteStep{
   bool enforcement = 14;
 }
 
-message ProductConfigurationRouteStepBom{
-  BaseAttributes base = 1;
+message DProductConfigurationRouteStepBom{
+  DBaseAttributes base = 1;
   EAInstance extended_attributes = 10;
   uint64 production_config_id = 11;
   uint64 production_config_route_id = 12;
@@ -819,8 +819,8 @@ message ProductConfigurationRouteStepBom{
   double lower_quatity = 25;
 }
 
-message ProductConfigurationRouteStepDoc{
-  BaseAttributes base = 1;
+message DProductConfigurationRouteStepDoc{
+  DBaseAttributes base = 1;
   EAInstance extended_attributes = 10;
   uint64 production_config_id = 11;
   uint64 production_config_route_id = 12;
@@ -833,8 +833,8 @@ message ProductConfigurationRouteStepDoc{
   uint64 doc_id = 19;
 }
 
-message ProductConfigurationRouteStepEquipmentClass{
-  BaseAttributes base = 1;
+message DProductConfigurationRouteStepEquipmentClass{
+  DBaseAttributes base = 1;
   EAInstance extended_attributes = 10;
   uint64 production_config_id = 11;
   uint64 production_config_route_id = 12;
@@ -846,8 +846,8 @@ message ProductConfigurationRouteStepEquipmentClass{
   bool enabled = 18;
 }
 
-message ProductConfigurationRouteStepCheckList{
-  BaseAttributes base = 1;
+message DProductConfigurationRouteStepCheckList{
+  DBaseAttributes base = 1;
   EAInstance extended_attributes = 10;
   uint64 production_config_id = 11;
   uint64 production_config_route_id = 12;
@@ -864,20 +864,20 @@ message ProductConfigurationRouteStepCheckList{
 }
 
 
-message Pallet{
-  BaseAttributes base = 1;
+message DPallet{
+  DBaseAttributes base = 1;
   EAInstance extended_attributes = 10;
   string serial_number = 11;
   uint64 container_id = 12;
   string container_type = 13;
-  Pallet parent = 14;
+  DPallet parent = 14;
   uint64 location_id = 15;
   string location_code = 16;
 
 }
 
 message ESignatureefinition{
-  BaseAttributes base = 1;
+  DBaseAttributes base = 1;
   string name = 10;
   bool comment_required = 11;
   bool send_email = 12;

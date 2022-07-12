@@ -127,7 +127,7 @@ pub mod work_order_service_client {
         pub async fn change_order_priority(
             &mut self,
             request: impl tonic::IntoRequest<super::super::structures::ChangePriorityRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -143,7 +143,7 @@ pub mod work_order_service_client {
         pub async fn close(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionOrderRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -158,7 +158,7 @@ pub mod work_order_service_client {
         pub async fn finish(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionOrderRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -173,7 +173,7 @@ pub mod work_order_service_client {
         pub async fn hold(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionOrderRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -188,7 +188,7 @@ pub mod work_order_service_client {
         pub async fn open(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionOrderRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -203,7 +203,7 @@ pub mod work_order_service_client {
         pub async fn quarantine(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionOrderRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -219,7 +219,7 @@ pub mod work_order_service_client {
         pub async fn release(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionOrderRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -249,8 +249,8 @@ pub mod work_order_service_client {
         }
         pub async fn save_work_order(
             &mut self,
-            request: impl tonic::IntoRequest<super::super::structures::WorkOrder>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::super::structures::DWorkOrder>,
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -266,7 +266,7 @@ pub mod work_order_service_client {
         pub async fn ship(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionOrderRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -281,7 +281,7 @@ pub mod work_order_service_client {
         pub async fn undo_close(
             &mut self,
             request: impl tonic::IntoRequest<super::TransitionOrderRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -295,12 +295,12 @@ pub mod work_order_service_client {
             self.inner.unary(request.into_request(), path, codec).await
         }
         #[doc = " This method is used to record a transaction indicating that this"]
-        #[doc = " WorkOrder and all of its children (any Lots, Units) have"]
+        #[doc = " DWorkOrder and all of its children (any Lots, Units) have"]
         #[doc = " started at the route step specified."]
         pub async fn start_at_route_step(
             &mut self,
             request: impl tonic::IntoRequest<super::StartOrderRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -314,12 +314,12 @@ pub mod work_order_service_client {
             self.inner.unary(request.into_request(), path, codec).await
         }
         #[doc = "  This method is used to record a transaction indicating that this"]
-        #[doc = "  WorkOrder and all of its children (any  Lots, Units) have"]
+        #[doc = "  DWorkOrder and all of its children (any  Lots, Units) have"]
         #[doc = "  completed the route step specified."]
         pub async fn complete_at_route_step(
             &mut self,
             request: impl tonic::IntoRequest<super::CompleteOrderRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status> {
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -344,61 +344,61 @@ pub mod work_order_service_server {
         async fn change_order_priority(
             &self,
             request: tonic::Request<super::super::structures::ChangePriorityRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status>;
         async fn close(
             &self,
             request: tonic::Request<super::TransitionOrderRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status>;
         async fn finish(
             &self,
             request: tonic::Request<super::TransitionOrderRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status>;
         async fn hold(
             &self,
             request: tonic::Request<super::TransitionOrderRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status>;
         async fn open(
             &self,
             request: tonic::Request<super::TransitionOrderRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status>;
         async fn quarantine(
             &self,
             request: tonic::Request<super::TransitionOrderRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status>;
         async fn release(
             &self,
             request: tonic::Request<super::TransitionOrderRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status>;
         async fn delete_order(
             &self,
             request: tonic::Request<super::DeleteOrderRequest>,
         ) -> Result<tonic::Response<()>, tonic::Status>;
         async fn save_work_order(
             &self,
-            request: tonic::Request<super::super::structures::WorkOrder>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status>;
+            request: tonic::Request<super::super::structures::DWorkOrder>,
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status>;
         async fn ship(
             &self,
             request: tonic::Request<super::TransitionOrderRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status>;
         async fn undo_close(
             &self,
             request: tonic::Request<super::TransitionOrderRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status>;
         #[doc = " This method is used to record a transaction indicating that this"]
-        #[doc = " WorkOrder and all of its children (any Lots, Units) have"]
+        #[doc = " DWorkOrder and all of its children (any Lots, Units) have"]
         #[doc = " started at the route step specified."]
         async fn start_at_route_step(
             &self,
             request: tonic::Request<super::StartOrderRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status>;
         #[doc = "  This method is used to record a transaction indicating that this"]
-        #[doc = "  WorkOrder and all of its children (any  Lots, Units) have"]
+        #[doc = "  DWorkOrder and all of its children (any  Lots, Units) have"]
         #[doc = "  completed the route step specified."]
         async fn complete_at_route_step(
             &self,
             request: tonic::Request<super::CompleteOrderRequest>,
-        ) -> Result<tonic::Response<super::super::structures::WorkOrder>, tonic::Status>;
+        ) -> Result<tonic::Response<super::super::structures::DWorkOrder>, tonic::Status>;
     }
     #[derive(Debug)]
     pub struct WorkOrderServiceServer<T: WorkOrderService> {
@@ -456,7 +456,7 @@ pub mod work_order_service_server {
                         tonic::server::UnaryService<super::super::structures::ChangePriorityRequest>
                         for ChangeOrderPrioritySvc<T>
                     {
-                        type Response = super::super::structures::WorkOrder;
+                        type Response = super::super::structures::DWorkOrder;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -491,7 +491,7 @@ pub mod work_order_service_server {
                     impl<T: WorkOrderService>
                         tonic::server::UnaryService<super::TransitionOrderRequest> for CloseSvc<T>
                     {
-                        type Response = super::super::structures::WorkOrder;
+                        type Response = super::super::structures::DWorkOrder;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -525,7 +525,7 @@ pub mod work_order_service_server {
                         tonic::server::UnaryService<super::TransitionOrderRequest>
                         for FinishSvc<T>
                     {
-                        type Response = super::super::structures::WorkOrder;
+                        type Response = super::super::structures::DWorkOrder;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -558,7 +558,7 @@ pub mod work_order_service_server {
                     impl<T: WorkOrderService>
                         tonic::server::UnaryService<super::TransitionOrderRequest> for HoldSvc<T>
                     {
-                        type Response = super::super::structures::WorkOrder;
+                        type Response = super::super::structures::DWorkOrder;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -591,7 +591,7 @@ pub mod work_order_service_server {
                     impl<T: WorkOrderService>
                         tonic::server::UnaryService<super::TransitionOrderRequest> for OpenSvc<T>
                     {
-                        type Response = super::super::structures::WorkOrder;
+                        type Response = super::super::structures::DWorkOrder;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -625,7 +625,7 @@ pub mod work_order_service_server {
                         tonic::server::UnaryService<super::TransitionOrderRequest>
                         for QuarantineSvc<T>
                     {
-                        type Response = super::super::structures::WorkOrder;
+                        type Response = super::super::structures::DWorkOrder;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -659,7 +659,7 @@ pub mod work_order_service_server {
                         tonic::server::UnaryService<super::TransitionOrderRequest>
                         for ReleaseSvc<T>
                     {
-                        type Response = super::super::structures::WorkOrder;
+                        type Response = super::super::structures::DWorkOrder;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -723,14 +723,14 @@ pub mod work_order_service_server {
                     #[allow(non_camel_case_types)]
                     struct SaveWorkOrderSvc<T: WorkOrderService>(pub Arc<T>);
                     impl<T: WorkOrderService>
-                        tonic::server::UnaryService<super::super::structures::WorkOrder>
+                        tonic::server::UnaryService<super::super::structures::DWorkOrder>
                         for SaveWorkOrderSvc<T>
                     {
-                        type Response = super::super::structures::WorkOrder;
+                        type Response = super::super::structures::DWorkOrder;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::super::structures::WorkOrder>,
+                            request: tonic::Request<super::super::structures::DWorkOrder>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).save_work_order(request).await };
@@ -759,7 +759,7 @@ pub mod work_order_service_server {
                     impl<T: WorkOrderService>
                         tonic::server::UnaryService<super::TransitionOrderRequest> for ShipSvc<T>
                     {
-                        type Response = super::super::structures::WorkOrder;
+                        type Response = super::super::structures::DWorkOrder;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -793,7 +793,7 @@ pub mod work_order_service_server {
                         tonic::server::UnaryService<super::TransitionOrderRequest>
                         for UndoCloseSvc<T>
                     {
-                        type Response = super::super::structures::WorkOrder;
+                        type Response = super::super::structures::DWorkOrder;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -826,7 +826,7 @@ pub mod work_order_service_server {
                     impl<T: WorkOrderService> tonic::server::UnaryService<super::StartOrderRequest>
                         for StartAtRouteStepSvc<T>
                     {
-                        type Response = super::super::structures::WorkOrder;
+                        type Response = super::super::structures::DWorkOrder;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
@@ -860,7 +860,7 @@ pub mod work_order_service_server {
                         tonic::server::UnaryService<super::CompleteOrderRequest>
                         for CompleteAtRouteStepSvc<T>
                     {
-                        type Response = super::super::structures::WorkOrder;
+                        type Response = super::super::structures::DWorkOrder;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
